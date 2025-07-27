@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio-Stride - Portable TBI Detection in the Golden Hour</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #00B4D8;
+            --dark-blue: #003045;
+            --light-blue: #90E0EF;
+            --accent-pink: #FF006E;
+            --text-dark: #1A1A1A;
+            --text-light: #666;
+            --bg-light: #F8F9FA;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .cta-button {
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--dark-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 180, 216, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--light-blue) 0%, transparent 70%);
+            top: -250px;
+            right: -250px;
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-text h1 span {
+            color: var(--primary-blue);
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: var(--dark-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 180, 216, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--dark-blue);
+            padding: 1rem 2rem;
+            border: 2px solid var(--dark-blue);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--dark-blue);
+            color: white;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .device-mockup {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1));
+            animation: float-device 4s ease-in-out infinite;
+        }
+
+        @keyframes float-device {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 20px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--light-blue));
+            transform: translateX(-100%);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-blue);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 80px 0;
+            background: var(--bg-light);
+        }
+
+        .problem-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .problem-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+        }
+
+        /* Technology Section */
+        .technology {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .tech-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .tech-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .tech-feature {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .tech-icon {
+            min-width: 40px;
+            height: 40px;
+            background: var(--light-blue);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+        }
+
+        /* Team Section */
+        .team {
+            padding: 80px 0;
+            background: var(--bg-light);
+        }
+
+        .team-info {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .achievements {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .achievement-badge {
+            background: var(--light-blue);
+            color: var(--dark-blue);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-details h3 {
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .contact-form {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark-blue);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            background: white;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content,
+            .problem-content,
+            .tech-showcase,
+            .contact-info {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .problem-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Sign Up Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .modal h2 {
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        .modal p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="20" y="10" width="60" height="80" rx="10" fill="#00B4D8" opacity="0.8"/>
+                    <circle cx="50" cy="70" r="8" fill="#FFFFFF"/>
+                    <path d="M35 30 Q50 20 65 30" stroke="#FFFFFF" stroke-width="3" fill="none"/>
+                </svg>
+                BioStride
+            </div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#problem">Problem</a>
+                <a href="#technology">Technology</a>
+                <a href="#team">Team</a>
+                <a href="#contact">Contact</a>
+                <a href="#" class="cta-button" onclick="openModal()">Early Access</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Portable <span>TBI Detection</span> in the Golden Hour</h1>
+                    <p>Life-saving diagnostics when every minute counts. Blood-based traumatic brain injury assessment in under 15 minutes.</p>
+                    <div class="hero-buttons">
+                        <a href="#technology" class="btn-primary">
+                            Explore Technology
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <a href="#contact" class="btn-secondary">Get in Touch</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <svg class="device-mockup" width="400" height="500" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Device Body -->
+                        <rect x="50" y="50" width="300" height="400" rx="30" fill="#f0f0f0" stroke="#ddd" stroke-width="2"/>
+                        
+                        <!-- Screen -->
+                        <rect x="70" y="100" width="260" height="200" rx="10" fill="#003045"/>
+                        
+                        <!-- Display Elements -->
+                        <text x="200" y="150" text-anchor="middle" fill="#00B4D8" font-size="24" font-weight="bold">Biomarker #1: 65</text>
+                        <text x="200" y="180" text-anchor="middle" fill="#00B4D8" font-size="24" font-weight="bold">UCH-L1: 360</text>
+                        <text x="200" y="220" text-anchor="middle" fill="#90E0EF" font-size="18">Result: Not Elevated</text>
+                        
+                        <!-- Status Light -->
+                        <circle cx="200" y="260" r="15" fill="#4CAF50"/>
+                        
+                        <!-- Cartridge Slot -->
+                        <rect x="120" y="320" width="160" height="80" rx="5" fill="#ddd"/>
+                        <rect x="140" y="340" width="120" height="40" rx="3" fill="#00B4D8" opacity="0.5"/>
+                        
+                        <!-- Control Buttons -->
+                        <circle cx="150" y="430" r="15" fill="#666"/>
+                        <circle cx="200" y="430" r="15" fill="#666"/>
+                        <circle cx="250" y="430" r="15" fill="#666"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Revolutionary Emergency Diagnostics</h2>
+                <p>Transforming trauma care with rapid, accurate point-of-care testing</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⏱️</div>
+                    <h3>15-Minute Results</h3>
+                    <p>Critical TBI assessment in the golden hour when every second counts for patient outcomes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚑</div>
+                    <h3>Field Operable</h3>
+                    <p>Ruggedized for ambulance mounting with vibration resistance and temperature stability.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🩸</div>
+                    <h3>FDA Approved Biomarkers</h3>
+                    <p>Detects biomarkers using validated electrochemical biosensors.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Cloud Connected</h3>
+                    <p>Real-time data transmission to hospital systems for seamless emergency response.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3>Simple Interface</h3>
+                    <p>Designed for emergency responders with minimal training requirements.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Expandable Platform</h3>
+                    <p>Modular cartridge system for future organ failure and trauma diagnostics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem" id="problem">
+        <div class="container">
+            <div class="problem-content">
+                <div>
+                    <h2>The Critical Challenge</h2>
+                    <p style="font-size: 1.125rem; margin: 1.5rem 0;">When someone suffers a head injury, rapid assessment is crucial. Undetected traumatic brain injury leads to paralysis, neurological disorders, and death.</p>
+                    <p style="color: var(--text-light);">In India, with only 0.55 hospital beds per 1,000 people and 75% of infrastructure in urban areas, rural patients face average travel distances over 100km to reach CT scan facilities. This delay during the critical golden hour often results in permanent disability.</p>
+                    <div class="problem-stats">
+                        <div class="stat-card">
+                            <div class="stat-number">4M</div>
+                            <div class="stat-label">Emergency visits/year in India due to falls</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">6hrs</div>
+                            <div class="stat-label">Average wait time for CT scan at AIIMS</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">75%</div>
+                            <div class="stat-label">Healthcare infrastructure in urban areas</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">100km</div>
+                            <div class="stat-label">Average rural distance to healthcare</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Brain outline -->
+                        <path d="M200 80 C150 80 100 120 100 180 C100 240 150 280 200 280 C250 280 300 240 300 180 C300 120 250 80 200 80" 
+                              fill="none" stroke="#00B4D8" stroke-width="3"/>
+                        
+                        <!-- Brain folds -->
+                        <path d="M150 120 Q180 110 200 130 T250 120" fill="none" stroke="#00B4D8" stroke-width="2" opacity="0.5"/>
+                        <path d="M140 160 Q170 150 190 170 T240 160" fill="none" stroke="#00B4D8" stroke-width="2" opacity="0.5"/>
+                        <path d="M150 200 Q180 190 200 210 T250 200" fill="none" stroke="#00B4D8" stroke-width="2" opacity="0.5"/>
+                        
+                        <!-- Impact point -->
+                        <circle cx="250" cy="140" r="30" fill="#FF006E" opacity="0.3"/>
+                        <circle cx="250" cy="140" r="20" fill="#FF006E" opacity="0.5"/>
+                        <circle cx="250" cy="140" r="10" fill="#FF006E"/>
+                        
+                        <!-- Alert icon -->
+                        <path d="M200 320 L190 340 L210 340 Z" fill="#FF006E"/>
+                        <circle cx="200" cy="355" r="5" fill="#FF006E"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="technology" id="technology">
+        <div class="container">
+            <div class="section-header">
+                <h2>Breakthrough Technology</h2>
+                <p>Patent-pending electrochemical detection validated at BITS Pilani</p>
+            </div>
+            <div class="tech-showcase">
+                <div>
+                    <h3 style="color: var(--dark-blue); margin-bottom: 1.5rem;">How Bio-Stride Works</h3>
+                    <div class="tech-features">
+                        <div class="tech-feature">
+                            <div class="tech-icon">1</div>
+                            <div>
+                                <h4>Blood Sample Collection</h4>
+                                <p>Fingerstick or venous draw - only 20μL required</p>
+                            </div>
+                        </div>
+                        <div class="tech-feature">
+                            <div class="tech-icon">2</div>
+                            <div>
+                                <h4>Biomarker Detection</h4>
+                                <p>Electrochemical sensors biomarkers</p>
+                            </div>
+                        </div>
+                        <div class="tech-feature">
+                            <div class="tech-icon">3</div>
+                            <div>
+                                <h4>Signal Processing</h4>
+                                <p>Embedded algorithms analyze biomarker concentrations</p>
+                            </div>
+                        </div>
+                        <div class="tech-feature">
+                            <div class="tech-icon">4</div>
+                            <div>
+                                <h4>Clinical Decision Support</h4>
+                                <p>Clear indication of CT scan necessity within 15 minutes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="background: var(--bg-light); padding: 2rem; border-radius: 20px;">
+                    <h4 style="color: var(--dark-blue); margin-bottom: 1rem;">Technical Specifications</h4>
+                    <ul style="list-style: none; color: var(--text-light);">
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #e0e0e0;">
+                            <strong>Detection Range:</strong> 47-10,000 pg/mL
+                        </li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #e0e0e0;">
+                            <strong>Sensitivity:</strong> 96.5% clinical sensitivity
+                        </li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #e0e0e0;">
+                            <strong>Analysis Time:</strong> < 15 minutes
+                        </li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #e0e0e0;">
+                            <strong>Sample Volume:</strong> 20μL whole blood
+                        </li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #e0e0e0;">
+                            <strong>Battery Life:</strong> >4 hours continuous use
+                        </li>
+                        <li style="padding: 0.5rem 0;">
+                            <strong>Connectivity:</strong> Bluetooth, Wi-Fi, 4G/5G
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="container">
+            <div class="section-header">
+                <h2>Innovation Team</h2>
+                <p>Award-winning researchers from India's premier institutions</p>
+            </div>
+            <div class="team-info">
+                <h3>Led by Anagh Sinha</h3>
+                <p style="color: var(--text-light); margin: 1rem 0;">BITS Pilani | Electronics Engineering & Biological Science Dual Major</p>
+                <p>Our team combines expertise from BITS Pilani, AIIMS, and IISER. We've conducted award-winning research at the University of Tokyo and ETH Zurich (QS #7 globally) on diagnostic systems.</p>
+                <div class="achievements">
+                    <span class="achievement-badge">IIE Invent Award</span>
+                    <span class="achievement-badge">Amgen Research Fellowship</span>
+                    <span class="achievement-badge">University of Tokyo Best Poster 2024</span>
+                    <span class="achievement-badge">ETH Zurich Research</span>
+                    <span class="achievement-badge">2 Successful Startup Exits</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get in Touch</h2>
+                <p>Join us in revolutionizing emergency diagnostics</p>
+            </div>
+            <div class="contact-info">
+                <div class="contact-details">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 8L12 13L21 8M5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        contact@biostride.in
+                    </div>
+                    <div class="contact-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 5C3 3.89543 3.89543 3 5 3H8.27924C8.70967 3 9.09181 3.27543 9.22792 3.68377L10.7257 8.17721C10.8831 8.64932 10.6694 9.16531 10.2243 9.38787L7.96701 10.5165C9.06925 12.9612 11.0388 14.9308 13.4835 16.033L14.6121 13.7757C14.8347 13.3306 15.3507 13.1169 15.8228 13.2743L20.3162 14.7721C20.7246 14.9082 21 15.2903 21 15.7208V19C21 20.1046 20.1046 21 19 21H18C9.71573 21 3 14.2843 3 6V5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        +91 (800) 555-0123
+                    </div>
+                    <div class="contact-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.6569 16.6569C16.7202 17.5935 14.7616 19.5521 13.4138 20.8999C12.6327 21.681 11.3677 21.6814 10.5866 20.9003C9.26234 19.576 7.34159 17.6553 6.34315 16.6569C3.21895 13.5327 3.21895 8.46734 6.34315 5.34315C9.46734 2.21895 14.5327 2.21895 17.6569 5.34315C20.781 8.46734 20.781 13.5327 17.6569 16.6569Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M15 11C15 12.6569 13.6569 14 12 14C10.3431 14 9 12.6569 9 11C9 9.34315 10.3431 8 12 8C13.6569 8 15 9.34315 15 11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Shri Niwas Mill, Near Vivekanand Sanskar School, Sawai Madhopur, Gangapur City, Rajasthan, 322201, India
+                    </div>
+                    <div style="margin-top: 2rem;">
+                        <h4 style="color: var(--dark-blue); margin-bottom: 1rem;">Investment Opportunity</h4>
+                        <p style="color: var(--text-light);">We are raising ₹49 lakhs in pre-seed funding to develop our deployment-ready system and expand our team. Join us in creating India's first TBI blood biomarker assessment solution.</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm" onsubmit="handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#problem">Problem</a>
+                <a href="#technology">Technology</a>
+                <a href="#team">Team</a>
+                <a href="#contact">Contact</a>
+                <a href="/privacy">Privacy Policy</a>
+            </div>
+            <p style="opacity: 0.8; margin-bottom: 1rem;">© 2025 Bio-Stride. All rights reserved. Patent Pending.</p>
+            <p style="opacity: 0.6; font-size: 0.875rem;">Let's make late-stage diagnosis obsolete.</p>
+        </div>
+    </footer>
+
+    <!-- Sign Up Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2>Request Early Access</h2>
+            <p>Be among the first to experience Bio-Stride's revolutionary TBI detection technology.</p>
+            <form id="signupForm" onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label for="orgName">Organization Name</label>
+                    <input type="text" id="orgName" name="orgName" required>
+                </div>
+                <div class="form-group">
+                    <label for="orgType">Organization Type</label>
+                    <select id="orgType" name="orgType" style="width: 100%; padding: 1rem; border: 2px solid transparent; border-radius: 10px; background: white;" required>
+                        <option value="">Select Type</option>
+                        <option value="hospital">Hospital</option>
+                        <option value="ambulance">Ambulance Service</option>
+                        <option value="clinic">Clinic</option>
+                        <option value="emergency">Emergency Department</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="contactName">Contact Name</label>
+                    <input type="text" id="contactName" name="contactName" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactEmail">Email</label>
+                    <input type="email" id="contactEmail" name="contactEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactPhone">Phone</label>
+                    <input type="tel" id="contactPhone" name="contactPhone" required>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Request Access</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Modal functions
+        function openModal() {
+            document.getElementById('signupModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('signupModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Form handlers
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            event.target.reset();
+        }
+
+        function handleSignup(event) {
+            event.preventDefault();
+            alert('Thank you for requesting early access! We will contact you soon with more information.');
+            closeModal();
+            event.target.reset();
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('signupModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature cards and stat cards
+        document.querySelectorAll('.feature-card, .stat-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
