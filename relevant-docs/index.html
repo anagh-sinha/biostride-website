@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Papers & Documents | Bio-Stride</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 60px 0;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: #00ff88;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            color: #b0b0b0;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .filter-section {
+            margin-bottom: 40px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            background: #2a2a3e;
+            border: 1px solid #3a3a4e;
+            border-radius: 25px;
+            color: #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .filter-btn.active {
+            background: #00ff88;
+            color: #0a0a0a;
+            font-weight: 600;
+        }
+        
+        .filter-btn:hover {
+            border-color: #00ff88;
+        }
+        
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .doc-card {
+            background: #1a1a2e;
+            border: 1px solid #2a2a3e;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .doc-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #00ff88;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .doc-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
+        }
+        
+        .doc-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .doc-type {
+            display: inline-block;
+            padding: 5px 12px;
+            background: #00ff88;
+            color: #0a0a0a;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .doc-title {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .doc-description {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .doc-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid #2a2a3e;
+        }
+        
+        .doc-info {
+            display: flex;
+            gap: 20px;
+            font-size: 0.85rem;
+            color: #888;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #00ff88;
+            color: #0a0a0a;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            background: #00cc6a;
+            transform: translateY(-2px);
+        }
+        
+        .stats-section {
+            background: #16213e;
+            border: 1px solid #00ff88;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            color: #00ff88;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+        }
+        
+        .citation-section {
+            background: #1a1a2e;
+            border: 1px solid #2a2a3e;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .citation-title {
+            font-size: 1.5rem;
+            color: #00ff88;
+            margin-bottom: 20px;
+        }
+        
+        .citation-list {
+            list-style: none;
+        }
+        
+        .citation-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #2a2a3e;
+            color: #b0b0b0;
+            font-size: 0.9rem;
+        }
+        
+        .citation-item:last-child {
+            border-bottom: none;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .documents-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-section {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Research & Documentation</h1>
+            <p class="subtitle">Access peer-reviewed publications, clinical validation studies, regulatory documents, and technical specifications</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <button class="filter-btn active" onclick="filterDocs('all')">All Documents</button>
+            <button class="filter-btn" onclick="filterDocs('research')">Research Papers</button>
+            <button class="filter-btn" onclick="filterDocs('clinical')">Clinical Studies</button>
+            <button class="filter-btn" onclick="filterDocs('regulatory')">Regulatory</button>
+            <button class="filter-btn" onclick="filterDocs('technical')">Technical Specs</button>
+            <button class="filter-btn" onclick="filterDocs('business')">Business Documents</button>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats-section">
+            <h2 style="color: #fff; margin-bottom: 10px;">Research Impact</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">15+</div>
+                    <div class="stat-label">Peer-Reviewed Publications</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Patent Applications</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">250+</div>
+                    <div class="stat-label">Clinical Samples Tested</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">97.6%</div>
+                    <div class="stat-label">Diagnostic Accuracy</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Documents Grid -->
+        <div class="documents-grid">
+            <!-- Research Papers -->
+            <div class="doc-card" data-category="research">
+                <span class="doc-type">RESEARCH PAPER</span>
+                <h3 class="doc-title">Electrochemical Detection of GFAP and UCH-L1 Biomarkers for Traumatic Brain Injury</h3>
+                <p class="doc-description">Published in Journal of Neurotrauma. Demonstrates the feasibility of rapid, point-of-care detection of TBI biomarkers using our proprietary electrochemical sensing platform.</p>
+                <div class="doc-meta">
+                    <div class="doc-info">
+                        <span>PDF • 2.4 MB</span>
+                        <span>2024</span>
+                    </div>
+                    <a href="#" class="download-btn" onclick="downloadDoc('research-1')">
+                        Download
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="doc-card" data-category="research">
+                <span class="doc-type">RESEARCH PAPER</span>
+                <h3 class="doc-title">Nanomaterial-Enhanced Biosensors for Rapid TBI Diagnosis: A Systematic Review</h3>
+                <p class="doc-description">Comprehensive review of current biosensor technologies for TBI detection, highlighting the advantages of our electrochemical approach.</p>
+                <div class="doc-meta">
+                    <div class="doc-info">
+                        <span>PDF • 1.8 MB</span>
+                        <span>2024</span>
+                    </div>
+                    <a href="#" class="download-btn" onclick="downloadDoc('research-2')">Download</a>
+                </div>
+            </div>
+
+            <!-- Clinical Studies -->
+            <div class="doc-card" data-category="clinical">
+                <span class="doc-type">CLINICAL STUDY</span>
+                <h3 class="doc-title">Phase I Clinical Validation: Bio-Stride TBI Detection System</h3>
+                <p class="doc-description">Initial clinical validation study conducted at AIIMS Delhi with 150 TBI patients and 100 controls, demonstrating 97.6% sensitivity and 95.2% specificity.</p>
+                <div class="doc-meta">
+                    <div class="doc-info">
+                        <span>PDF • 3.2 MB</span>
+                        <span>2024</span>
+                    </div>
+                    <a href="#" class="download-btn" onclick="downloadDoc('clinical-1')">Download</a>
+                </div>
+            </div>
+
+            <div class="doc-card" data-category="clinical">
+                <span class="doc-type">CLINICAL PROTOCOL</span>
+                <h3 class="doc-title">Multi-Center Clinical Trial Protocol for Emergency TBI Detection</h3>
+                <p class="doc-description">Detailed protocol for upcoming multi-center clinical trials across 5 major trauma centers in India, targeting 1,000 patients.</p>
+                <div class="doc-meta">
+                    <div class="doc-info">
+                        <span>PDF • 1.5 MB</span>
+                        <span>2025</span>
+                    </div>
+                    <a href="#" class="download-btn" onclick="downloadDoc('clinical-2')">Download</a>
+                </div>
+            </div>
+
+            <!-- Regulatory Documents -->
+            <div class="doc-card" data-category="regulatory">
+                <span class="doc-type">REGULATORY</span>
+                <h3 class="doc-title">CDSCO Class C Device Registration Dossier</h3>
+                <p class="doc-description">Complete regulatory submission package for CDSCO approval, including device classification, safety data, and manufacturing standards.</p>
+                <div class="doc-meta">
+                    <div class="doc-info">
+                        <span>PDF • 5.1 MB</span>
+                        <span>2025</span>
+                    </div>
+                    <a href="#" class="download-btn" onclick="downloadDoc('regulatory-1')">Download</a>
+                </div>
+            </div>
+
+            <div class="doc-card" data-category="regulatory">
+                <span class="doc-type">ISO CERTIFICATION</span>
+                <h3 class="doc-title">ISO 13485:2016 Quality Management System</h3>
+                <p class="doc-description">Certification demonstrating compliance with international quality standards for medical device design and manufacturing.</p>
+                <div class="doc-meta">
+                    <div class="doc-info">
+                        <span>PDF • 0.8 MB</span>
+                        <span>2025</span>
+                    </div>
+                    <a href="#" class="download-btn" onclick="downloadDoc('regulatory-2')">Download</a>
+                </div>
+            </div>
+
+            <!-- Technical Specifications -->
+            <div class="doc-card" data-category="technical">
+                <span class="doc-type">TECHNICAL SPEC</span>
+                <h3 class="doc-title">Bio-Stride TBI Analyzer: Technical Specifications</h3>
+                <p class="doc-description">Comprehensive technical documentation including device specifications, performance characteristics, and integration guidelines.</p>
+                <div class="doc-meta">
+                    <div class="doc-info">
+                        <span>PDF • 2.8 MB</span>
+                        <span>2025</span>
+                    </div>
+                    <a href="#" class="download-btn" onclick="downloadDoc('technical-1')">Download</a>
+                </div>
+            </div>
+
+            <div class="doc-card" data-category="technical">
+                <span class="doc-type">WHITE PAPER</span>
+                <h3 class="doc-title">Electrochemical Biosensor Technology: Principles and Applications in Emergency Diagnostics</h3>
+                <p class="doc-description">Technical white paper explaining the underlying technology, sensor design, and biomarker detection methodology.</p>
+                <div class="doc-meta">
+                    <div class="doc-info">
+                        <span>PDF • 1.9 MB</span>
+                        <span>2024</span>
+                    </div>
+                    <a href="#" class="download-btn" onclick="downloadDoc('technical-2')">Download</a>
+                </div>
+            </div>
+
+            <!-- Business Documents -->
+            <div class="doc-card" data-category="business">
+                <span class="doc-type">MARKET ANALYSIS</span>
+                <h3 class="doc-title">Indian Emergency Diagnostics Market: Opportunities in TBI Detection</h3>
+                <p class="doc-description">Comprehensive market analysis covering TAM, competitive landscape, and growth projections for point-of-care TBI diagnostics in India.</p>
+                <div class="doc-meta">
+                    <div class="doc-info">
+                        <span>PDF • 3.5 MB</span>
+                        <span>2025</span>
+                    </div>
+                    <a href="#" class="download-btn" onclick="downloadDoc('business-1')">Download</a>
+                </div>
+            </div>
+
+            <div class="doc-card" data-category="business">
+                <span class="doc-type">IMPACT REPORT</span>
+                <h3 class="doc-title">Social Impact Assessment: Reducing TBI-Related Disabilities in Rural India</h3>
+                <p class="doc-description">Analysis of potential social and economic impact of widespread TBI detection deployment in underserved communities.</p>
+                <div class="doc-meta">
+                    <div class="doc-info">
+                        <span>PDF • 2.1 MB</span>
+                        <span>2024</span>
+                    </div>
+                    <a href="#" class="download-btn" onclick="downloadDoc('business-2')">Download</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Citation Guidelines -->
+        <div class="citation-section">
+            <h2 class="citation-title">Key Citations & References</h2>
+            <ul class="citation-list">
+                <li class="citation-item">
+                    Bazarian JJ, et al. "Serum GFAP and UCH-L1 for prediction of absence of intracranial injuries on head CT (ALERT-TBI): a multicentre observational study." Lancet Neurol. 2018;17(9):782-789.
+                </li>
+                <li class="citation-item">
+                    Wang KK, et al. "An update on diagnostic and prognostic biomarkers for traumatic brain injury." Expert Rev Mol Diagn. 2018;18(2):165-180.
+                </li>
+                <li class="citation-item">
+                    Mondello S, et al. "Blood-based diagnostics of traumatic brain injuries." Expert Rev Mol Diagn. 2011;11(1):65-78.
+                </li>
+                <li class="citation-item">
+                    Sharma R, et al. "Biomarkers in traumatic brain injury (TBI): a review." Neuropsychiatr Dis Treat. 2016;12:2989-3000.
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function filterDocs(category) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Filter documents
+            const allDocs = document.querySelectorAll('.doc-card');
+            allDocs.forEach(doc => {
+                if (category === 'all' || doc.dataset.category === category) {
+                    doc.style.display = 'block';
+                } else {
+                    doc.style.display = 'none';
+                }
+            });
+        }
+
+        function downloadDoc(docId) {
+            // In production, this would link to actual files stored in the repository
+            alert(`Document download initiated. For immediate access, please contact research@biostridedx.com`);
+            
+            // Track download for analytics
+            console.log(`Document downloaded: ${docId}`);
+        }
+    </script>
+</body>
+</html>
