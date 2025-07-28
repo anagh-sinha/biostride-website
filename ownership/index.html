@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ownership Structure | Bio-Stride</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 60px 0;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300ff88' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+            opacity: 0.5;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: #00ff88;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            color: #b0b0b0;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ownership-overview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .ownership-chart {
+            background: #1a1a2e;
+            border: 1px solid #2a2a3e;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ownership-chart::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00ff88, #00cc6a);
+        }
+        
+        .chart-container {
+            width: 300px;
+            height: 300px;
+            margin: 30px auto;
+            position: relative;
+        }
+        
+        .ownership-summary {
+            background: #16213e;
+            border: 1px solid #00ff88;
+            border-radius: 16px;
+            padding: 40px;
+        }
+        
+        .summary-title {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #2a2a3e;
+        }
+        
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+        
+        .summary-label {
+            color: #b0b0b0;
+            font-size: 1rem;
+        }
+        
+        .summary-value {
+            color: #00ff88;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .cap-table-section {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: #00ff88;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 2px solid #00ff88;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .cap-table {
+            background: #1a1a2e;
+            border: 1px solid #2a2a3e;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .table-wrapper {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background: #16213e;
+            color: #00ff88;
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #00ff88;
+        }
+        
+        td {
+            padding: 20px;
+            border-bottom: 1px solid #2a2a3e;
+        }
+        
+        tr:hover {
+            background: rgba(0, 255, 136, 0.05);
+        }
+        
+        .ownership-bar {
+            background: #2a2a3e;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .ownership-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff88, #00cc6a);
+            border-radius: 10px;
+            transition: width 0.6s ease;
+        }
+        
+        .vesting-section {
+            background: #16213e;
+            border: 1px solid #00ff88;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .vesting-timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #2a2a3e;
+        }
+        
+        .timeline-progress {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            height: 2px;
+            background: #00ff88;
+            width: 25%;
+            transition: width 0.6s ease;
+        }
+        
+        .timeline-points {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .timeline-point {
+            text-align: center;
+            position: relative;
+        }
+        
+        .point-marker {
+            width: 20px;
+            height: 20px;
+            background: #1a1a2e;
+            border: 3px solid #2a2a3e;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .point-marker.active {
+            background: #00ff88;
+            border-color: #00ff88;
+            box-shadow: 0 0 0 6px rgba(0, 255, 136, 0.2);
+        }
+        
+        .point-label {
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .point-date {
+            color: #b0b0b0;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+        
+        .equity-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+        
+        .equity-card {
+            background: #1a1a2e;
+            border: 1px solid #2a2a3e;
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .equity-card:hover {
+            transform: translateY(-5px);
+            border-color: #00ff88;
+            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.1);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            color: #fff;
+        }
+        
+        .card-percentage {
+            font-size: 1.5rem;
+            color: #00ff88;
+            font-weight: bold;
+        }
+        
+        .card-details {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #2a2a3e;
+        }
+        
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        
+        .investor-section {
+            margin-bottom: 60px;
+        }
+        
+        .investor-status {
+            background: #16213e;
+            border: 1px solid #00ff88;
+            border-radius: 16px;
+            padding: 50px;
+            text-align: center;
+        }
+        
+        .status-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 3px solid #00ff88;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 2rem;
+        }
+        
+        .status-title {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        
+        .status-description {
+            color: #b0b0b0;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #00ff88;
+            color: #0a0a0a;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background: #00cc6a;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .ownership-overview {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .equity-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Ownership Structure</h1>
+            <p class="subtitle">Transparent equity distribution and cap table for Bio-Stride</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Ownership Overview -->
+        <div class="ownership-overview">
+            <div class="ownership-chart">
+                <h2 style="color: #fff; margin-bottom: 20px;">Current Equity Distribution</h2>
+                <div class="chart-container">
+                    <canvas id="ownershipChart" width="300" height="300"></canvas>
+                </div>
+                <p style="color: #b0b0b0; margin-top: 20px;">Pre-seed stage cap table</p>
+            </div>
+            
+            <div class="ownership-summary">
+                <h2 class="summary-title">Company Overview</h2>
+                <div class="summary-item">
+                    <span class="summary-label">Company Status</span>
+                    <span class="summary-value">Being Registered</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Total Shares Authorized</span>
+                    <span class="summary-value">10,000,000</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Shares Outstanding</span>
+                    <span class="summary-value">1,000,000</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Current Valuation</span>
+                    <span class="summary-value">Pre-money TBD</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Stage</span>
+                    <span class="summary-value">Pre-seed</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">ESOP Pool</span>
+                    <span class="summary-value">10% (Reserved)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cap Table -->
+        <section class="cap-table-section">
+            <h2 class="section-title">
+                <div class="section-icon">📊</div>
+                Capitalization Table
+            </h2>
+            
+            <div class="cap-table">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Shareholder</th>
+                                <th>Class</th>
+                                <th>Shares</th>
+                                <th>Percentage</th>
+                                <th>Vesting</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong>Anagh Sinha</strong><br>
+                                    <span style="color: #888; font-size: 0.9rem;">Founder & CEO</span>
+                                </td>
+                                <td>Common</td>
+                                <td>900,000</td>
+                                <td>
+                                    <strong style="color: #00ff88;">90%</strong>
+                                    <div class="ownership-bar">
+                                        <div class="ownership-fill" style="width: 90%"></div>
+                                    </div>
+                                </td>
+                                <td>4-year vesting<br><span style="color: #888; font-size: 0.9rem;">1-year cliff</span></td>
+                                <td><span style="color: #00ff88;">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Employee Stock Option Pool</strong><br>
+                                    <span style="color: #888; font-size: 0.9rem;">Reserved for team</span>
+                                </td>
+                                <td>Common</td>
+                                <td>100,000</td>
+                                <td>
+                                    <strong style="color: #00ff88;">10%</strong>
+                                    <div class="ownership-bar">
+                                        <div class="ownership-fill" style="width: 10%"></div>
+                                    </div>
+                                </td>
+                                <td>Individual grants</td>
+                                <td><span style="color: #888;">Reserved</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Pre-seed Investors</strong><br>
+                                    <span style="color: #888; font-size: 0.9rem;">To be allocated</span>
+                                </td>
+                                <td>Preferred</td>
+                                <td>TBD</td>
+                                <td>
+                                    <strong style="color: #888;">~10-15%</strong>
+                                    <div class="ownership-bar">
+                                        <div class="ownership-fill" style="width: 0%"></div>
+                                    </div>
+                                </td>
+                                <td>N/A</td>
+                                <td><span style="color: #ffd700;">Fundraising</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vesting Schedule -->
+        <section class="vesting-section">
+            <h2 class="section-title" style="margin-bottom: 40px;">
+                <div class="section-icon">⏱️</div>
+                Founder Vesting Schedule
+            </h2>
+            
+            <div class="vesting-timeline">
+                <div class="timeline-line"></div>
+                <div class="timeline-progress"></div>
+                <div class="timeline-points">
+                    <div class="timeline-point">
+                        <div class="point-marker active"></div>
+                        <div class="point-label">Start</div>
+                        <div class="point-date">July 2025</div>
+                    </div>
+                    <div class="timeline-point">
+                        <div class="point-marker"></div>
+                        <div class="point-label">Cliff (25%)</div>
+                        <div class="point-date">July 2026</div>
+                    </div>
+                    <div class="timeline-point">
+                        <div class="point-marker"></div>
+                        <div class="point-label">50% Vested</div>
+                        <div class="point-date">July 2027</div>
+                    </div>
+                    <div class="timeline-point">
+                        <div class="point-marker"></div>
+                        <div class="point-label">75% Vested</div>
+                        <div class="point-date">July 2028</div>
+                    </div>
+                    <div class="timeline-point">
+                        <div class="point-marker"></div>
+                        <div class="point-label">Fully Vested</div>
+                        <div class="point-date">July 2029</div>
+                    </div>
+                </div>
+            </div>
+            
+            <p style="text-align: center; color: #b0b0b0; margin-top: 40px;">
+                Standard 4-year vesting with 1-year cliff ensures long-term commitment to Bio-Stride's mission
+            </p>
+        </section>
+
+        <!-- Equity Structure Details -->
+        <section>
+            <h2 class="section-title">
+                <div class="section-icon">💼</div>
+                Equity Structure Details
+            </h2>
+            
+            <div class="equity-cards">
+                <div class="equity-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Founder Equity</h3>
+                        <span class="card-percentage">90%</span>
+                    </div>
+                    <div class="card-details">
+                        <div class="detail-row">
+                            <span>Share Class</span>
+                            <span>Common Stock</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Vesting Period</span>
+                            <span>4 years</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Cliff Period</span>
+                            <span>1 year</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Acceleration</span>
+                            <span>Double trigger</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="equity-card">
+                    <div class="card-header">
+                        <h3 class="card-title">ESOP Pool</h3>
+                        <span class="card-percentage">10%</span>
+                    </div>
+                    <div class="card-details">
+                        <div class="detail-row">
+                            <span>Reserved For</span>
+                            <span>Key Employees</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Exercise Price</span>
+                            <span>Fair Market Value</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Vesting</span>
+                            <span>4 years standard</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Allocation Plan</span>
+                            <span>Board Approved</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="equity-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Future Rounds</h3>
+                        <span class="card-percentage">TBD</span>
+                    </div>
+                    <div class="card-details">
+                        <div class="detail-row">
+                            <span>Pre-seed Target</span>
+                            <span>10-15%</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Seed Target</span>
+                            <span>15-20%</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Series A Target</span>
+                            <span>20-25%</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Pro-rata Rights</span>
+                            <span>Major Investors</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Investor Information -->
+        <section class="investor-section">
+            <h2 class="section-title">
+                <div class="section-icon">🚀</div>
+                Investment Status
+            </h2>
+            
+            <div class="investor-status">
+                <div class="status-icon">💰</div>
+                <h3 class="status-title">Raising Pre-seed Round</h3>
+                <p class="status-description">
+                    Bio-Stride is currently raising ₹49 lakhs in pre-seed funding to develop our deployment-ready TBI detection system and hire founding engineers. Join us in revolutionizing emergency diagnostics in India.
+                </p>
+                <a href="mailto:invest@biostridedx.com" class="cta-button">Contact for Investment</a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Draw ownership pie chart
+        const canvas = document.getElementById('ownershipChart');
+        const ctx = canvas.getContext('2d');
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const radius = 120;
+
+        // Data
+        const data = [
+            { label: 'Founder', value: 90, color: '#00ff88' },
+            { label: 'ESOP', value: 10, color: '#00cc6a' }
+        ];
+
+        // Draw pie chart
+        let currentAngle = -Math.PI / 2;
+        data.forEach((segment) => {
+            const sliceAngle = (segment.value / 100) * 2 * Math.PI;
+            
+            // Draw segment
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle);
+            ctx.lineTo(centerX, centerY);
+            ctx.fillStyle = segment.color;
+            ctx.fill();
+            
+            // Draw label
+            const labelAngle = currentAngle + sliceAngle / 2;
+            const labelX = centerX + Math.cos(labelAngle) * (radius * 0.7);
+            const labelY = centerY + Math.sin(labelAngle) * (radius * 0.7);
+            
+            ctx.fillStyle = '#0a0a0a';
+            ctx.font = 'bold 20px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(segment.value + '%', labelX, labelY);
+            
+            currentAngle += sliceAngle;
+        });
+
+        // Draw center circle
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius * 0.3, 0, 2 * Math.PI);
+        ctx.fillStyle = '#1a1a2e';
+        ctx.fill();
+    </script>
+</body>
+</html>
