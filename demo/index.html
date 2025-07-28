@@ -12,68 +12,101 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #0a0a0a;
-            color: #e0e0e0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
+            background: #000;
+            color: #fff;
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
-        .container {
-            max-width: 1400px;
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
-        header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            padding: 80px 0;
-            margin-bottom: 60px;
-            text-align: center;
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00ff88;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+        
+        .nav-links a:hover {
+            color: #00ff88;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 4rem;
             position: relative;
-            overflow: hidden;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 255, 136, 0.1) 0%, transparent 50%);
         }
         
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(0, 255, 136, 0.03) 10px,
-                rgba(0, 255, 136, 0.03) 20px
-            );
-            animation: slide 20s linear infinite;
-        }
-        
-        @keyframes slide {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
         }
         
         h1 {
             font-size: 3.5rem;
-            color: #00ff88;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, #00ff88 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .subtitle {
-            color: #b0b0b0;
             font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
+            color: #999;
+            margin-bottom: 3rem;
+            line-height: 1.8;
         }
         
-        .hero-video {
-            margin-bottom: 60px;
+        /* Video Container */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            background: #111;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 255, 136, 0.2);
+            border: 1px solid rgba(0, 255, 136, 0.3);
         }
         
         .video-container {
@@ -81,19 +114,6 @@
             padding-bottom: 56.25%; /* 16:9 aspect ratio */
             height: 0;
             overflow: hidden;
-            border-radius: 16px;
-            background: #1a1a2e;
-            box-shadow: 0 20px 60px rgba(0, 255, 136, 0.1);
-            border: 1px solid #2a2a3e;
-        }
-        
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
         }
         
         .video-placeholder {
@@ -102,7 +122,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -112,610 +132,380 @@
         }
         
         .video-placeholder:hover {
-            background: linear-gradient(135deg, #1e1e32 0%, #1a2542 100%);
+            background: linear-gradient(135deg, #1a1a1a 0%, #222 100%);
         }
         
         .play-button {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             background: #00ff88;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 2rem;
             transition: all 0.3s ease;
+            position: relative;
         }
         
-        .video-placeholder:hover .play-button {
-            transform: scale(1.1);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        .play-button::before {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border: 2px solid #00ff88;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.3);
+                opacity: 0;
+            }
         }
         
         .play-icon {
             width: 0;
             height: 0;
-            border-left: 25px solid #0a0a0a;
-            border-top: 15px solid transparent;
-            border-bottom: 15px solid transparent;
-            margin-left: 5px;
+            border-left: 30px solid #000;
+            border-top: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+            margin-left: 8px;
+        }
+        
+        .video-placeholder:hover .play-button {
+            transform: scale(1.1);
+            box-shadow: 0 10px 40px rgba(0, 255, 136, 0.4);
         }
         
         .video-info {
             text-align: center;
+            color: #fff;
         }
         
         .video-title {
             font-size: 1.5rem;
-            color: #fff;
-            margin-bottom: 10px;
+            margin-bottom: 0.5rem;
         }
         
         .video-duration {
-            color: #888;
+            color: #666;
             font-size: 1rem;
         }
         
-        .features-section {
-            margin-bottom: 60px;
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
         
-        .section-title {
-            font-size: 2.5rem;
-            color: #00ff88;
-            text-align: center;
-            margin-bottom: 50px;
+        /* Features Section */
+        .features {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
-        .video-grid {
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
         
-        .video-card {
-            background: #1a1a2e;
-            border: 1px solid #2a2a3e;
-            border-radius: 12px;
-            overflow: hidden;
+        .feature-card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 16px;
+            padding: 2rem;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
         
-        .video-card:hover {
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff88, transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        
+        .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.1);
             border-color: #00ff88;
         }
         
-        .video-thumbnail {
-            position: relative;
-            padding-bottom: 56.25%;
-            background: #16213e;
-            overflow: hidden;
+        .feature-card:hover::before {
+            transform: translateX(100%);
         }
         
-        .video-thumbnail img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .video-card:hover .video-overlay {
-            opacity: 1;
-        }
-        
-        .small-play-button {
+        .feature-icon {
             width: 60px;
             height: 60px;
-            background: #00ff88;
-            border-radius: 50%;
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
         }
         
-        .small-play-icon {
-            width: 0;
-            height: 0;
-            border-left: 20px solid #0a0a0a;
-            border-top: 12px solid transparent;
-            border-bottom: 12px solid transparent;
-            margin-left: 4px;
-        }
-        
-        .video-content {
-            padding: 25px;
-        }
-        
-        .video-badge {
-            display: inline-block;
-            padding: 5px 12px;
-            background: rgba(0, 255, 136, 0.1);
-            border: 1px solid #00ff88;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: #00ff88;
-            margin-bottom: 15px;
-        }
-        
-        .video-card-title {
-            font-size: 1.3rem;
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
             color: #fff;
-            margin-bottom: 10px;
-            line-height: 1.4;
         }
         
-        .video-description {
-            color: #b0b0b0;
-            font-size: 0.95rem;
-            margin-bottom: 20px;
+        .feature-description {
+            color: #666;
             line-height: 1.6;
         }
         
-        .video-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 20px;
-            border-top: 1px solid #2a2a3e;
+        /* CTA Section */
+        .cta {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.05) 0%, transparent 100%);
         }
         
-        .video-meta-duration {
-            color: #888;
-            font-size: 0.9rem;
-        }
-        
-        .watch-btn {
-            padding: 8px 20px;
-            background: #00ff88;
-            color: #0a0a0a;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-        
-        .watch-btn:hover {
-            background: #00cc6a;
-            transform: translateY(-2px);
-        }
-        
-        .timeline-section {
-            background: #16213e;
-            border: 1px solid #00ff88;
-            border-radius: 16px;
-            padding: 50px;
-            margin-bottom: 60px;
-        }
-        
-        .timeline {
-            position: relative;
+        .cta-content {
             max-width: 800px;
             margin: 0 auto;
         }
         
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: #00ff88;
-        }
-        
-        .timeline-item {
-            position: relative;
-            padding: 30px 0;
-        }
-        
-        .timeline-content {
-            background: #1a1a2e;
-            border: 1px solid #2a2a3e;
-            border-radius: 12px;
-            padding: 25px;
-            width: 45%;
-            position: relative;
-        }
-        
-        .timeline-item:nth-child(odd) .timeline-content {
-            margin-left: auto;
-        }
-        
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            top: 40px;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
-            background: #00ff88;
-            border-radius: 50%;
-            border: 4px solid #16213e;
-        }
-        
-        .timeline-time {
-            position: absolute;
-            top: 35px;
-            font-size: 0.9rem;
-            color: #888;
-        }
-        
-        .timeline-item:nth-child(odd) .timeline-time {
-            right: 55%;
-        }
-        
-        .timeline-item:nth-child(even) .timeline-time {
-            left: 55%;
-        }
-        
-        .timeline-title {
-            font-size: 1.2rem;
-            color: #00ff88;
-            margin-bottom: 10px;
-        }
-        
-        .timeline-description {
-            color: #b0b0b0;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        
-        .cta-section {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            border-radius: 16px;
-            padding: 60px;
-            text-align: center;
-            margin-bottom: 40px;
-            border: 1px solid #2a2a3e;
-        }
-        
-        .cta-title {
+        .cta h2 {
             font-size: 2.5rem;
-            color: #fff;
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, #00ff88 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .cta-description {
-            font-size: 1.2rem;
-            color: #b0b0b0;
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 1.1rem;
+            color: #999;
+            margin-bottom: 2rem;
         }
         
         .cta-buttons {
             display: flex;
-            gap: 20px;
+            gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
         }
         
-        .cta-btn {
-            padding: 15px 40px;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
             text-decoration: none;
+            font-weight: 600;
             transition: all 0.3s ease;
+            display: inline-block;
         }
         
-        .cta-btn-primary {
+        .btn-primary {
             background: #00ff88;
-            color: #0a0a0a;
+            color: #000;
         }
         
-        .cta-btn-primary:hover {
+        .btn-primary:hover {
             background: #00cc6a;
             transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
         }
         
-        .cta-btn-secondary {
+        .btn-secondary {
             background: transparent;
             color: #00ff88;
             border: 2px solid #00ff88;
         }
         
-        .cta-btn-secondary:hover {
+        .btn-secondary:hover {
             background: rgba(0, 255, 136, 0.1);
             transform: translateY(-2px);
         }
         
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid #222;
+            color: #666;
+        }
+        
+        /* Mobile Responsive */
         @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
             h1 {
                 font-size: 2.5rem;
             }
             
-            .video-grid {
-                grid-template-columns: 1fr;
+            .subtitle {
+                font-size: 1.1rem;
             }
             
-            .timeline::before {
-                left: 30px;
-            }
-            
-            .timeline-content {
-                width: calc(100% - 60px);
-                margin-left: 60px !important;
-            }
-            
-            .timeline-dot {
-                left: 30px;
-            }
-            
-            .timeline-time {
-                left: 60px !important;
-                right: auto !important;
+            .cta h2 {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">Bio-Stride</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/cash-flow">Financials</a></li>
+                <li><a href="/relevant-docs">Research</a></li>
+                <li><a href="/testimonials">Testimonials</a></li>
+                <li><a href="/demo">Demo</a></li>
+                <li><a href="/team-structure">Team</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
             <h1>See Bio-Stride in Action</h1>
-            <p class="subtitle">Watch comprehensive demonstrations of our revolutionary TBI detection system - from unboxing to clinical deployment</p>
-        </div>
-    </header>
-
-    <div class="container">
-        <!-- Hero Video -->
-        <div class="hero-video">
-            <div class="video-container">
-                <div class="video-placeholder" onclick="playVideo('hero')">
-                    <div class="play-button">
-                        <div class="play-icon"></div>
-                    </div>
-                    <div class="video-info">
-                        <h2 class="video-title">Bio-Stride TBI Detection System Overview</h2>
-                        <p class="video-duration">Duration: 3:45</p>
-                    </div>
-                </div>
-                <iframe 
-                    id="hero-video" 
-                    src="" 
-                    style="display: none;"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-        </div>
-
-        <!-- Feature Videos -->
-        <section class="features-section">
-            <h2 class="section-title">Product Demonstrations</h2>
+            <p class="subtitle">
+                Watch how our portable TBI detection system transforms emergency care with rapid, 
+                accurate results in under 15 minutes
+            </p>
             
-            <div class="video-grid">
-                <!-- Device Operation -->
-                <div class="video-card">
-                    <div class="video-thumbnail">
-                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='400' height='225' fill='%2316213e'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='20' fill='%2300ff88' text-anchor='middle' dy='.3em'%3EDevice Operation Demo%3C/text%3E%3C/svg%3E" alt="Device Operation">
-                        <div class="video-overlay" onclick="playVideo('device-operation')">
-                            <div class="small-play-button">
-                                <div class="small-play-icon"></div>
-                            </div>
+            <!-- Video Container -->
+            <div class="video-wrapper">
+                <div class="video-container">
+                    <div class="video-placeholder" onclick="playVideo()">
+                        <div class="play-button">
+                            <div class="play-icon"></div>
+                        </div>
+                        <div class="video-info">
+                            <h2 class="video-title">Bio-Stride Product Overview</h2>
+                            <p class="video-duration">2 mins</p>
                         </div>
                     </div>
-                    <div class="video-content">
-                        <span class="video-badge">TECHNICAL DEMO</span>
-                        <h3 class="video-card-title">Complete Device Operation Walkthrough</h3>
-                        <p class="video-description">Step-by-step demonstration of the Bio-Stride analyzer from sample collection to result interpretation. Perfect for training healthcare staff.</p>
-                        <div class="video-meta">
-                            <span class="video-meta-duration">8:12</span>
-                            <a href="#" class="watch-btn" onclick="playVideo('device-operation')">Watch Demo</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Clinical Workflow -->
-                <div class="video-card">
-                    <div class="video-thumbnail">
-                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='400' height='225' fill='%2316213e'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='20' fill='%2300ff88' text-anchor='middle' dy='.3em'%3EClinical Workflow%3C/text%3E%3C/svg%3E" alt="Clinical Workflow">
-                        <div class="video-overlay" onclick="playVideo('clinical-workflow')">
-                            <div class="small-play-button">
-                                <div class="small-play-icon"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-content">
-                        <span class="video-badge">USE CASE</span>
-                        <h3 class="video-card-title">Emergency Department Integration</h3>
-                        <p class="video-description">Real-world demonstration of Bio-Stride integration into emergency triage workflow, showing time savings and decision support.</p>
-                        <div class="video-meta">
-                            <span class="video-meta-duration">5:47</span>
-                            <a href="#" class="watch-btn" onclick="playVideo('clinical-workflow')">Watch Demo</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ambulance Deployment -->
-                <div class="video-card">
-                    <div class="video-thumbnail">
-                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='400' height='225' fill='%2316213e'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='20' fill='%2300ff88' text-anchor='middle' dy='.3em'%3EAmbulance Setup%3C/text%3E%3C/svg%3E" alt="Ambulance Setup">
-                        <div class="video-overlay" onclick="playVideo('ambulance-setup')">
-                            <div class="small-play-button">
-                                <div class="small-play-icon"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-content">
-                        <span class="video-badge">FIELD DEPLOYMENT</span>
-                        <h3 class="video-card-title">Ambulance Installation & Operation</h3>
-                        <p class="video-description">See how Bio-Stride's rugged design performs in pre-hospital settings, including vibration testing and temperature stability.</p>
-                        <div class="video-meta">
-                            <span class="video-meta-duration">6:33</span>
-                            <a href="#" class="watch-btn" onclick="playVideo('ambulance-setup')">Watch Demo</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Technology Deep Dive -->
-                <div class="video-card">
-                    <div class="video-thumbnail">
-                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='400' height='225' fill='%2316213e'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='20' fill='%2300ff88' text-anchor='middle' dy='.3em'%3ETechnology Overview%3C/text%3E%3C/svg%3E" alt="Technology">
-                        <div class="video-overlay" onclick="playVideo('technology')">
-                            <div class="small-play-button">
-                                <div class="small-play-icon"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-content">
-                        <span class="video-badge">SCIENCE</span>
-                        <h3 class="video-card-title">Electrochemical Biosensor Technology</h3>
-                        <p class="video-description">Technical explanation of our proprietary electrochemical detection method for GFAP and UCH-L1 biomarkers.</p>
-                        <div class="video-meta">
-                            <span class="video-meta-duration">7:24</span>
-                            <a href="#" class="watch-btn" onclick="playVideo('technology')">Watch Demo</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ROI Calculator -->
-                <div class="video-card">
-                    <div class="video-thumbnail">
-                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='400' height='225' fill='%2316213e'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='20' fill='%2300ff88' text-anchor='middle' dy='.3em'%3EROI Analysis%3C/text%3E%3C/svg%3E" alt="ROI Calculator">
-                        <div class="video-overlay" onclick="playVideo('roi-calculator')">
-                            <div class="small-play-button">
-                                <div class="small-play-icon"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-content">
-                        <span class="video-badge">BUSINESS CASE</span>
-                        <h3 class="video-card-title">ROI Calculator Demonstration</h3>
-                        <p class="video-description">Interactive walkthrough of financial benefits, including ED throughput improvements and CT scan reduction.</p>
-                        <div class="video-meta">
-                            <span class="video-meta-duration">4:18</span>
-                            <a href="#" class="watch-btn" onclick="playVideo('roi-calculator')">Watch Demo</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Patient Journey -->
-                <div class="video-card">
-                    <div class="video-thumbnail">
-                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='400' height='225' fill='%2316213e'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='20' fill='%2300ff88' text-anchor='middle' dy='.3em'%3EPatient Journey%3C/text%3E%3C/svg%3E" alt="Patient Journey">
-                        <div class="video-overlay" onclick="playVideo('patient-journey')">
-                            <div class="small-play-button">
-                                <div class="small-play-icon"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-content">
-                        <span class="video-badge">IMPACT STORY</span>
-                        <h3 class="video-card-title">Patient Journey: Before vs After</h3>
-                        <p class="video-description">Comparative visualization of TBI patient pathways with and without Bio-Stride, highlighting time and outcome improvements.</p>
-                        <div class="video-meta">
-                            <span class="video-meta-duration">3:56</span>
-                            <a href="#" class="watch-btn" onclick="playVideo('patient-journey')">Watch Demo</a>
-                        </div>
-                    </div>
+                    <iframe 
+                        id="demo-video" 
+                        src="" 
+                        style="display: none;"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Product Timeline -->
-        <section class="timeline-section">
-            <h2 class="section-title">Demo Content Timeline</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-time">0:00</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">Device Unboxing</h3>
-                        <p class="timeline-description">Complete unboxing experience showing all components, accessories, and initial setup materials.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-time">2:30</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">Sample Collection</h3>
-                        <p class="timeline-description">Demonstration of proper blood collection technique using our specialized cartridge system.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-time">4:15</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">Test Execution</h3>
-                        <p class="timeline-description">Real-time test run showing the 15-minute analysis process and quality control indicators.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-time">6:45</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">Result Interpretation</h3>
-                        <p class="timeline-description">Clinical decision support features and integration with hospital information systems.</p>
-                    </div>
-                </div>
+    <!-- Features Section -->
+    <section class="features">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">15-Minute Results</h3>
+                <p class="feature-description">
+                    Rapid electrochemical detection of GFAP and UCH-L1 biomarkers provides accurate TBI assessment in the critical golden hour.
+                </p>
             </div>
-        </section>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🚑</div>
+                <h3 class="feature-title">Ambulance Ready</h3>
+                <p class="feature-description">
+                    Ruggedized design withstands vibration and temperature variations. Perfect for pre-hospital emergency care.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">💉</div>
+                <h3 class="feature-title">Minimal Sample</h3>
+                <p class="feature-description">
+                    Only 20μL of whole blood required. Works with fingerstick or venous draw for maximum flexibility.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">Clear Decision Support</h3>
+                <p class="feature-description">
+                    Binary output indicates CT scan necessity, helping emergency teams make informed triage decisions quickly.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🔌</div>
+                <h3 class="feature-title">Simple Operation</h3>
+                <p class="feature-description">
+                    Designed for emergency responders with minimal training. Intuitive interface ensures reliable operation under pressure.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">☁️</div>
+                <h3 class="feature-title">Connected Care</h3>
+                <p class="feature-description">
+                    Real-time data transmission to hospital systems enables seamless emergency response coordination.
+                </p>
+            </div>
+        </div>
+    </section>
 
-        <!-- CTA Section -->
-        <section class="cta-section">
-            <h2 class="cta-title">Ready to Transform Your Emergency Care?</h2>
-            <p class="cta-description">Schedule a personalized demonstration with our clinical team and see how Bio-Stride can revolutionize TBI detection in your facility.</p>
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Ready to Transform Emergency Care?</h2>
+            <p class="cta-description">
+                Join us in revolutionizing TBI detection. Schedule a personalized demonstration 
+                to see how Bio-Stride can improve patient outcomes in your facility.
+            </p>
             <div class="cta-buttons">
-                <a href="#" class="cta-btn cta-btn-primary" onclick="scheduleDemo()">Schedule Live Demo</a>
-                <a href="#" class="cta-btn cta-btn-secondary" onclick="downloadBrochure()">Download Brochure</a>
+                <a href="mailto:contact@biostridedx.com" class="btn btn-primary">Schedule Demo</a>
+                <a href="/relevant-docs" class="btn btn-secondary">View Research</a>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Bio-Stride. All rights reserved. | Patent Pending</p>
+    </footer>
 
     <script>
-        // Video player functionality
-        function playVideo(videoId) {
-            // In production, these would be actual video URLs
-            const videoUrls = {
-                'hero': 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-                'device-operation': 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-                'clinical-workflow': 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-                'ambulance-setup': 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-                'technology': 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-                'roi-calculator': 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-                'patient-journey': 'https://www.youtube.com/embed/dQw4w9WgXcQ'
-            };
+        function playVideo() {
+            const placeholder = document.querySelector('.video-placeholder');
+            const iframe = document.getElementById('demo-video');
+            
+            // Replace with your actual YouTube video ID when available
+            const videoId = 'DSkAZSAHRPWLqH0b';
+            
+            // For now, show coming soon message
+            alert('Product demo video coming soon! Please contact contact@biostridedx.com for a live demonstration.');
 
-            if (videoId === 'hero') {
-                const placeholder = document.querySelector('.video-placeholder');
-                const iframe = document.getElementById('hero-video');
-                placeholder.style.display = 'none';
-                iframe.style.display = 'block';
-                iframe.src = videoUrls[videoId] + '?autoplay=1';
-            } else {
-                // For demo cards, open in modal or new window
-                alert(`Demo video "${videoId}" will be available soon. Contact demo@biostridedx.com for early access.`);
-            }
-        }
-
-        function scheduleDemo() {
-            alert('Redirecting to demo scheduling page. Please contact contact@biostridedx.com to schedule your personalized demonstration.');
-        }
-
-        function downloadBrochure() {
-            alert('Product brochure download initiated. Check your email for the download link.');
+            //<iframe width="560" height="315" src="https://www.youtube.com/embed/fEPoDTJToyI?si=DSkAZSAHRPWLqH0b" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            //When you have a video, uncomment these lines:
+            placeholder.style.display = 'none';
+            iframe.style.display = 'block';
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
         }
     </script>
 </body>
