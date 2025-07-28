@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future Team Structure | Bio-Stride</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 80px 0;
+            margin-bottom: 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 136, 0.1) 50%, transparent 70%);
+            animation: sweep 3s ease-in-out infinite;
+        }
+        
+        @keyframes sweep {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: #00ff88;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            color: #b0b0b0;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .timeline-section {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: #00ff88;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 2px solid #00ff88;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .growth-timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+        
+        .timeline-track {
+            position: relative;
+            background: #1a1a2e;
+            border: 1px solid #2a2a3e;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .quarter-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .quarter-tab {
+            padding: 12px 25px;
+            background: #2a2a3e;
+            border: 1px solid #3a3a4e;
+            border-radius: 25px;
+            color: #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .quarter-tab.active {
+            background: #00ff88;
+            color: #0a0a0a;
+            font-weight: 600;
+        }
+        
+        .quarter-tab:hover {
+            border-color: #00ff88;
+        }
+        
+        .phase-content {
+            display: none;
+        }
+        
+        .phase-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hiring-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .position-card {
+            background: #16213e;
+            border: 1px solid #2a2a3e;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .position-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #00ff88, #00cc6a);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .position-card:hover {
+            transform: translateY(-5px);
+            border-color: #00ff88;
+            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.1);
+        }
+        
+        .position-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .position-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+        
+        .position-title {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+        
+        .position-department {
+            color: #00ff88;
+            font-size: 0.9rem;
+        }
+        
+        .position-priority {
+            padding: 5px 12px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid #ffd700;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #ffd700;
+            font-weight: 600;
+        }
+        
+        .position-priority.high {
+            background: rgba(255, 68, 68, 0.1);
+            border-color: #ff4444;
+            color: #ff4444;
+        }
+        
+        .position-priority.medium {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: #ffd700;
+            color: #ffd700;
+        }
+        
+        .position-details {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .position-requirements {
+            margin-bottom: 15px;
+        }
+        
+        .requirement-list {
+            list-style: none;
+            font-size: 0.9rem;
+        }
+        
+        .requirement-item {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+            color: #888;
+        }
+        
+        .requirement-item::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #00ff88;
+        }
+        
+        .position-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #2a2a3e;
+        }
+        
+        .position-type {
+            font-size: 0.85rem;
+            color: #888;
+        }
+        
+        .position-timeline {
+            font-size: 0.85rem;
+            color: #00ff88;
+        }
+        
+        .org-evolution {
+            background: #16213e;
+            border: 1px solid #00ff88;
+            border-radius: 16px;
+            padding: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .org-chart-container {
+            display: flex;
+            justify-content: center;
+            overflow-x: auto;
+            padding: 40px 0;
+        }
+        
+        .future-org-chart {
+            min-width: 800px;
+        }
+        
+        .org-level {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .org-node {
+            background: #1a1a2e;
+            border: 2px solid #00ff88;
+            border-radius: 12px;
+            padding: 15px 25px;
+            margin: 0 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .org-node.ceo {
+            background: #00ff88;
+            color: #0a0a0a;
+        }
+        
+        .org-node.existing {
+            border-color: #00ff88;
+            background: rgba(0, 255, 136, 0.1);
+        }
+        
+        .org-node.planned {
+            border-style: dashed;
+            opacity: 0.7;
+        }
+        
+        .node-title {
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+        
+        .node-name {
+            font-size: 0.9rem;
+            color: #b0b0b0;
+        }
+        
+        .org-connector {
+            position: absolute;
+            width: 2px;
+            height: 40px;
+            background: #00ff88;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .team-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+        
+        .metric-card {
+            background: #1a1a2e;
+            border: 1px solid #2a2a3e;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .metric-card:hover {
+            border-color: #00ff88;
+            transform: translateY(-3px);
+        }
+        
+        .metric-number {
+            font-size: 3rem;
+            color: #00ff88;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .metric-label {
+            color: #b0b0b0;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        
+        .metric-detail {
+            color: #888;
+            font-size: 0.85rem;
+        }
+        
+        .culture-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 16px;
+            padding: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .culture-card {
+            text-align: center;
+        }
+        
+        .culture-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 2px solid #00ff88;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+        }
+        
+        .culture-title {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        
+        .culture-description {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hiring-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .org-chart-container {
+                overflow-x: scroll;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-animation"></div>
+        <div class="container">
+            <h1>Building the Future Team</h1>
+            <p class="subtitle">Strategic hiring roadmap to scale Bio-Stride from pre-seed to market leader</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Team Growth Metrics -->
+        <section class="team-metrics">
+            <div class="metric-card">
+                <div class="metric-number">4</div>
+                <div class="metric-label">Current Team Size</div>
+                <div class="metric-detail">Founder + 3 Key Members</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number">20</div>
+                <div class="metric-label">Target by 2026</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number">10%</div>
+                <div class="metric-label">ESOP Pool</div>
+                <div class="metric-detail">For Key Hires</div>
+            </div>
+        </section>
+
+        <!-- Hiring Timeline -->
+        <section class="timeline-section">
+            <h2 class="section-title">
+                <div class="section-icon">📅</div>
+                Phased Hiring Plan
+            </h2>
+            
+            <div class="quarter-tabs">
+                <button class="quarter-tab active" onclick="showPhase('phase1')">Phase 1: Pre-seed (Now)</button>
+                <button class="quarter-tab" onclick="showPhase('phase2')">Phase 2: Post Pre-seed (Q3 2025)</button>
+                <button class="quarter-tab" onclick="showPhase('phase3')">Phase 3: Seed (Q1 2026)</button>
+                <button class="quarter-tab" onclick="showPhase('phase4')">Phase 4: Series A (Q3 2026)</button>
+            </div>
+            
+            <div class="timeline-track">
+                <!-- Phase 1: Pre-seed -->
+                <div id="phase1" class="phase-content active">
+                    <h3 style="color: #fff; margin-bottom: 25px;">Immediate Hires (0-3 months)</h3>
+                    <div class="hiring-grid">
+                        <div class="position-card">
+                            <div class="position-header">
+                                <div>
+                                    <h4 class="position-title">Founding Biochemist</h4>
+                                    <p class="position-department">R&D - Biochemistry</p>
+                                </div>
+                                <span class="position-priority high">Critical</span>
+                            </div>
+                            <p class="position-details">
+                                Lead the development and optimization of immunoassays for TBI biomarkers. Work closely with founder on patent filing and clinical validation protocols.
+                            </p>
+                            <div class="position-requirements">
+                                <ul class="requirement-list">
+                                    <li class="requirement-item">MS/PhD in Biochemistry or related</li>
+                                    <li class="requirement-item">3+ years immunoassay experience</li>
+                                    <li class="requirement-item">Point-of-care diagnostics background</li>
+                                    <li class="requirement-item">BITS/IISc/IISER preferred</li>
+                                </ul>
+                            </div>
+                            <div class="position-footer">
+                                <span class="position-type">Full-time • Equity</span>
+                                <span class="position-timeline">Start: Immediate</span>
+                            </div>
+                        </div>
+
+                        <div class="position-card">
+                            <div class="position-header">
+                                <div>
+                                    <h4 class="position-title">Founding Electronics Engineer</h4>
+                                    <p class="position-department">R&D - Hardware</p>
+                                </div>
+                                <span class="position-priority high">Critical</span>
+                            </div>
+                            <p class="position-details">
+                                Design and develop the embedded system for Bio-Stride analyzer. Focus on analog frontend, signal processing, and firmware development.
+                            </p>
+                            <div class="position-requirements">
+                                <ul class="requirement-list">
+                                    <li class="requirement-item">B.Tech/M.Tech in Electronics</li>
+                                    <li class="requirement-item">Medical device experience</li>
+                                    <li class="requirement-item">Analog circuit design skills</li>
+                                </ul>
+                            </div>
+                            <div class="position-footer">
+                                <span class="position-type">Full-time • Equity</span>
+                                <span class="position-timeline">Start: Immediate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 2: Post Pre-seed -->
+                <div id="phase2" class="phase-content">
+                    <h3 style="color: #fff; margin-bottom: 25px;">Post Pre-seed Expansion (3-6 months)</h3>
+                    <div class="hiring-grid">
+                        <div class="position-card">
+                            <div class="position-header">
+                                <div>
+                                    <h4 class="position-title">Regulatory Affairs Manager</h4>
+                                    <p class="position-department">Quality & Regulatory</p>
+                                </div>
+                                <span class="position-priority high">Critical</span>
+                            </div>
+                            <p class="position-details">
+                                Lead CDSCO approval process and establish quality management systems. Prepare regulatory dossiers and manage clinical trial documentation.
+                            </p>
+                            <div class="position-requirements">
+                                <ul class="requirement-list">
+                                    <li class="requirement-item">5+ years medical device regulatory</li>
+                                    <li class="requirement-item">CDSCO submission experience</li>
+                                    <li class="requirement-item">ISO 13485 implementation</li>
+                                    <li class="requirement-item">IVD regulations knowledge</li>
+                                </ul>
+                            </div>
+                            <div class="position-footer">
+                                <span class="position-type">Full-time</span>
+                                <span class="position-timeline">Q3 2025</span>
+                            </div>
+                        </div>
+
+                        <div class="position-card">
+                            <div class="position-header">
+                                <div>
+                                    <h4 class="position-title">Clinical Research Coordinator</h4>
+                                    <p class="position-department">Clinical Affairs</p>
+                                </div>
+                                <span class="position-priority medium">Important</span>
+                            </div>
+                            <p class="position-details">
+                                Coordinate multi-center clinical trials for device validation. Manage hospital relationships and ensure protocol compliance.
+                            </p>
+                            <div class="position-requirements">
+                                <ul class="requirement-list">
+                                    <li class="requirement-item">Medical/Life sciences degree</li>
+                                    <li class="requirement-item">Clinical trial management</li>
+                                    <li class="requirement-item">GCP certification</li>
+                                    <li class="requirement-item">Hospital network preferred</li>
+                                </ul>
+                            </div>
+                            <div class="position-footer">
+                                <span class="position-type">Full-time</span>
+                                <span class="position-timeline">Q3 2025</span>
+                            </div>
+                        </div>
+
+                        <div class="position-card">
+                            <div class="position-header">
+                                <div>
+                                    <h4 class="position-title">Mechanical Design Engineer</h4>
+                                    <p class="position-department">R&D - Hardware</p>
+                                </div>
+                                <span class="position-priority medium">Important</span>
+                            </div>
+                            <p class="position-details">
+                                Design ruggedized enclosure and mechanical components for portable analyzer. Focus on vibration resistance and thermal management.
+                            </p>
+                            <div class="position-requirements">
+                                <ul class="requirement-list">
+                                    <li class="requirement-item">CAD expertise (SolidWorks)</li>
+                                    <li class="requirement-item">Injection molding design</li>
+                                    <li class="requirement-item">IP65/67 enclosure experience</li>
+                                    <li class="requirement-item">DFM knowledge</li>
+                                </ul>
+                            </div>
+                            <div class="position-footer">
+                                <span class="position-type">Full-time</span>
+                                <span class="position-timeline">Q4 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 3: Seed -->
+                <div id="phase3" class="phase-content">
+                    <h3 style="color: #fff; margin-bottom: 25px;">Seed Stage Growth (6-12 months)</h3>
+                    <div class="hiring-grid">
+                        <div class="position-card">
+                            <div class="position-header">
+                                <div>
+                                    <h4 class="position-title">VP Sales & Marketing</h4>
+                                    <p class="position-department">Commercial</p>
+                                </div>
+                                <span class="position-priority high">Critical</span>
+                            </div>
+                            <p class="position-details">
+                                Build and lead commercial team for B2B sales to hospitals and ambulance networks. Develop go-to-market strategy and pricing models.
+                            </p>
+                            <div class="position-requirements">
+                                <ul class="requirement-list">
+                                    <li class="requirement-item">10+ years medical device sales</li>
+                                    <li class="requirement-item">Hospital network relationships</li>
+                                    <li class="requirement-item">Team building experience</li>
+                                    <li class="requirement-item">IVD market knowledge</li>
+                                </ul>
+                            </div>
+                            <div class="position-footer">
+                                <span class="position-type">Full-time • Equity</span>
+                                <span class="position-timeline">Q1 2026</span>
+                            </div>
+                        </div>
+
+                        <div class="position-card">
+                            <div class="position-header">
+                                <div>
+                                    <h4 class="position-title">Manufacturing Head</h4>
+                                    <p class="position-department">Operations</p>
+                                </div>
+                                <span class="position-priority high">Critical</span>
+                            </div>
+                            <p class="position-details">
+                                Establish manufacturing operations and supply chain. Set up clean room facilities and implement quality systems.
+                            </p>
+                            <div class="position-requirements">
+                                <ul class="requirement-list">
+                                    <li class="requirement-item">Medical device manufacturing</li>
+                                    <li class="requirement-item">Clean room operations</li>
+                                    <li class="requirement-item">Lean Six Sigma</li>
+                                    <li class="requirement-item">Vendor management</li>
+                                </ul>
+                            </div>
+                            <div class="position-footer">
+                                <span class="position-type">Full-time</span>
+                                <span class="position-timeline">Q2 2026</span>
+                            </div>
+                        </div>
+
+                        <div class="position-card">
+                            <div class="position-header">
+                                <div>
+                                    <h4 class="position-title">Software Engineering Lead</h4>
+                                    <p class="position-department">Technology</p>
+                                </div>
+                                <span class="position-priority medium">Important</span>
+                            </div>
+                            <p class="position-details">
+                                Build cloud infrastructure for device data management and analytics platform. Lead development of SaaS offerings.
+                            </p>
+                            <div class="position-requirements">
+                                <ul class="requirement-list">
+                                    <li class="requirement-item">Full-stack development</li>
+                                    <li class="requirement-item">AWS/Azure expertise</li>
+                                    <li class="requirement-item">Healthcare data compliance</li>
+                                    <li class="requirement-item">Team leadership</li>
+                                </ul>
+                            </div>
+                            <div class="position-footer">
+                                <span class="position-type">Full-time • Equity</span>
+                                <span class="position-timeline">Q2 2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 4: Series A -->
+                <div id="phase4" class="phase-content">
+                    <h3 style="color: #fff; margin-bottom: 25px;">Series A Scaling (12-18 months)</h3>
+                    <div class="hiring-grid">
+                        <div class="position-card">
+                            <div class="position-header">
+                                <div>
+                                    <h4 class="position-title">CFO</h4>
+                                    <p class="position-department">Finance</p>
+                                </div>
+                                <span class="position-priority high">Critical</span>
+                            </div>
+                            <p class="position-details">
+                                Lead financial planning, fundraising, and investor relations. Prepare for international expansion and potential IPO path.
+                            </p>
+                            <div class="position-requirements">
+                                <ul class="requirement-list">
+                                    <li class="requirement-item">CA/CPA with startup experience</li>
+                                    <li class="requirement-item">Healthcare sector expertise</li>
+                                    <li class="requirement-item">Series B+ fundraising</li>
+                                    <li class="requirement-item">International operations</li>
+                                </ul>
+                            </div>
+                            <div class="position-footer">
+                                <span class="position-type">Full-time • Equity</span>
+                                <span class="position-timeline">Q3 2026</span>
+                            </div>
+                        </div>
+
+                        <div class="position-card">
+                            <div class="position-header">
+                                <div>
+                                    <h4 class="position-title">International Business Head</h4>
+                                    <p class="position-department">Global Expansion</p>
+                                </div>
+                                <span class="position-priority medium">Strategic</span>
+                            </div>
+                            <p class="position-details">
+                                Lead expansion into Southeast Asian and African markets. Establish partnerships and navigate international regulations.
+                            </p>
+                            <div class="position-requirements">
+                                <ul class="requirement-list">
+                                    <li class="requirement-item">International healthcare exp.</li>
+                                    <li class="requirement-item">Emerging markets expertise</li>
+                                    <li class="requirement-item">Partnership development</li>
+                                    <li class="requirement-item">Multi-lingual preferred</li>
+                                </ul>
+                            </div>
+                            <div class="position-footer">
+                                <span class="position-type">Full-time</span>
+                                <span class="position-timeline">Q4 2026</span>
+                            </div>
+                        </div>
+
+                        <div class="position-card">
+                            <div class="position-header">
+                                <div>
+                                    <h4 class="position-title">Chief Medical Officer</h4>
+                                    <p class="position-department">Medical Affairs</p>
+                                </div>
+                                <span class="position-priority medium">Strategic</span>
+                            </div>
+                            <p class="position-details">
+                                Provide medical leadership and build KOL relationships. Guide clinical strategy and evidence generation.
+                            </p>
+                            <div class="position-requirements">
+                                <ul class="requirement-list">
+                                    <li class="requirement-item">MD with emergency medicine</li>
+                                    <li class="requirement-item">Industry experience</li>
+                                    <li class="requirement-item">Published researcher</li>
+                                    <li class="requirement-item">KOL network</li>
+                                </ul>
+                            </div>
+                            <div class="position-footer">
+                                <span class="position-type">Part-time Advisory</span>
+                                <span class="position-timeline">Q4 2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Company Culture -->
+        <section class="culture-section">
+            <h2 class="section-title" style="color: #fff;">
+                <div class="section-icon" style="border-color: #fff; background: rgba(255, 255, 255, 0.1);">🌟</div>
+                Building Our Culture
+            </h2>
+            
+            <div class="culture-grid">
+                <div class="culture-card">
+                    <div class="culture-icon">🎯</div>
+                    <h3 class="culture-title">Mission-Driven</h3>
+                    <p class="culture-description">
+                        Every team member shares our commitment to saving lives through accessible diagnostics. Personal stories drive professional excellence.
+                    </p>
+                </div>
+                
+                <div class="culture-card">
+                    <div class="culture-icon">🚀</div>
+                    <h3 class="culture-title">Innovation First</h3>
+                    <p class="culture-description">
+                        Encourage bold thinking and rapid prototyping. Fail fast, learn faster. 20% time for exploratory projects.
+                    </p>
+                </div>
+                
+                <div class="culture-card">
+                    <div class="culture-icon">🤝</div>
+                    <h3 class="culture-title">Collaborative Excellence</h3>
+                    <p class="culture-description">
+                        Cross-functional teams working in sync. Open communication and knowledge sharing across all levels.
+                    </p>
+                </div>
+                
+                <div class="culture-card">
+                    <div class="culture-icon">📚</div>
+                    <h3 class="culture-title">Continuous Learning</h3>
+                    <p class="culture-description">
+                        Annual learning budget for each employee. Conference attendance, courses, and mentorship programs.
+                    </p>
+                </div>
+                
+                <div class="culture-card">
+                    <div class="culture-icon">⚖️</div>
+                    <h3 class="culture-title">Work-Life Integration</h3>
+                    <p class="culture-description">
+                        Flexible hours, mental health support, and family-friendly policies. Success measured by impact, not hours.
+                    </p>
+                </div>
+                
+                <div class="culture-card">
+                    <div class="culture-icon">🌍</div>
+                    <h3 class="culture-title">Global Impact</h3>
+                    <p class="culture-description">
+                        Think globally, act locally. Every role contributes to our vision of democratizing healthcare access.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Phase switching functionality
+        function showPhase(phaseId) {
+            // Hide all phases
+            document.querySelectorAll('.phase-content').forEach(phase => {
+                phase.classList.remove('active');
+            });
+            
+            // Remove active from all tabs
+            document.querySelectorAll('.quarter-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected phase
+            document.getElementById(phaseId).classList.add('active');
+            
+            // Activate clicked tab
+            event.target.classList.add('active');
+        }
+        
+        // Add hover effects
+        document.querySelectorAll('.position-card, .metric-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
