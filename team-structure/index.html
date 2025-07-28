@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team & Advisors | Bio-Stride</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 80px 0;
+            margin-bottom: 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background: #00ff88;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 10s infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            33% { transform: translateY(-30px) translateX(30px); }
+            66% { transform: translateY(30px) translateX(-30px); }
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: #00ff88;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            color: #b0b0b0;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .org-chart {
+            background: #16213e;
+            border: 1px solid #00ff88;
+            border-radius: 16px;
+            padding: 50px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+        
+        .org-title {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 40px;
+        }
+        
+        .org-structure {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .org-level {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .org-box {
+            background: #1a1a2e;
+            border: 2px solid #00ff88;
+            border-radius: 12px;
+            padding: 20px 30px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .org-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
+        }
+        
+        .org-role {
+            color: #00ff88;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .org-name {
+            color: #fff;
+            font-size: 1.1rem;
+        }
+        
+        .org-connector {
+            width: 2px;
+            height: 30px;
+            background: #00ff88;
+        }
+        
+        .team-section {
+            margin-bottom: 60px;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 2px solid #00ff88;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: #fff;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-card {
+            background: #1a1a2e;
+            border: 1px solid #2a2a3e;
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #00ff88, #00cc6a);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-5px);
+            border-color: #00ff88;
+            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.1);
+        }
+        
+        .team-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .member-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .member-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #00ff88, #00cc6a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #0a0a0a;
+            flex-shrink: 0;
+        }
+        
+        .member-info {
+            flex-grow: 1;
+        }
+        
+        .member-name {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+        
+        .member-role {
+            color: #00ff88;
+            font-size: 1rem;
+            margin-bottom: 3px;
+        }
+        
+        .member-institution {
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .member-bio {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .member-expertise {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .expertise-tag {
+            padding: 5px 12px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid #00ff88;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #00ff88;
+        }
+        
+        .member-links {
+            display: flex;
+            gap: 15px;
+            padding-top: 20px;
+            border-top: 1px solid #2a2a3e;
+        }
+        
+        .member-link {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .member-link:hover {
+            color: #00ff88;
+        }
+        
+        .advisor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .advisor-card {
+            background: #16213e;
+            border: 1px solid #2a2a3e;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .advisor-card:hover {
+            border-color: #00ff88;
+            transform: translateY(-3px);
+        }
+        
+        .advisor-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .advisor-avatar {
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 2px solid #00ff88;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: #00ff88;
+        }
+        
+        .advisor-name {
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 3px;
+        }
+        
+        .advisor-title {
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .advisor-expertise {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .hiring-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 2px solid #00ff88;
+            border-radius: 16px;
+            padding: 60px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .hiring-title {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        
+        .hiring-description {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .open-positions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .position-card {
+            background: #1a1a2e;
+            border: 1px solid #2a2a3e;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .position-card:hover {
+            border-color: #00ff88;
+            transform: translateY(-3px);
+        }
+        
+        .position-title {
+            font-size: 1.2rem;
+            color: #00ff88;
+            margin-bottom: 10px;
+        }
+        
+        .position-details {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .apply-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #00ff88;
+            color: #0a0a0a;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .apply-button:hover {
+            background: #00cc6a;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .team-grid, .advisor-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .org-structure {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="particles">
+            <div class="particle" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+            <div class="particle" style="top: 80%; left: 20%; animation-delay: 1s;"></div>
+            <div class="particle" style="top: 40%; left: 60%; animation-delay: 2s;"></div>
+            <div class="particle" style="top: 60%; left: 80%; animation-delay: 3s;"></div>
+            <div class="particle" style="top: 30%; left: 90%; animation-delay: 4s;"></div>
+        </div>
+        <div class="container">
+            <h1>Our Team & Advisors</h1>
+            <p class="subtitle">World-class experts united by a mission to revolutionize emergency diagnostics</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Organizational Structure -->
+        <div class="org-chart">
+            <h2 class="org-title">Organizational Structure</h2>
+            <div class="org-structure">
+                <div class="org-level">
+                    <div class="org-box">
+                        <div class="org-role">Founder & CEO</div>
+                        <div class="org-name">Anagh Sinha</div>
+                    </div>
+                    <div class="org-connector"></div>
+                    <div style="display: flex; gap: 40px;">
+                        <div class="org-level">
+                            <div class="org-box">
+                                <div class="org-role">Biochemistry Lead</div>
+                                <div class="org-name">Poorva Kumari</div>
+                            </div>
+                        </div>
+                        <div class="org-level">
+                            <div class="org-box">
+                                <div class="org-role">Clinical Research</div>
+                                <div class="org-name">Dr. Gurudutt Tyagi</div>
+                            </div>
+                        </div>
+                        <div class="org-level">
+                            <div class="org-box">
+                                <div class="org-role">Electronics Lead</div>
+                                <div class="org-name">Aneerban Roy</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Core Team -->
+        <section class="team-section">
+            <div class="section-header">
+                <div class="section-icon">👥</div>
+                <h2 class="section-title">Core Team</h2>
+            </div>
+            
+            <div class="team-grid">
+                <!-- Founder -->
+                <div class="team-card">
+                    <div class="member-header">
+                        <div class="member-avatar">AS</div>
+                        <div class="member-info">
+                            <h3 class="member-name">Anagh Sinha</h3>
+                            <p class="member-role">Founder & CEO</p>
+                            <p class="member-institution">BITS Pilani</p>
+                        </div>
+                    </div>
+                    <p class="member-bio">
+                        Dual degree in Electronics Engineering and Biological Sciences. Award-winning researcher with experience at University of Tokyo and ETH Zurich. Previously founded and exited two startups. Personal mission driven by family experiences with TBI.
+                    </p>
+                    <div class="member-expertise">
+                        <span class="expertise-tag">Biosensors</span>
+                        <span class="expertise-tag">Entrepreneurship</span>
+                        <span class="expertise-tag">Product Development</span>
+                        <span class="expertise-tag">Research</span>
+                    </div>
+                </div>
+
+                <!-- Biochemistry Lead -->
+                <div class="team-card">
+                    <div class="member-header">
+                        <div class="member-avatar">PK</div>
+                        <div class="member-info">
+                            <h3 class="member-name">Poorva Kumari</h3>
+                            <p class="member-role">Biochemistry Lead</p>
+                            <p class="member-institution">Ex-IISER Bhopal, University of Tokyo</p>
+                        </div>
+                    </div>
+                    <p class="member-bio">
+                        Expert in protein biochemistry and immunoassay development. Conducted research on biomarker discovery at the University of Tokyo. Specialized in developing robust diagnostic assays for resource-limited settings.
+                    </p>
+                    <div class="member-expertise">
+                        <span class="expertise-tag">Immunochemistry</span>
+                        <span class="expertise-tag">Biomarker Development</span>
+                        <span class="expertise-tag">Assay Optimization</span>
+                        <span class="expertise-tag">Quality Control</span>
+                    </div>
+                </div>
+
+                <!-- Clinical Research Lead -->
+                <div class="team-card">
+                    <div class="member-header">
+                        <div class="member-avatar">GT</div>
+                        <div class="member-info">
+                            <h3 class="member-name">Dr. Gurudutt Tyagi</h3>
+                            <p class="member-role">Clinical Research Lead</p>
+                            <p class="member-institution">AIIMS Delhi</p>
+                        </div>
+                    </div>
+                    <p class="member-bio">
+                        Medical doctor specializing in emergency medicine and trauma care. Leading clinical validation studies for TBI biomarkers. Published researcher in neurotrauma and point-of-care diagnostics.
+                    </p>
+                    <div class="member-expertise">
+                        <span class="expertise-tag">Clinical Trials</span>
+                        <span class="expertise-tag">Emergency Medicine</span>
+                        <span class="expertise-tag">Biomarker Validation</span>
+                        <span class="expertise-tag">Regulatory Affairs</span>
+                    </div>
+                </div>
+
+                <!-- Electronics Lead -->
+                <div class="team-card">
+                    <div class="member-header">
+                        <div class="member-avatar">AR</div>
+                        <div class="member-info">
+                            <h3 class="member-name">Aneerban Roy</h3>
+                            <p class="member-role">Electronics Lead</p>
+                            <p class="member-institution">Ex-NVIDIA, BITS Pilani</p>
+                        </div>
+                    </div>
+                    <p class="member-bio">
+                        Hardware engineer with expertise in embedded systems and signal processing. Former NVIDIA engineer working on edge computing solutions. Leading the development of Bio-Stride's portable analyzer hardware.
+                    </p>
+                    <div class="member-expertise">
+                        <span class="expertise-tag">Embedded Systems</span>
+                        <span class="expertise-tag">Signal Processing</span>
+                        <span class="expertise-tag">PCB Design</span>
+                        <span class="expertise-tag">Firmware Development</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advisory Board -->
+        <section class="team-section">
+            <div class="section-header">
+                <div class="section-icon">🎓</div>
+                <h2 class="section-title">Advisory Board</h2>
+            </div>
+            
+            <div class="advisor-grid">
+                <div class="advisor-card">
+                    <div class="advisor-header">
+                        <div class="advisor-avatar">SS</div>
+                        <div>
+                            <h3 class="advisor-name">Dr. Saloni Sinha</h3>
+                            <p class="advisor-title">MD, SMS Hospital</p>
+                        </div>
+                    </div>
+                    <p class="advisor-expertise">
+                        5+ years clinical experience in emergency medicine. Expertise in trauma care protocols and point-of-care testing implementation.
+                    </p>
+                </div>
+
+                <div class="advisor-card">
+                    <div class="advisor-header">
+                        <div class="advisor-avatar">SD</div>
+                        <div>
+                            <h3 class="advisor-name">Dr. Satyendra Prakash Dodi</h3>
+                            <p class="advisor-title">CMHO Railway Hospital GGC</p>
+                        </div>
+                    </div>
+                    <p class="advisor-expertise">
+                        Healthcare administration expert. Guides on government hospital procurement processes and regulatory compliance.
+                    </p>
+                </div>
+
+                <div class="advisor-card">
+                    <div class="advisor-header">
+                        <div class="advisor-avatar">VS</div>
+                        <div>
+                            <h3 class="advisor-name">Dr. VD Sinha</h3>
+                            <p class="advisor-title">M.Ch. Neurosurgery</p>
+                        </div>
+                    </div>
+                    <p class="advisor-expertise">
+                        Top neurosurgeon with 20+ years experience. Provides clinical insights on TBI management and surgical decision-making.
+                    </p>
+                </div>
+
+                <div class="advisor-card">
+                    <div class="advisor-header">
+                        <div class="advisor-avatar">AH</div>
+                        <div>
+                            <h3 class="advisor-name">Dr. Arnab Hazra</h3>
+                            <p class="advisor-title">Associate Professor, Electronics</p>
+                        </div>
+                    </div>
+                    <p class="advisor-expertise">
+                        Expert in biosensor electronics and signal processing. Guides technical development and academic collaborations.
+                    </p>
+                </div>
+
+                <div class="advisor-card">
+                    <div class="advisor-header">
+                        <div class="advisor-avatar">SG</div>
+                        <div>
+                            <h3 class="advisor-name">Dr. Soumitra Ghosh</h3>
+                            <p class="advisor-title">Assistant Professor, Biology</p>
+                        </div>
+                    </div>
+                    <p class="advisor-expertise">
+                        Molecular biology and immunoassay expert. Advises on biomarker selection and assay development strategies.
+                    </p>
+                </div>
+
+                <div class="advisor-card">
+                    <div class="advisor-header">
+                        <div class="advisor-avatar">AD</div>
+                        <div>
+                            <h3 class="advisor-name">Prof. Ashish Das</h3>
+                            <p class="advisor-title">Senior Professor, Immunochemistry</p>
+                        </div>
+                    </div>
+                    <p class="advisor-expertise">
+                        Leading immunochemistry researcher. Provides expertise on antibody engineering and diagnostic assay validation.
+                    </p>
+                </div>
+
+                <div class="advisor-card">
+                    <div class="advisor-header">
+                        <div class="advisor-avatar">NJ</div>
+                        <div>
+                            <h3 class="advisor-name">Nitin Jain</h3>
+                            <p class="advisor-title">Founder Indibni, Shark Tank</p>
+                        </div>
+                    </div>
+                    <p class="advisor-expertise">
+                        Serial entrepreneur and investor. Advises on business strategy, fundraising, and scaling operations.
+                    </p>
+                </div>
+
+                <div class="advisor-card">
+                    <div class="advisor-header">
+                        <div class="advisor-avatar">VR</div>
+                        <div>
+                            <h3 class="advisor-name">Prof. V Ramgopal Rao</h3>
+                            <p class="advisor-title">Vice-Chancellor BITS Pilani</p>
+                        </div>
+                    </div>
+                    <p class="advisor-expertise">
+                        Former Director IIT Delhi. Guides on innovation strategy and institutional partnerships.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- We're Hiring -->
+        <section class="hiring-section">
+            <h2 class="hiring-title">Join Our Mission</h2>
+            <p class="hiring-description">
+                We're building a world-class team to revolutionize emergency diagnostics. If you're passionate about using technology to save lives, we want to hear from you.
+            </p>
+            
+            <div class="open-positions">
+                <div class="position-card">
+                    <h3 class="position-title">Founding Biochemist</h3>
+                    <p class="position-details">
+                        Lead assay development and optimization. PhD in Biochemistry or related field preferred. Experience with immunoassays and point-of-care diagnostics.
+                    </p>
+                </div>
+                
+                <div class="position-card">
+                    <h3 class="position-title">Founding Electronics Engineer</h3>
+                    <p class="position-details">
+                        Design and develop embedded systems for medical devices. Experience with analog frontend design and signal processing required.
+                    </p>
+                </div>
+                
+                <div class="position-card">
+                    <h3 class="position-title">Clinical Research Associate</h3>
+                    <p class="position-details">
+                        Coordinate clinical trials and regulatory submissions. Medical background with experience in clinical research protocols.
+                    </p>
+                </div>
+                
+                <div class="position-card">
+                    <h3 class="position-title">Business Development Lead</h3>
+                    <p class="position-details">
+                        Drive B2B sales to hospitals and ambulance networks. Healthcare industry experience and strong network preferred.
+                    </p>
+                </div>
+            </div>
+            
+            <a href="mailto:contact@biostridedx.com" class="apply-button">View All Positions</a>
+        </section>
+    </div>
+
+    <script>
+        // Add interactive hover effects
+        document.querySelectorAll('.team-card, .advisor-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
