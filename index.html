@@ -808,93 +808,133 @@
         </div>
     </section>
 
-          <!-- Specifications -->
-        <section class="specifications">
-            <h2 class="section-title">Technical Specifications</h2>
-            <table class="spec-table">
-                <tr>
-                    <th>Specification</th>
-                    <th>Details</th>
-                </tr>
-                <tr>
-                    <td>Detection Method</td>
-                    <td>Electrochemical biosensor with proprietary signal processing</td>
-                </tr>
-                <tr>
-                    <td>Biomarkers</td>
-                    <td>GFAP (Glial Fibrillary Acidic Protein), UCH-L1 (Ubiquitin C-terminal Hydrolase-L1)</td>
-                </tr>
-                <tr>
-                    <td>Sample Volume</td>
-                    <td>1μL whole blood (finger prick)</td>
-                </tr>
-                <tr>
-                    <td>Time to Result</td>
-                    <td>&lt;15 minutes</td>
-                </tr>
-                <tr>
-                    <td>Sensitivity</td>
-                    <td>95% for moderate to severe TBI</td>
-                </tr>
-                <tr>
-                    <td>Specificity</td>
-                    <td>92% clinical specificity</td>
-                </tr>
-                <tr>
-                    <td>Operating Temperature</td>
-                    <td>5°C to 45°C</td>
-                </tr>
-                <tr>
-                    <td>Device Dimensions</td>
-                    <td>20cm x 15cm x 8cm (portable handheld)</td>
-                </tr>
-                <tr>
-                    <td>Battery Life</td>
-                    <td>8 hours continuous use / 100 tests</td>
-                </tr>
-                <tr>
-                    <td>Connectivity</td>
-                    <td>4G/WiFi with offline capability</td>
-                </tr>
-            </table>
-        </section>
+    <!-- Specifications (Improved UI) -->
+    <section class="specifications" style="background: var(--bg-light); padding: 3rem 0;">
+        <div class="container">
+            <h2 class="section-title" style="text-align:center; margin-bottom:2rem;">Technical Specifications</h2>
+            <div class="spec-table-wrapper" style="overflow-x:auto; max-width: 700px; margin: 0 auto;">
+                <table class="spec-table" style="width:100%; border-collapse:collapse; background:var(--white); border-radius:16px; box-shadow:0 2px 16px rgba(0,0,0,0.06); overflow:hidden;">
+                    <thead style="background:var(--primary-blue); color:var(--white);">
+                        <tr>
+                            <th style="padding:1rem 1.5rem; text-align:left; font-size:1.1rem;">Specification</th>
+                            <th style="padding:1rem 1.5rem; text-align:left; font-size:1.1rem;">Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding:0.9rem 1.5rem; border-bottom:1px solid #f0f0f0;">Detection Method</td>
+                            <td style="padding:0.9rem 1.5rem; border-bottom:1px solid #f0f0f0;">Electrochemical biosensor with proprietary signal processing</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:0.9rem 1.5rem; border-bottom:1px solid #f0f0f0;">Sample Volume</td>
+                            <td style="padding:0.9rem 1.5rem; border-bottom:1px solid #f0f0f0;">20μL whole blood (finger prick)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:0.9rem 1.5rem; border-bottom:1px solid #f0f0f0;">Detection Range</td>
+                            <td style="padding:0.9rem 1.5rem; border-bottom:1px solid #f0f0f0;">47–10,000 pg/mL</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:0.9rem 1.5rem; border-bottom:1px solid #f0f0f0;">Time to Result</td>
+                            <td style="padding:0.9rem 1.5rem; border-bottom:1px solid #f0f0f0;">&lt; 15 minutes</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:0.9rem 1.5rem; border-bottom:1px solid #f0f0f0;">Sensitivity</td>
+                            <td style="padding:0.9rem 1.5rem; border-bottom:1px solid #f0f0f0;">96.5% clinical sensitivity</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:0.9rem 1.5rem; border-bottom:1px solid #f0f0f0;">Specificity</td>
+                            <td style="padding:0.9rem 1.5rem; border-bottom:1px solid #f0f0f0;">92% clinical specificity</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:0.9rem 1.5rem; border-bottom:1px solid #f0f0f0;">Operating Temperature</td>
+                            <td style="padding:0.9rem 1.5rem; border-bottom:1px solid #f0f0f0;">5°C to 45°C</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:0.9rem 1.5rem; border-bottom:1px solid #f0f0f0;">Device Dimensions</td>
+                            <td style="padding:0.9rem 1.5rem; border-bottom:1px solid #f0f0f0;">20cm × 15cm × 8cm (portable handheld)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:0.9rem 1.5rem; border-bottom:1px solid #f0f0f0;">Battery Life</td>
+                            <td style="padding:0.9rem 1.5rem; border-bottom:1px solid #f0f0f0;">&gt;4 hours continuous use</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:0.9rem 1.5rem;">Connectivity</td>
+                            <td style="padding:0.9rem 1.5rem;">Bluetooth, Wi-Fi, 4G/5G, offline capability</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
 
-        <!-- Comparison -->
-        <section class="comparison">
-            <h2 class="section-title">Bio-Stride vs. Traditional Methods</h2>
-            <div class="comparison-grid">
-                <div class="comparison-card">
-                    <h4>CT Scan</h4>
-                    <div class="comparison-metric">₹1.5 Cr</div>
-                    <p class="comparison-desc">Equipment cost</p>
-                    <p class="comparison-desc">2-4 hours total time</p>
-                    <p class="comparison-desc">Requires hospital infrastructure</p>
+    <!-- Comparison (Improved UI) -->
+    <section class="comparison" style="background: linear-gradient(90deg, var(--light-blue) 0%, var(--bg-light) 100%); padding: 3rem 0;">
+        <div class="container">
+            <h2 class="section-title" style="text-align:center;">Bio-Stride vs. Traditional Methods</h2>
+            <p class="section-subtitle" style="text-align:center; color:var(--text-light); margin-bottom:2.5rem;">See how we're transforming TBI diagnosis with innovative technology</p>
+            
+            <div class="comparison-grid" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
+                <!-- CT Scan Card -->
+                <div class="comparison-card" style="background:var(--white); border-radius:18px; box-shadow:0 2px 16px rgba(0,0,0,0.07); padding:2rem 1.5rem; flex:1 1 270px; min-width:260px; max-width:320px; display:flex; flex-direction:column; align-items:center;">
+                    <div class="card-icon" style="font-size:2.2rem; color:var(--primary-blue); margin-bottom:0.7rem;">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <h4 style="margin-bottom:0.5rem;">CT Scan</h4>
+                    <div class="comparison-metric" style="font-size:1.3rem; font-weight:600; color:var(--accent-pink); margin-bottom:0.7rem;">₹1.5 Cr</div>
+                    <ul class="feature-list" style="list-style:none; padding:0; color:var(--text-light); font-size:1rem;">
+                        <li style="margin-bottom:0.5rem;"><i class="fas fa-rupee-sign"></i> Equipment cost</li>
+                        <li style="margin-bottom:0.5rem;"><i class="far fa-clock"></i> 2–4 hours total time</li>
+                        <li style="margin-bottom:0.5rem;"><i class="fas fa-building"></i> Requires hospital infrastructure</li>
+                        <li><i class="fas fa-radiation"></i> Radiation exposure</li>
+                    </ul>
                 </div>
-                <div class="comparison-card featured">
-                    <h4>Bio-Stride</h4>
-                    <div class="comparison-metric">₹1.5 L</div>
-                    <p class="comparison-desc">Device cost (100X cheaper)</p>
-                    <p class="comparison-desc">15 minutes total time</p>
-                    <p class="comparison-desc">Portable, works anywhere</p>
+
+                <!-- Bio-Stride Card (Featured) -->
+                <div class="comparison-card featured" style="background:linear-gradient(135deg, var(--primary-blue) 60%, var(--light-blue) 100%); border-radius:22px; box-shadow:0 4px 24px rgba(0,180,216,0.13); padding:2.2rem 1.7rem; flex:1 1 300px; min-width:270px; max-width:340px; display:flex; flex-direction:column; align-items:center; position:relative; color:var(--white);">
+                    <div class="featured-badge" style="position:absolute; top:1.2rem; right:1.2rem; background:var(--accent-pink); color:var(--white); font-size:0.9rem; font-weight:600; padding:0.3rem 0.8rem; border-radius:12px; box-shadow:0 2px 8px rgba(255,0,110,0.08); letter-spacing:0.5px;">Best Value</div>
+                    <div class="card-icon primary" style="font-size:2.4rem; margin-bottom:0.7rem;">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h4 style="margin-bottom:0.5rem;">Bio-Stride</h4>
+                    <div class="comparison-metric" style="font-size:1.3rem; font-weight:600; color:var(--white); margin-bottom:0.7rem;">₹1.5 L</div>
+                    <div class="savings-badge" style="background:var(--white); color:var(--primary-blue); font-weight:600; font-size:0.95rem; padding:0.3rem 0.9rem; border-radius:10px; margin-bottom:0.8rem;">100X cheaper than CT</div>
+                    <ul class="feature-list" style="list-style:none; padding:0; color:var(--white); font-size:1rem;">
+                        <li style="margin-bottom:0.5rem;"><i class="fas fa-bolt"></i> 15 minutes total time</li>
+                        <li style="margin-bottom:0.5rem;"><i class="fas fa-mobile-alt"></i> Portable, works anywhere</li>
+                        <li style="margin-bottom:0.5rem;"><i class="fas fa-check-circle"></i> 96.5% sensitivity</li>
+                        <li><i class="fas fa-shield-alt"></i> No radiation</li>
+                    </ul>
+                    <a href="#contact" class="cta-button" style="margin-top:1.2rem; background:var(--accent-pink); color:var(--white); border:none; border-radius:8px; padding:0.7rem 1.7rem; font-weight:600; font-size:1rem; text-decoration:none; transition:background 0.2s;">Get Started</a>
                 </div>
-                <div class="comparison-card">
-                    <h4>Clinical Observation</h4>
-                    <div class="comparison-metric">₹0</div>
-                    <p class="comparison-desc">No equipment cost</p>
-                    <p class="comparison-desc">24-48 hours observation</p>
-                    <p class="comparison-desc">May miss mild TBI</p>
+
+                <!-- Clinical Observation Card -->
+                <div class="comparison-card" style="background:var(--white); border-radius:18px; box-shadow:0 2px 16px rgba(0,0,0,0.07); padding:2rem 1.5rem; flex:1 1 270px; min-width:260px; max-width:320px; display:flex; flex-direction:column; align-items:center;">
+                    <div class="card-icon" style="font-size:2.2rem; color:var(--primary-blue); margin-bottom:0.7rem;">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h4 style="margin-bottom:0.5rem;">Clinical Observation</h4>
+                    <div class="comparison-metric" style="font-size:1.3rem; font-weight:600; color:var(--text-light); margin-bottom:0.7rem;">₹0</div>
+                    <ul class="feature-list" style="list-style:none; padding:0; color:var(--text-light); font-size:1rem;">
+                        <li style="margin-bottom:0.5rem;"><i class="far fa-clock"></i> 24–48 hours observation</li>
+                        <li style="margin-bottom:0.5rem;"><i class="fas fa-exclamation-triangle"></i> May miss mild TBI</li>
+                        <li style="margin-bottom:0.5rem;"><i class="fas fa-bed"></i> Requires hospital stay</li>
+                        <li><i class="fas fa-user-injured"></i> Subjective assessment</li>
+                    </ul>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Patent Information -->
-        <section class="patent-info">
-            <div class="patent-badge">
-                🏆 Patent Pending
-            </div>
-            <h2 class="section-title">Protected Innovation</h2>
-            <p>Our proprietary "Portable Point-of-Care Diagnostic System for Early Detection of Traumatic Brain Injury using Blood Biomarkers" is protected under Indian Patent Application (filed July 2025)</p>
-        </section>
+    <!-- Patent Information (Improved UI) -->
+    <section class="patent-info" style="background:var(--white); padding:2.5rem 0 2rem 0; text-align:center;">
+        <div class="patent-badge" style="display:inline-block; background:var(--primary-blue); color:var(--white); font-weight:600; font-size:1.1rem; padding:0.5rem 1.2rem; border-radius:16px; margin-bottom:1.2rem;">
+            🏆 Patent Pending
+        </div>
+        <h2 class="section-title" style="margin-bottom:0.7rem;">Protected Innovation</h2>
+        <p style="color:var(--text-light); max-width:600px; margin:0 auto;">
+            Our proprietary <strong>Portable Point-of-Care Diagnostic System for Early Detection of Traumatic Brain Injury using Blood Biomarkers</strong> is protected under Indian Patent Application (filed July 2025).
+        </p>
+    </section>
 
 
     <!-- Team Section -->
@@ -919,108 +959,126 @@
         </div>
     </section>
 
- <!-- Quick Links Section -->
-    <section class="quick-links" id="resources">
-        <div class="section-header">
-            <h2>Explore Bio-Stride</h2>
-            <p>Access all our resources and information</p>
+ <!-- Quick Links Section (Improved UI) -->
+    <section class="quick-links" id="resources" style="background: var(--bg-light); padding: 3rem 0;">
+        <div class="container">
+            <div class="section-header" style="text-align: center; margin-bottom: 2.5rem;">
+                <h2 style="font-size: 2.2rem; font-weight: 700; color: var(--primary-blue); margin-bottom: 0.5rem;">Explore Bio-Stride</h2>
+                <p style="color: var(--text-light); font-size: 1.1rem;">Access all our resources and information</p>
+            </div>
+            <div class="links-grid" style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 1.5rem;
+                max-width: 1100px;
+                margin: 0 auto;
+            ">
+                <a href="/financial-model" class="link-card" style="background: var(--white); border-radius: 1.1rem; box-shadow: 0 2px 12px rgba(0,0,0,0.07); padding: 1.5rem 1.2rem; display: flex; flex-direction: column; align-items: flex-start; text-decoration: none; transition: box-shadow 0.2s, transform 0.2s; border: 1px solid #e6e6e6;">
+                    <div class="link-icon" style="font-size: 2.1rem; margin-bottom: 0.7rem;">📊</div>
+                    <div class="link-content">
+                        <h3 style="font-size: 1.15rem; font-weight: 600; color: var(--dark-blue); margin-bottom: 0.3rem;">Financial Model</h3>
+                        <p style="color: var(--text-light); font-size: 0.98rem;">Detailed projections and unit economics</p>
+                    </div>
+                </a>
+                <a href="/team" class="link-card" style="background: var(--white); border-radius: 1.1rem; box-shadow: 0 2px 12px rgba(0,0,0,0.07); padding: 1.5rem 1.2rem; display: flex; flex-direction: column; align-items: flex-start; text-decoration: none; transition: box-shadow 0.2s, transform 0.2s; border: 1px solid #e6e6e6;">
+                    <div class="link-icon" style="font-size: 2.1rem; margin-bottom: 0.7rem;">👥</div>
+                    <div class="link-content">
+                        <h3 style="font-size: 1.15rem; font-weight: 600; color: var(--dark-blue); margin-bottom: 0.3rem;">Team</h3>
+                        <p style="color: var(--text-light); font-size: 0.98rem;">Meet our experts and advisors</p>
+                    </div>
+                </a>
+                <a href="/technology" class="link-card" style="background: var(--white); border-radius: 1.1rem; box-shadow: 0 2px 12px rgba(0,0,0,0.07); padding: 1.5rem 1.2rem; display: flex; flex-direction: column; align-items: flex-start; text-decoration: none; transition: box-shadow 0.2s, transform 0.2s; border: 1px solid #e6e6e6;">
+                    <div class="link-icon" style="font-size: 2.1rem; margin-bottom: 0.7rem;">🔬</div>
+                    <div class="link-content">
+                        <h3 style="font-size: 1.15rem; font-weight: 600; color: var(--dark-blue); margin-bottom: 0.3rem;">Technology</h3>
+                        <p style="color: var(--text-light); font-size: 0.98rem;">Our patented detection system</p>
+                    </div>
+                </a>
+                <a href="/demo" class="link-card" style="background: var(--white); border-radius: 1.1rem; box-shadow: 0 2px 12px rgba(0,0,0,0.07); padding: 1.5rem 1.2rem; display: flex; flex-direction: column; align-items: flex-start; text-decoration: none; transition: box-shadow 0.2s, transform 0.2s; border: 1px solid #e6e6e6;">
+                    <div class="link-icon" style="font-size: 2.1rem; margin-bottom: 0.7rem;">🎥</div>
+                    <div class="link-content">
+                        <h3 style="font-size: 1.15rem; font-weight: 600; color: var(--dark-blue); margin-bottom: 0.3rem;">Product Demo</h3>
+                        <p style="color: var(--text-light); font-size: 0.98rem;">See Bio-Stride in action</p>
+                    </div>
+                </a>
+                <a href="/testimonials" class="link-card" style="background: var(--white); border-radius: 1.1rem; box-shadow: 0 2px 12px rgba(0,0,0,0.07); padding: 1.5rem 1.2rem; display: flex; flex-direction: column; align-items: flex-start; text-decoration: none; transition: box-shadow 0.2s, transform 0.2s; border: 1px solid #e6e6e6;">
+                    <div class="link-icon" style="font-size: 2.1rem; margin-bottom: 0.7rem;">💬</div>
+                    <div class="link-content">
+                        <h3 style="font-size: 1.15rem; font-weight: 600; color: var(--dark-blue); margin-bottom: 0.3rem;">Testimonials</h3>
+                        <p style="color: var(--text-light); font-size: 0.98rem;">What doctors are saying</p>
+                    </div>
+                </a>
+                <a href="/credentials" class="link-card" style="background: var(--white); border-radius: 1.1rem; box-shadow: 0 2px 12px rgba(0,0,0,0.07); padding: 1.5rem 1.2rem; display: flex; flex-direction: column; align-items: flex-start; text-decoration: none; transition: box-shadow 0.2s, transform 0.2s; border: 1px solid #e6e6e6;">
+                    <div class="link-icon" style="font-size: 2.1rem; margin-bottom: 0.7rem;">🏆</div>
+                    <div class="link-content">
+                        <h3 style="font-size: 1.15rem; font-weight: 600; color: var(--dark-blue); margin-bottom: 0.3rem;">Credentials</h3>
+                        <p style="color: var(--text-light); font-size: 0.98rem;">Awards and recognition</p>
+                    </div>
+                </a>
+                <a href="/founders" class="link-card" style="background: var(--white); border-radius: 1.1rem; box-shadow: 0 2px 12px rgba(0,0,0,0.07); padding: 1.5rem 1.2rem; display: flex; flex-direction: column; align-items: flex-start; text-decoration: none; transition: box-shadow 0.2s, transform 0.2s; border: 1px solid #e6e6e6;">
+                    <div class="link-icon" style="font-size: 2.1rem; margin-bottom: 0.7rem;">🚀</div>
+                    <div class="link-content">
+                        <h3 style="font-size: 1.15rem; font-weight: 600; color: var(--dark-blue); margin-bottom: 0.3rem;">Founder's Journey</h3>
+                        <p style="color: var(--text-light); font-size: 0.98rem;">Our story and vision</p>
+                    </div>
+                </a>
+                <a href="/ownership" class="link-card" style="background: var(--white); border-radius: 1.1rem; box-shadow: 0 2px 12px rgba(0,0,0,0.07); padding: 1.5rem 1.2rem; display: flex; flex-direction: column; align-items: flex-start; text-decoration: none; transition: box-shadow 0.2s, transform 0.2s; border: 1px solid #e6e6e6;">
+                    <div class="link-icon" style="font-size: 2.1rem; margin-bottom: 0.7rem;">📈</div>
+                    <div class="link-content">
+                        <h3 style="font-size: 1.15rem; font-weight: 600; color: var(--dark-blue); margin-bottom: 0.3rem;">Ownership Structure</h3>
+                        <p style="color: var(--text-light); font-size: 0.98rem;">Cap table and equity details</p>
+                    </div>
+                </a>
+                <a href="/team-structure" class="link-card" style="background: var(--white); border-radius: 1.1rem; box-shadow: 0 2px 12px rgba(0,0,0,0.07); padding: 1.5rem 1.2rem; display: flex; flex-direction: column; align-items: flex-start; text-decoration: none; transition: box-shadow 0.2s, transform 0.2s; border: 1px solid #e6e6e6;">
+                    <div class="link-icon" style="font-size: 2.1rem; margin-bottom: 0.7rem;">🏢</div>
+                    <div class="link-content">
+                        <h3 style="font-size: 1.15rem; font-weight: 600; color: var(--dark-blue); margin-bottom: 0.3rem;">Organization</h3>
+                        <p style="color: var(--text-light); font-size: 0.98rem;">Current and future team structure</p>
+                    </div>
+                </a>
+                <a href="/team-bio" class="link-card" style="background: var(--white); border-radius: 1.1rem; box-shadow: 0 2px 12px rgba(0,0,0,0.07); padding: 1.5rem 1.2rem; display: flex; flex-direction: column; align-items: flex-start; text-decoration: none; transition: box-shadow 0.2s, transform 0.2s; border: 1px solid #e6e6e6;">
+                    <div class="link-icon" style="font-size: 2.1rem; margin-bottom: 0.7rem;">📝</div>
+                    <div class="link-content">
+                        <h3 style="font-size: 1.15rem; font-weight: 600; color: var(--dark-blue); margin-bottom: 0.3rem;">Team Bios</h3>
+                        <p style="color: var(--text-light); font-size: 0.98rem;">Detailed team member profiles</p>
+                    </div>
+                </a>
+                <a href="/relevant-docs" class="link-card" style="background: var(--white); border-radius: 1.1rem; box-shadow: 0 2px 12px rgba(0,0,0,0.07); padding: 1.5rem 1.2rem; display: flex; flex-direction: column; align-items: flex-start; text-decoration: none; transition: box-shadow 0.2s, transform 0.2s; border: 1px solid #e6e6e6;">
+                    <div class="link-icon" style="font-size: 2.1rem; margin-bottom: 0.7rem;">📁</div>
+                    <div class="link-content">
+                        <h3 style="font-size: 1.15rem; font-weight: 600; color: var(--dark-blue); margin-bottom: 0.3rem;">Documents</h3>
+                        <p style="color: var(--text-light); font-size: 0.98rem;">Patents and research papers</p>
+                    </div>
+                </a>
+                <a href="/cash-flow" class="link-card" style="background: var(--white); border-radius: 1.1rem; box-shadow: 0 2px 12px rgba(0,0,0,0.07); padding: 1.5rem 1.2rem; display: flex; flex-direction: column; align-items: flex-start; text-decoration: none; transition: box-shadow 0.2s, transform 0.2s; border: 1px solid #e6e6e6;">
+                    <div class="link-icon" style="font-size: 2.1rem; margin-bottom: 0.7rem;">💵</div>
+                    <div class="link-content">
+                        <h3 style="font-size: 1.15rem; font-weight: 600; color: var(--dark-blue); margin-bottom: 0.3rem;">Cash Flow</h3>
+                        <p style="color: var(--text-light); font-size: 0.98rem;">Financial statements and analysis</p>
+                    </div>
+                </a>
+            </div>
         </div>
-        <div class="links-grid">
-            <a href="/financial-model" class="link-card">
-                <div class="link-icon">📊</div>
-                <div class="link-content">
-                    <h3>Financial Model</h3>
-                    <p>Detailed projections and unit economics</p>
-                </div>
-            </a>
-            <a href="/team" class="link-card">
-                <div class="link-icon">👥</div>
-                <div class="link-content">
-                    <h3>Team</h3>
-                    <p>Meet our experts and advisors</p>
-                </div>
-            </a>
-            <a href="/technology" class="link-card">
-                <div class="link-icon">🔬</div>
-                <div class="link-content">
-                    <h3>Technology</h3>
-                    <p>Our patented detection system</p>
-                </div>
-            </a>
-            <a href="/demo" class="link-card">
-                <div class="link-icon">🎥</div>
-                <div class="link-content">
-                    <h3>Product Demo</h3>
-                    <p>See Bio-Stride in action</p>
-                </div>
-            </a>
-            <a href="/testimonials" class="link-card">
-                <div class="link-icon">💬</div>
-                <div class="link-content">
-                    <h3>Testimonials</h3>
-                    <p>What doctors are saying</p>
-                </div>
-            </a>
-            <a href="/credentials" class="link-card">
-                <div class="link-icon">🏆</div>
-                <div class="link-content">
-                    <h3>Credentials</h3>
-                    <p>Awards and recognition</p>
-                </div>
-            </a>
-            <a href="/founders" class="link-card">
-                <div class="link-icon">🚀</div>
-                <div class="link-content">
-                    <h3>Founder's Journey</h3>
-                    <p>Our story and vision</p>
-                </div>
-            </a>
-            <a href="/ownership" class="link-card">
-                <div class="link-icon">📈</div>
-                <div class="link-content">
-                    <h3>Ownership Structure</h3>
-                    <p>Cap table and equity details</p>
-                </div>
-            </a>
-            <a href="/team-structure" class="link-card">
-                <div class="link-icon">🏢</div>
-                <div class="link-content">
-                    <h3>Organization</h3>
-                    <p>Current and future team structure</p>
-                </div>
-            </a>
-            <a href="/team-bio" class="link-card">
-                <div class="link-icon">📝</div>
-                <div class="link-content">
-                    <h3>Team Bios</h3>
-                    <p>Detailed team member profiles</p>
-                </div>
-            </a>
-            <a href="/relevant-docs" class="link-card">
-                <div class="link-icon">📁</div>
-                <div class="link-content">
-                    <h3>Documents</h3>
-                    <p>Patents and research papers</p>
-                </div>
-            </a>
-            <a href="/cash-flow" class="link-card">
-                <div class="link-icon">💵</div>
-                <div class="link-content">
-                    <h3>Cash Flow</h3>
-                    <p>Financial statements and analysis</p>
-                </div>
-            </a>
-        </div>
+        <style>
+            @media (max-width: 700px) {
+                .links-grid {
+                    grid-template-columns: 1fr !important;
+                }
+            }
+            .link-card:hover {
+                box-shadow: 0 6px 24px rgba(0,180,216,0.13);
+                transform: translateY(-4px) scale(1.025);
+                border-color: var(--primary-blue);
+            }
+        </style>
     </section>
 
-            <!-- CTA Section -->
-        <section class="tech-cta">
-            <h2>Experience the Future of Emergency Diagnostics</h2>
-            <p>See how Bio-Stride can transform emergency care in your organization</p>
-            <a href="/demo" class="cta-button" style="background: white; color: var(--primary-blue);">Schedule a Demo</a>
-        </section>
-
- 
+    <!-- CTA Section (Improved UI) -->
+    <section class="tech-cta" style="background: linear-gradient(90deg, var(--primary-blue) 0%, var(--light-blue) 100%); color: var(--dark-blue); text-align: center; padding: 3rem 0 2.5rem 0; margin-top: 2.5rem; border-radius: 1.5rem; max-width: 1100px; margin-left: auto; margin-right: auto; box-shadow: 0 4px 24px rgba(0,180,216,0.08);">
+        <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.7rem;">Experience the Future of Emergency Diagnostics</h2>
+        <p style="font-size: 1.1rem; color: var(--dark-blue); margin-bottom: 1.5rem;">See how Bio-Stride can transform emergency care in your organization</p>
+        <a href="/demo" class="cta-button" style="background: var(--white); color: var(--primary-blue); font-weight: 600; font-size: 1.1rem; padding: 0.9rem 2.2rem; border-radius: 2rem; box-shadow: 0 2px 10px rgba(0,180,216,0.10); text-decoration: none; transition: background 0.2s, color 0.2s;">Schedule a Demo</a>
+    </section>
     
     <!-- Contact Section -->
     <section class="contact" id="contact">
@@ -1164,8 +1222,6 @@
             });
         });
 
-
-        
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1242,5 +1298,6 @@
             observer.observe(card);
         });
     </script>
+    
 </body>
 </html>
