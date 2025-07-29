@@ -10,11 +10,22 @@
             padding: 0;
             box-sizing: border-box;
         }
+
+        :root {
+            --primary-blue: #00B4D8;
+            --dark-blue: #003045;
+            --light-blue: #90E0EF;
+            --accent-pink: #FF006E;
+            --text-dark: #1A1A1A;
+            --text-light: #666;
+            --bg-light: #F8F9FA;
+            --white: #FFFFFF;
+        }
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #0a0a0a;
-            color: #e0e0e0;
+            background: var(--white);
+            color: var(--text-dark);
             line-height: 1.6;
         }
         
@@ -25,7 +36,7 @@
         }
         
         header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--primary-blue) 100%);
             padding: 80px 0;
             margin-bottom: 60px;
             position: relative;
@@ -49,19 +60,20 @@
                 45deg,
                 transparent,
                 transparent 35px,
-                rgba(0, 255, 136, 0.5) 35px,
-                rgba(0, 255, 136, 0.5) 70px
+                rgba(0, 180, 216, 0.5) 35px,
+                rgba(0, 180, 216, 0.5) 70px
             );
         }
         
         h1 {
             font-size: 3rem;
-            color: #00ff88;
+            color: var(--white);
             margin-bottom: 15px;
         }
         
         .subtitle {
-            color: #b0b0b0;
+            color: var(--white);
+            opacity: 0.9;
             font-size: 1.2rem;
             max-width: 700px;
             margin: 0 auto;
@@ -83,11 +95,11 @@
             width: 100%;
             max-width: 350px;
             height: 450px;
-            background: linear-gradient(135deg, #00ff88, #00cc6a);
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
             border-radius: 20px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 255, 136, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 180, 216, 0.3);
         }
         
         .founder-image::before {
@@ -98,7 +110,7 @@
             transform: translate(-50%, -50%);
             font-size: 6rem;
             font-weight: bold;
-            color: #0a0a0a;
+            color: var(--white);
             opacity: 0.8;
         }
         
@@ -108,19 +120,19 @@
         
         .founder-name {
             font-size: 2.5rem;
-            color: #fff;
+            color: var(--dark-blue);
             margin-bottom: 10px;
         }
         
         .founder-title {
             font-size: 1.3rem;
-            color: #00ff88;
+            color: var(--primary-blue);
             margin-bottom: 30px;
         }
         
         .founder-bio {
             font-size: 1.1rem;
-            color: #e0e0e0;
+            color: var(--text-light);
             line-height: 1.8;
             margin-bottom: 30px;
         }
@@ -133,8 +145,8 @@
         }
         
         .stat-item {
-            background: #1a1a2e;
-            border: 1px solid #2a2a3e;
+            background: var(--bg-light);
+            border: 1px solid #e0e0e0;
             border-radius: 12px;
             padding: 20px;
             text-align: center;
@@ -142,19 +154,20 @@
         }
         
         .stat-item:hover {
-            border-color: #00ff88;
+            border-color: var(--primary-blue);
             transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 180, 216, 0.1);
         }
         
         .stat-value {
             font-size: 2rem;
-            color: #00ff88;
+            color: var(--primary-blue);
             font-weight: bold;
             margin-bottom: 5px;
         }
         
         .stat-label {
-            color: #888;
+            color: var(--text-light);
             font-size: 0.9rem;
         }
         
@@ -164,7 +177,7 @@
         
         .section-title {
             font-size: 2rem;
-            color: #00ff88;
+            color: var(--dark-blue);
             margin-bottom: 40px;
             position: relative;
             padding-left: 20px;
@@ -178,7 +191,7 @@
             transform: translateY(-50%);
             width: 4px;
             height: 30px;
-            background: #00ff88;
+            background: var(--primary-blue);
         }
         
         .journey-timeline {
@@ -193,22 +206,24 @@
             top: 0;
             bottom: 0;
             width: 2px;
-            background: #2a2a3e;
+            background: var(--light-blue);
         }
         
         .journey-item {
             position: relative;
             margin-bottom: 40px;
             padding: 25px;
-            background: #1a1a2e;
-            border: 1px solid #2a2a3e;
+            background: var(--white);
+            border: 1px solid #e0e0e0;
             border-radius: 12px;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
         
         .journey-item:hover {
-            border-color: #00ff88;
+            border-color: var(--primary-blue);
             transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 180, 216, 0.1);
         }
         
         .journey-item::before {
@@ -218,31 +233,31 @@
             top: 30px;
             width: 12px;
             height: 12px;
-            background: #00ff88;
+            background: var(--primary-blue);
             border-radius: 50%;
-            box-shadow: 0 0 0 4px #1a1a2e;
+            box-shadow: 0 0 0 4px var(--white);
         }
         
         .journey-year {
-            color: #00ff88;
+            color: var(--primary-blue);
             font-weight: 600;
             margin-bottom: 10px;
         }
         
         .journey-title {
             font-size: 1.3rem;
-            color: #fff;
+            color: var(--dark-blue);
             margin-bottom: 10px;
         }
         
         .journey-description {
-            color: #b0b0b0;
+            color: var(--text-light);
             line-height: 1.6;
         }
         
         .vision-section {
-            background: #16213e;
-            border: 1px solid #00ff88;
+            background: var(--bg-light);
+            border: 2px solid var(--primary-blue);
             border-radius: 16px;
             padding: 50px;
             margin-bottom: 60px;
@@ -256,7 +271,7 @@
         
         .vision-quote {
             font-size: 1.8rem;
-            color: #fff;
+            color: var(--dark-blue);
             font-style: italic;
             margin-bottom: 30px;
             position: relative;
@@ -268,7 +283,7 @@
             content: '"';
             position: absolute;
             font-size: 4rem;
-            color: #00ff88;
+            color: var(--primary-blue);
             opacity: 0.3;
         }
         
@@ -290,24 +305,25 @@
         }
         
         .achievement-card {
-            background: #1a1a2e;
-            border: 1px solid #2a2a3e;
+            background: var(--white);
+            border: 1px solid #e0e0e0;
             border-radius: 12px;
             padding: 30px;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
         
         .achievement-card:hover {
-            border-color: #00ff88;
+            border-color: var(--primary-blue);
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.1);
+            box-shadow: 0 15px 40px rgba(0, 180, 216, 0.15);
         }
         
         .achievement-icon {
             width: 60px;
             height: 60px;
-            background: rgba(0, 255, 136, 0.1);
-            border: 2px solid #00ff88;
+            background: rgba(0, 180, 216, 0.1);
+            border: 2px solid var(--primary-blue);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -318,12 +334,12 @@
         
         .achievement-title {
             font-size: 1.2rem;
-            color: #fff;
+            color: var(--dark-blue);
             margin-bottom: 10px;
         }
         
         .achievement-description {
-            color: #b0b0b0;
+            color: var(--text-light);
             font-size: 0.95rem;
             line-height: 1.6;
         }
@@ -331,14 +347,14 @@
         .connect-section {
             text-align: center;
             padding: 60px;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--primary-blue) 100%);
             border-radius: 16px;
             margin-bottom: 40px;
         }
         
         .connect-title {
             font-size: 2rem;
-            color: #fff;
+            color: var(--white);
             margin-bottom: 20px;
         }
         
@@ -354,17 +370,17 @@
             align-items: center;
             gap: 10px;
             padding: 12px 25px;
-            background: rgba(0, 255, 136, 0.1);
-            border: 1px solid #00ff88;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--white);
             border-radius: 8px;
-            color: #00ff88;
+            color: var(--white);
             text-decoration: none;
             transition: all 0.3s ease;
         }
         
         .connect-link:hover {
-            background: #00ff88;
-            color: #0a0a0a;
+            background: var(--white);
+            color: var(--primary-blue);
             transform: translateY(-2px);
         }
         
@@ -485,7 +501,7 @@
                 <p class="vision-quote">
                     "Every life lost to delayed diagnosis is a family shattered, a future erased. I've seen this tragedy three times in my own family. Bio-Stride exists because no one should lose their independence, their abilities, or their life simply because they couldn't access a CT scan in time. This isn't just a company—it's a promise to the 93% of Indians who lack adequate emergency diagnostics."
                 </p>
-                <p style="color: #b0b0b0; margin-top: 30px;">— Anagh Sinha, Founder & CEO</p>
+                <p style="color: var(--text-light); margin-top: 30px;">— Anagh Sinha, Founder & CEO</p>
             </div>
         </section>
 

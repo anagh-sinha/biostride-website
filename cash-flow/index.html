@@ -11,11 +11,22 @@
             padding: 0;
             box-sizing: border-box;
         }
+
+        :root {
+            --primary-blue: #00B4D8;
+            --dark-blue: #003045;
+            --light-blue: #90E0EF;
+            --accent-pink: #FF006E;
+            --text-dark: #1A1A1A;
+            --text-light: #666;
+            --bg-light: #F8F9FA;
+            --white: #FFFFFF;
+        }
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #0a0a0a;
-            color: #e0e0e0;
+            background: var(--white);
+            color: var(--text-dark);
             line-height: 1.6;
         }
         
@@ -26,20 +37,20 @@
         }
         
         header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
             padding: 40px 0;
             margin-bottom: 40px;
-            border-bottom: 2px solid #00ff88;
+            border-bottom: 2px solid var(--light-blue);
         }
         
         h1 {
             font-size: 2.5rem;
-            color: #00ff88;
+            color: var(--white);
             margin-bottom: 10px;
         }
         
         .subtitle {
-            color: #b0b0b0;
+            color: rgba(255, 255, 255, 0.9);
             font-size: 1.1rem;
         }
         
@@ -51,20 +62,21 @@
         }
         
         .metric-card {
-            background: #1a1a2e;
-            border: 1px solid #2a2a3e;
+            background: var(--white);
+            border: 1px solid var(--light-blue);
             border-radius: 12px;
             padding: 24px;
+            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
         .metric-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 180, 216, 0.2);
         }
         
         .metric-label {
-            color: #888;
+            color: var(--text-light);
             font-size: 0.9rem;
             margin-bottom: 8px;
         }
@@ -72,26 +84,27 @@
         .metric-value {
             font-size: 2rem;
             font-weight: bold;
-            color: #00ff88;
+            color: var(--primary-blue);
             margin-bottom: 4px;
         }
         
         .metric-change {
             font-size: 0.85rem;
-            color: #4ade80;
+            color: var(--dark-blue);
         }
         
         .chart-section {
-            background: #1a1a2e;
-            border: 1px solid #2a2a3e;
+            background: var(--white);
+            border: 1px solid var(--light-blue);
             border-radius: 12px;
             padding: 30px;
             margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.1);
         }
         
         .chart-title {
             font-size: 1.5rem;
-            color: #fff;
+            color: var(--text-dark);
             margin-bottom: 20px;
         }
         
@@ -102,12 +115,13 @@
         }
         
         .table-section {
-            background: #1a1a2e;
-            border: 1px solid #2a2a3e;
+            background: var(--white);
+            border: 1px solid var(--light-blue);
             border-radius: 12px;
             padding: 30px;
             margin-bottom: 30px;
             overflow-x: auto;
+            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.1);
         }
         
         table {
@@ -119,12 +133,13 @@
         th, td {
             padding: 12px;
             text-align: right;
-            border-bottom: 1px solid #2a2a3e;
+            border-bottom: 1px solid var(--light-blue);
+            color: var(--text-dark);
         }
         
         th {
-            background: #16213e;
-            color: #00ff88;
+            background: var(--bg-light);
+            color: var(--primary-blue);
             font-weight: 600;
             position: sticky;
             top: 0;
@@ -136,15 +151,16 @@
         }
         
         tr:hover {
-            background: rgba(0, 255, 136, 0.05);
+            background: rgba(0, 180, 216, 0.05);
         }
         
         .assumptions-section {
-            background: #16213e;
-            border: 1px solid #00ff88;
+            background: var(--bg-light);
+            border: 1px solid var(--primary-blue);
             border-radius: 12px;
             padding: 30px;
             margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.1);
         }
         
         .assumptions-grid {
@@ -155,18 +171,19 @@
         
         .assumption-item {
             padding: 15px;
-            background: #1a1a2e;
+            background: var(--white);
             border-radius: 8px;
+            border: 1px solid var(--light-blue);
         }
         
         .assumption-label {
-            color: #888;
+            color: var(--text-light);
             font-size: 0.85rem;
             margin-bottom: 5px;
         }
         
         .assumption-value {
-            color: #00ff88;
+            color: var(--primary-blue);
             font-size: 1.1rem;
             font-weight: 600;
         }
@@ -180,16 +197,17 @@
         
         .scenario-tab {
             padding: 10px 20px;
-            background: #2a2a3e;
-            border: 1px solid #3a3a4e;
+            background: var(--white);
+            border: 1px solid var(--light-blue);
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
+            color: var(--text-dark);
         }
         
         .scenario-tab.active {
-            background: #00ff88;
-            color: #0a0a0a;
+            background: var(--primary-blue);
+            color: var(--white);
             font-weight: 600;
         }
         
@@ -201,8 +219,8 @@
         .download-btn {
             display: inline-block;
             padding: 15px 30px;
-            background: #00ff88;
-            color: #0a0a0a;
+            background: var(--primary-blue);
+            color: var(--white);
             text-decoration: none;
             border-radius: 8px;
             font-weight: 600;
@@ -210,7 +228,7 @@
         }
         
         .download-btn:hover {
-            background: #00cc6a;
+            background: var(--dark-blue);
             transform: translateY(-2px);
         }
         
@@ -482,25 +500,25 @@
             plugins: {
                 legend: {
                     labels: {
-                        color: '#e0e0e0'
+                        color: '#1A1A1A'
                     }
                 }
             },
             scales: {
                 x: {
                     grid: {
-                        color: '#2a2a3e'
+                        color: '#90E0EF'
                     },
                     ticks: {
-                        color: '#e0e0e0'
+                        color: '#1A1A1A'
                     }
                 },
                 y: {
                     grid: {
-                        color: '#2a2a3e'
+                        color: '#90E0EF'
                     },
                     ticks: {
-                        color: '#e0e0e0'
+                        color: '#1A1A1A'
                     }
                 }
             }
@@ -516,19 +534,19 @@
                     {
                         label: 'Device Revenue',
                         data: [0.3, 4.2, 21.0, 52.5, 94.5, 142.8],
-                        backgroundColor: '#00ff88',
+                        backgroundColor: '#00B4D8',
                         borderRadius: 8
                     },
                     {
                         label: 'Consumables Revenue',
                         data: [0.1, 3.5, 21.6, 64.8, 129.6, 216.0],
-                        backgroundColor: '#00cc6a',
+                        backgroundColor: '#90E0EF',
                         borderRadius: 8
                     },
                     {
                         label: 'SaaS Revenue',
                         data: [0.1, 0.5, 3.0, 11.1, 21.7, 39.7],
-                        backgroundColor: '#00aa55',
+                        backgroundColor: '#003045',
                         borderRadius: 8
                     }
                 ]
@@ -547,7 +565,7 @@
                         title: {
                             display: true,
                             text: 'Revenue (₹ Crores)',
-                            color: '#e0e0e0'
+                            color: '#1A1A1A'
                         }
                     }
                 }
@@ -565,8 +583,8 @@
                     label: 'Cumulative Cash Flow',
                     data: [-0.2, -0.5, -0.8, -1.2, -2.1, -3.2, -4.2, -5.0, 
                            -3.5, -1.5, 0.8, 3.2, 8.5, 16.2, 26.4, 38.9],
-                    borderColor: '#00ff88',
-                    backgroundColor: 'rgba(0, 255, 136, 0.1)',
+                    borderColor: '#00B4D8',
+                    backgroundColor: 'rgba(0, 180, 216, 0.1)',
                     tension: 0.4,
                     fill: true
                 }]
@@ -580,7 +598,7 @@
                         title: {
                             display: true,
                             text: 'Cash Flow (₹ Crores)',
-                            color: '#e0e0e0'
+                            color: '#1A1A1A'
                         }
                     }
                 }
@@ -612,9 +630,9 @@
                 <td>${row.revenue}</td>
                 <td>${row.cogs}</td>
                 <td>${row.opex}</td>
-                <td style="color: ${row.ebitda > 0 ? '#00ff88' : '#ff4444'}">${row.ebitda}</td>
+                <td style="color: ${row.ebitda > 0 ? '#00B4D8' : '#FF006E'}">${row.ebitda}</td>
                 <td>${row.cash}</td>
-                <td style="color: ${row.burn === 'Positive' ? '#00ff88' : '#ff4444'}">${row.burn}</td>
+                <td style="color: ${row.burn === 'Positive' ? '#00B4D8' : '#FF006E'}">${row.burn}</td>
             `;
             monthlyTableBody.appendChild(tr);
         });

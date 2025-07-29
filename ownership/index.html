@@ -10,11 +10,22 @@
             padding: 0;
             box-sizing: border-box;
         }
+
+        :root {
+            --primary-blue: #00B4D8;
+            --dark-blue: #003045;
+            --light-blue: #90E0EF;
+            --accent-pink: #FF006E;
+            --text-dark: #1A1A1A;
+            --text-light: #666;
+            --bg-light: #F8F9FA;
+            --white: #FFFFFF;
+        }
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #0a0a0a;
-            color: #e0e0e0;
+            background: var(--white);
+            color: var(--text-dark);
             line-height: 1.6;
         }
         
@@ -25,7 +36,7 @@
         }
         
         header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--primary-blue) 100%);
             padding: 60px 0;
             margin-bottom: 50px;
             text-align: center;
@@ -39,20 +50,21 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300ff88' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300B4D8' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
             opacity: 0.5;
         }
         
         h1 {
             font-size: 3rem;
-            color: #00ff88;
+            color: var(--white);
             margin-bottom: 15px;
             position: relative;
             z-index: 1;
         }
         
         .subtitle {
-            color: #b0b0b0;
+            color: var(--white);
+            opacity: 0.9;
             font-size: 1.2rem;
             position: relative;
             z-index: 1;
@@ -66,13 +78,14 @@
         }
         
         .ownership-chart {
-            background: #1a1a2e;
-            border: 1px solid #2a2a3e;
+            background: var(--white);
+            border: 1px solid #e0e0e0;
             border-radius: 16px;
             padding: 40px;
             text-align: center;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
         
         .ownership-chart::before {
@@ -82,7 +95,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #00ff88, #00cc6a);
+            background: linear-gradient(90deg, var(--primary-blue), var(--light-blue));
         }
         
         .chart-container {
@@ -93,15 +106,15 @@
         }
         
         .ownership-summary {
-            background: #16213e;
-            border: 1px solid #00ff88;
+            background: var(--bg-light);
+            border: 2px solid var(--primary-blue);
             border-radius: 16px;
             padding: 40px;
         }
         
         .summary-title {
             font-size: 1.8rem;
-            color: #fff;
+            color: var(--dark-blue);
             margin-bottom: 30px;
         }
         
@@ -110,7 +123,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 0;
-            border-bottom: 1px solid #2a2a3e;
+            border-bottom: 1px solid #e0e0e0;
         }
         
         .summary-item:last-child {
@@ -118,12 +131,12 @@
         }
         
         .summary-label {
-            color: #b0b0b0;
+            color: var(--text-light);
             font-size: 1rem;
         }
         
         .summary-value {
-            color: #00ff88;
+            color: var(--primary-blue);
             font-size: 1.2rem;
             font-weight: 600;
         }
@@ -134,7 +147,7 @@
         
         .section-title {
             font-size: 2rem;
-            color: #00ff88;
+            color: var(--dark-blue);
             margin-bottom: 30px;
             display: flex;
             align-items: center;
@@ -144,8 +157,8 @@
         .section-icon {
             width: 40px;
             height: 40px;
-            background: rgba(0, 255, 136, 0.1);
-            border: 2px solid #00ff88;
+            background: rgba(0, 180, 216, 0.1);
+            border: 2px solid var(--primary-blue);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -153,10 +166,11 @@
         }
         
         .cap-table {
-            background: #1a1a2e;
-            border: 1px solid #2a2a3e;
+            background: var(--white);
+            border: 1px solid #e0e0e0;
             border-radius: 12px;
             overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
         
         .table-wrapper {
@@ -169,25 +183,25 @@
         }
         
         th {
-            background: #16213e;
-            color: #00ff88;
+            background: var(--primary-blue);
+            color: var(--white);
             padding: 20px;
             text-align: left;
             font-weight: 600;
-            border-bottom: 2px solid #00ff88;
+            border-bottom: 2px solid var(--primary-blue);
         }
         
         td {
             padding: 20px;
-            border-bottom: 1px solid #2a2a3e;
+            border-bottom: 1px solid #e0e0e0;
         }
         
         tr:hover {
-            background: rgba(0, 255, 136, 0.05);
+            background: rgba(0, 180, 216, 0.05);
         }
         
         .ownership-bar {
-            background: #2a2a3e;
+            background: var(--bg-light);
             height: 20px;
             border-radius: 10px;
             overflow: hidden;
@@ -196,14 +210,14 @@
         
         .ownership-fill {
             height: 100%;
-            background: linear-gradient(90deg, #00ff88, #00cc6a);
+            background: linear-gradient(90deg, var(--primary-blue), var(--light-blue));
             border-radius: 10px;
             transition: width 0.6s ease;
         }
         
         .vesting-section {
-            background: #16213e;
-            border: 1px solid #00ff88;
+            background: var(--bg-light);
+            border: 2px solid var(--primary-blue);
             border-radius: 16px;
             padding: 40px;
             margin-bottom: 60px;
@@ -220,7 +234,7 @@
             left: 0;
             right: 0;
             height: 2px;
-            background: #2a2a3e;
+            background: #e0e0e0;
         }
         
         .timeline-progress {
@@ -228,7 +242,7 @@
             top: 50%;
             left: 0;
             height: 2px;
-            background: #00ff88;
+            background: var(--primary-blue);
             width: 25%;
             transition: width 0.6s ease;
         }
@@ -247,8 +261,8 @@
         .point-marker {
             width: 20px;
             height: 20px;
-            background: #1a1a2e;
-            border: 3px solid #2a2a3e;
+            background: var(--white);
+            border: 3px solid #e0e0e0;
             border-radius: 50%;
             margin: 0 auto 10px;
             position: relative;
@@ -256,18 +270,18 @@
         }
         
         .point-marker.active {
-            background: #00ff88;
-            border-color: #00ff88;
-            box-shadow: 0 0 0 6px rgba(0, 255, 136, 0.2);
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 6px rgba(0, 180, 216, 0.2);
         }
         
         .point-label {
-            color: #888;
+            color: var(--text-light);
             font-size: 0.9rem;
         }
         
         .point-date {
-            color: #b0b0b0;
+            color: var(--text-light);
             font-size: 0.85rem;
             margin-top: 5px;
         }
@@ -280,17 +294,18 @@
         }
         
         .equity-card {
-            background: #1a1a2e;
-            border: 1px solid #2a2a3e;
+            background: var(--white);
+            border: 1px solid #e0e0e0;
             border-radius: 12px;
             padding: 30px;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
         
         .equity-card:hover {
             transform: translateY(-5px);
-            border-color: #00ff88;
-            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.1);
+            border-color: var(--primary-blue);
+            box-shadow: 0 15px 40px rgba(0, 180, 216, 0.15);
         }
         
         .card-header {
@@ -302,17 +317,17 @@
         
         .card-title {
             font-size: 1.3rem;
-            color: #fff;
+            color: var(--dark-blue);
         }
         
         .card-percentage {
             font-size: 1.5rem;
-            color: #00ff88;
+            color: var(--primary-blue);
             font-weight: bold;
         }
         
         .card-details {
-            color: #b0b0b0;
+            color: var(--text-light);
             font-size: 0.95rem;
             line-height: 1.6;
         }
@@ -321,7 +336,7 @@
             display: flex;
             justify-content: space-between;
             padding: 8px 0;
-            border-bottom: 1px solid #2a2a3e;
+            border-bottom: 1px solid #e0e0e0;
         }
         
         .detail-row:last-child {
@@ -333,8 +348,8 @@
         }
         
         .investor-status {
-            background: #16213e;
-            border: 1px solid #00ff88;
+            background: var(--bg-light);
+            border: 2px solid var(--primary-blue);
             border-radius: 16px;
             padding: 50px;
             text-align: center;
@@ -343,8 +358,8 @@
         .status-icon {
             width: 80px;
             height: 80px;
-            background: rgba(0, 255, 136, 0.1);
-            border: 3px solid #00ff88;
+            background: rgba(0, 180, 216, 0.1);
+            border: 3px solid var(--primary-blue);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -355,12 +370,12 @@
         
         .status-title {
             font-size: 2rem;
-            color: #fff;
+            color: var(--dark-blue);
             margin-bottom: 15px;
         }
         
         .status-description {
-            color: #b0b0b0;
+            color: var(--text-light);
             font-size: 1.1rem;
             max-width: 600px;
             margin: 0 auto 30px;
@@ -369,8 +384,8 @@
         .cta-button {
             display: inline-block;
             padding: 15px 40px;
-            background: #00ff88;
-            color: #0a0a0a;
+            background: var(--primary-blue);
+            color: var(--white);
             text-decoration: none;
             border-radius: 8px;
             font-weight: 600;
@@ -379,8 +394,9 @@
         }
         
         .cta-button:hover {
-            background: #00cc6a;
+            background: var(--dark-blue);
             transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 180, 216, 0.3);
         }
         
         @media (max-width: 768px) {
@@ -410,11 +426,11 @@
         <!-- Ownership Overview -->
         <div class="ownership-overview">
             <div class="ownership-chart">
-                <h2 style="color: #fff; margin-bottom: 20px;">Current Equity Distribution</h2>
+                <h2 style="color: var(--dark-blue); margin-bottom: 20px;">Current Equity Distribution</h2>
                 <div class="chart-container">
                     <canvas id="ownershipChart" width="300" height="300"></canvas>
                 </div>
-                <p style="color: #b0b0b0; margin-top: 20px;">Pre-seed stage cap table</p>
+                <p style="color: var(--text-light); margin-top: 20px;">Pre-seed stage cap table</p>
             </div>
             
             <div class="ownership-summary">
@@ -475,13 +491,13 @@
                                 <td>Common</td>
                                 <td>900,000</td>
                                 <td>
-                                    <strong style="color: #00ff88;">90%</strong>
+                                    <strong style="color: var(--primary-blue);">90%</strong>
                                     <div class="ownership-bar">
                                         <div class="ownership-fill" style="width: 90%"></div>
                                     </div>
                                 </td>
                                 <td>4-year vesting<br><span style="color: #888; font-size: 0.9rem;">1-year cliff</span></td>
-                                <td><span style="color: #00ff88;">Active</span></td>
+                                <td><span style="color: var(--primary-blue);">Active</span></td>
                             </tr>
                             <tr>
                                 <td>
@@ -491,13 +507,13 @@
                                 <td>Common</td>
                                 <td>100,000</td>
                                 <td>
-                                    <strong style="color: #00ff88;">10%</strong>
+                                    <strong style="color: var(--primary-blue);">10%</strong>
                                     <div class="ownership-bar">
                                         <div class="ownership-fill" style="width: 10%"></div>
                                     </div>
                                 </td>
                                 <td>Individual grants</td>
-                                <td><span style="color: #888;">Reserved</span></td>
+                                <td><span style="color: var(--text-light);">Reserved</span></td>
                             </tr>
                             <tr>
                                 <td>
@@ -507,13 +523,13 @@
                                 <td>Preferred</td>
                                 <td>TBD</td>
                                 <td>
-                                    <strong style="color: #888;">~10-15%</strong>
+                                    <strong style="color: var(--text-light);">~10-15%</strong>
                                     <div class="ownership-bar">
                                         <div class="ownership-fill" style="width: 0%"></div>
                                     </div>
                                 </td>
                                 <td>N/A</td>
-                                <td><span style="color: #ffd700;">Fundraising</span></td>
+                                <td><span style="color: var(--accent-pink);">Fundraising</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -560,7 +576,7 @@
                 </div>
             </div>
             
-            <p style="text-align: center; color: #b0b0b0; margin-top: 40px;">
+            <p style="text-align: center; color: var(--text-light); margin-top: 40px;">
                 Standard 4-year vesting with 1-year cliff ensures long-term commitment to Bio-Stride's mission
             </p>
         </section>
@@ -678,8 +694,8 @@
 
         // Data
         const data = [
-            { label: 'Founder', value: 90, color: '#00ff88' },
-            { label: 'ESOP', value: 10, color: '#00cc6a' }
+            { label: 'Founder', value: 90, color: '#00B4D8' },
+            { label: 'ESOP', value: 10, color: '#90E0EF' }
         ];
 
         // Draw pie chart
@@ -699,7 +715,7 @@
             const labelX = centerX + Math.cos(labelAngle) * (radius * 0.7);
             const labelY = centerY + Math.sin(labelAngle) * (radius * 0.7);
             
-            ctx.fillStyle = '#0a0a0a';
+            ctx.fillStyle = '#FFFFFF';
             ctx.font = 'bold 20px Arial';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
@@ -711,7 +727,7 @@
         // Draw center circle
         ctx.beginPath();
         ctx.arc(centerX, centerY, radius * 0.3, 0, 2 * Math.PI);
-        ctx.fillStyle = '#1a1a2e';
+        ctx.fillStyle = '#003045';
         ctx.fill();
     </script>
 </body>

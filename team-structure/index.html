@@ -10,11 +10,22 @@
             padding: 0;
             box-sizing: border-box;
         }
+
+        :root {
+            --primary-blue: #00B4D8;
+            --dark-blue: #003045;
+            --light-blue: #90E0EF;
+            --accent-pink: #FF006E;
+            --text-dark: #1A1A1A;
+            --text-light: #666;
+            --bg-light: #F8F9FA;
+            --white: #FFFFFF;
+        }
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #0a0a0a;
-            color: #e0e0e0;
+            background: var(--white);
+            color: var(--text-dark);
             line-height: 1.6;
         }
         
@@ -25,7 +36,7 @@
         }
         
         header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--primary-blue) 100%);
             padding: 80px 0;
             margin-bottom: 60px;
             text-align: center;
@@ -44,7 +55,7 @@
         
         .particle {
             position: absolute;
-            background: #00ff88;
+            background: var(--white);
             width: 2px;
             height: 2px;
             border-radius: 50%;
@@ -60,14 +71,15 @@
         
         h1 {
             font-size: 3rem;
-            color: #00ff88;
+            color: var(--white);
             margin-bottom: 15px;
             position: relative;
             z-index: 1;
         }
         
         .subtitle {
-            color: #b0b0b0;
+            color: var(--white);
+            opacity: 0.9;
             font-size: 1.2rem;
             max-width: 700px;
             margin: 0 auto;
@@ -76,8 +88,8 @@
         }
         
         .org-chart {
-            background: #16213e;
-            border: 1px solid #00ff88;
+            background: var(--bg-light);
+            border: 2px solid var(--primary-blue);
             border-radius: 16px;
             padding: 50px;
             margin-bottom: 60px;
@@ -86,7 +98,7 @@
         
         .org-title {
             font-size: 2rem;
-            color: #fff;
+            color: var(--dark-blue);
             margin-bottom: 40px;
         }
         
@@ -105,34 +117,35 @@
         }
         
         .org-box {
-            background: #1a1a2e;
-            border: 2px solid #00ff88;
+            background: var(--white);
+            border: 2px solid var(--primary-blue);
             border-radius: 12px;
             padding: 20px 30px;
             position: relative;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
         
         .org-box:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 180, 216, 0.2);
         }
         
         .org-role {
-            color: #00ff88;
+            color: var(--primary-blue);
             font-weight: 600;
             margin-bottom: 5px;
         }
         
         .org-name {
-            color: #fff;
+            color: var(--dark-blue);
             font-size: 1.1rem;
         }
         
         .org-connector {
             width: 2px;
             height: 30px;
-            background: #00ff88;
+            background: var(--primary-blue);
         }
         
         .team-section {
@@ -149,8 +162,8 @@
         .section-icon {
             width: 50px;
             height: 50px;
-            background: rgba(0, 255, 136, 0.1);
-            border: 2px solid #00ff88;
+            background: rgba(0, 180, 216, 0.1);
+            border: 2px solid var(--primary-blue);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -160,7 +173,7 @@
         
         .section-title {
             font-size: 2rem;
-            color: #fff;
+            color: var(--dark-blue);
         }
         
         .team-grid {
@@ -170,13 +183,14 @@
         }
         
         .team-card {
-            background: #1a1a2e;
-            border: 1px solid #2a2a3e;
+            background: var(--white);
+            border: 1px solid #e0e0e0;
             border-radius: 16px;
             padding: 30px;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
         
         .team-card::before {
@@ -186,15 +200,15 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, #00ff88, #00cc6a);
+            background: linear-gradient(90deg, var(--primary-blue), var(--light-blue));
             transform: scaleX(0);
             transition: transform 0.3s ease;
         }
         
         .team-card:hover {
             transform: translateY(-5px);
-            border-color: #00ff88;
-            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.1);
+            border-color: var(--primary-blue);
+            box-shadow: 0 15px 40px rgba(0, 180, 216, 0.15);
         }
         
         .team-card:hover::before {
@@ -211,14 +225,14 @@
         .member-avatar {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #00ff88, #00cc6a);
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2rem;
             font-weight: bold;
-            color: #0a0a0a;
+            color: var(--white);
             flex-shrink: 0;
         }
         
@@ -228,23 +242,23 @@
         
         .member-name {
             font-size: 1.3rem;
-            color: #fff;
+            color: var(--dark-blue);
             margin-bottom: 5px;
         }
         
         .member-role {
-            color: #00ff88;
+            color: var(--primary-blue);
             font-size: 1rem;
             margin-bottom: 3px;
         }
         
         .member-institution {
-            color: #888;
+            color: var(--text-light);
             font-size: 0.9rem;
         }
         
         .member-bio {
-            color: #b0b0b0;
+            color: var(--text-light);
             font-size: 0.95rem;
             line-height: 1.6;
             margin-bottom: 20px;
@@ -259,28 +273,28 @@
         
         .expertise-tag {
             padding: 5px 12px;
-            background: rgba(0, 255, 136, 0.1);
-            border: 1px solid #00ff88;
+            background: rgba(0, 180, 216, 0.1);
+            border: 1px solid var(--primary-blue);
             border-radius: 20px;
             font-size: 0.8rem;
-            color: #00ff88;
+            color: var(--primary-blue);
         }
         
         .member-links {
             display: flex;
             gap: 15px;
             padding-top: 20px;
-            border-top: 1px solid #2a2a3e;
+            border-top: 1px solid #e0e0e0;
         }
         
         .member-link {
-            color: #888;
+            color: var(--text-light);
             text-decoration: none;
             transition: color 0.3s ease;
         }
         
         .member-link:hover {
-            color: #00ff88;
+            color: var(--primary-blue);
         }
         
         .advisor-grid {
@@ -290,16 +304,18 @@
         }
         
         .advisor-card {
-            background: #16213e;
-            border: 1px solid #2a2a3e;
+            background: var(--white);
+            border: 1px solid #e0e0e0;
             border-radius: 12px;
             padding: 25px;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
         
         .advisor-card:hover {
-            border-color: #00ff88;
+            border-color: var(--primary-blue);
             transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 180, 216, 0.1);
         }
         
         .advisor-header {
@@ -312,36 +328,36 @@
         .advisor-avatar {
             width: 60px;
             height: 60px;
-            background: rgba(0, 255, 136, 0.1);
-            border: 2px solid #00ff88;
+            background: rgba(0, 180, 216, 0.1);
+            border: 2px solid var(--primary-blue);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.3rem;
-            color: #00ff88;
+            color: var(--primary-blue);
         }
         
         .advisor-name {
             font-size: 1.1rem;
-            color: #fff;
+            color: var(--dark-blue);
             margin-bottom: 3px;
         }
         
         .advisor-title {
-            color: #888;
+            color: var(--text-light);
             font-size: 0.9rem;
         }
         
         .advisor-expertise {
-            color: #b0b0b0;
+            color: var(--text-light);
             font-size: 0.9rem;
             line-height: 1.5;
         }
         
         .hiring-section {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            border: 2px solid #00ff88;
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--primary-blue) 100%);
+            border: 2px solid var(--primary-blue);
             border-radius: 16px;
             padding: 60px;
             text-align: center;
@@ -350,13 +366,14 @@
         
         .hiring-title {
             font-size: 2.5rem;
-            color: #fff;
+            color: var(--white);
             margin-bottom: 20px;
         }
         
         .hiring-description {
             font-size: 1.2rem;
-            color: #b0b0b0;
+            color: var(--white);
+            opacity: 0.9;
             margin-bottom: 40px;
             max-width: 700px;
             margin-left: auto;
@@ -371,26 +388,28 @@
         }
         
         .position-card {
-            background: #1a1a2e;
-            border: 1px solid #2a2a3e;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 12px;
             padding: 25px;
             transition: all 0.3s ease;
         }
         
         .position-card:hover {
-            border-color: #00ff88;
+            border-color: var(--white);
             transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.2);
         }
         
         .position-title {
             font-size: 1.2rem;
-            color: #00ff88;
+            color: var(--white);
             margin-bottom: 10px;
         }
         
         .position-details {
-            color: #b0b0b0;
+            color: var(--white);
+            opacity: 0.9;
             font-size: 0.9rem;
             line-height: 1.5;
         }
@@ -398,8 +417,8 @@
         .apply-button {
             display: inline-block;
             padding: 15px 40px;
-            background: #00ff88;
-            color: #0a0a0a;
+            background: var(--white);
+            color: var(--primary-blue);
             text-decoration: none;
             border-radius: 8px;
             font-weight: 600;
@@ -408,8 +427,9 @@
         }
         
         .apply-button:hover {
-            background: #00cc6a;
+            background: rgba(255, 255, 255, 0.9);
             transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
         }
         
         @media (max-width: 768px) {
