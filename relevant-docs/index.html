@@ -11,11 +11,24 @@
             box-sizing: border-box;
         }
         
+        :root {
+            --primary-blue: #00B4D8;
+            --dark-blue: #003045;
+            --light-blue: #90E0EF;
+            --accent-pink: #FF006E;
+            --text-dark: #1A1A1A;
+            --text-light: #666;
+            --bg-light: #F8F9FA;
+            --white: #FFFFFF;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #0a0a0a;
-            color: #e0e0e0;
+            background: var(--white);
+            color: var(--text-dark);
             line-height: 1.6;
+            margin: 0;
+            padding: 0;
         }
         
         .container {
@@ -25,52 +38,74 @@
         }
         
         header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            padding: 60px 0;
-            margin-bottom: 50px;
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
+            padding: 80px 0 60px;
+            margin-bottom: 40px;
             text-align: center;
+            color: white;
         }
         
         h1 {
-            font-size: 3rem;
-            color: #00ff88;
+            font-size: 2.8rem;
+            color: white;
             margin-bottom: 15px;
+            font-weight: 700;
         }
         
         .subtitle {
-            color: #b0b0b0;
+            color: rgba(255, 255, 255, 0.9);
             font-size: 1.2rem;
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto;
+            line-height: 1.6;
         }
         
         .filter-section {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             display: flex;
+            flex-direction: column;
             gap: 15px;
+        }
+        
+        .filter-controls {
+            display: flex;
             flex-wrap: wrap;
+            gap: 10px;
             align-items: center;
+        }
+        
+        .results-count {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 5px;
         }
         
         .filter-btn {
             padding: 10px 20px;
-            background: #2a2a3e;
-            border: 1px solid #3a3a4e;
+            background: var(--white);
+            border: 1px solid #e0e0e0;
             border-radius: 25px;
-            color: #e0e0e0;
+            color: var(--text-dark);
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
         
         .filter-btn.active {
-            background: #00ff88;
-            color: #0a0a0a;
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
             font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 180, 216, 0.2);
         }
         
         .filter-btn:hover {
-            border-color: #00ff88;
+            border-color: var(--primary-blue);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
         .documents-grid {
@@ -81,13 +116,18 @@
         }
         
         .doc-card {
-            background: #1a1a2e;
-            border: 1px solid #2a2a3e;
+            background: white;
             border-radius: 12px;
             padding: 25px;
             transition: all 0.3s ease;
-            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e0e0e0;
             overflow: hidden;
+        }
+        
+        .doc-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
         }
         
         .doc-card::before {
@@ -114,23 +154,26 @@
         .doc-type {
             display: inline-block;
             padding: 5px 12px;
-            background: #00ff88;
-            color: #0a0a0a;
+            background: var(--primary-blue);
+            color: white;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
             margin-bottom: 15px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
         
         .doc-title {
-            font-size: 1.3rem;
-            color: #fff;
-            margin-bottom: 10px;
+            font-size: 1.4rem;
+            color: var(--dark-blue);
+            margin-bottom: 12px;
             line-height: 1.4;
+            font-weight: 600;
         }
         
         .doc-description {
-            color: #b0b0b0;
+            color: var(--text-light);
             font-size: 0.95rem;
             margin-bottom: 20px;
             line-height: 1.6;
@@ -151,32 +194,30 @@
             color: #888;
         }
         
-        .download-btn {
+        .doc-link {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 16px;
-            background: #00ff88;
-            color: #0a0a0a;
+            color: var(--primary-blue);
             text-decoration: none;
-            border-radius: 6px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
+            margin-top: 10px;
         }
         
-        .download-btn:hover {
-            background: #00cc6a;
-            transform: translateY(-2px);
+        .doc-link:hover {
+            color: var(--dark-blue);
+            text-decoration: underline;
         }
         
         .stats-section {
-            background: #16213e;
-            border: 1px solid #00ff88;
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
             border-radius: 12px;
             padding: 40px;
             margin-bottom: 50px;
             text-align: center;
+            color: white;
         }
         
         .stats-grid {
@@ -192,13 +233,13 @@
         
         .stat-value {
             font-size: 2.5rem;
-            color: #00ff88;
+            color: white;
             font-weight: bold;
             margin-bottom: 5px;
         }
         
         .stat-label {
-            color: #b0b0b0;
+            color: rgba(255, 255, 255, 0.9);
             font-size: 0.95rem;
         }
         
@@ -257,12 +298,14 @@
     <div class="container">
         <!-- Filter Section -->
         <div class="filter-section">
-            <button class="filter-btn active" onclick="filterDocs('all')">All Documents</button>
-            <button class="filter-btn" onclick="filterDocs('research')">Research Papers</button>
-            <button class="filter-btn" onclick="filterDocs('clinical')">Clinical Studies</button>
-            <button class="filter-btn" onclick="filterDocs('regulatory')">Regulatory</button>
-            <button class="filter-btn" onclick="filterDocs('technical')">Technical Specs</button>
-            <button class="filter-btn" onclick="filterDocs('business')">Business Documents</button>
+            <div class="filter-controls">
+                <button class="filter-btn active" onclick="filterDocs('all')">All Documents</button>
+                <button class="filter-btn" onclick="filterDocs('research')">Research Papers</button>
+                <button class="filter-btn" onclick="filterDocs('clinical')">Clinical Studies</button>
+                <button class="filter-btn" onclick="filterDocs('regulatory')">Regulatory</button>
+                <button class="filter-btn" onclick="filterDocs('technical')">Technical Specs</button>
+            </div>
+            <div id="results-count" class="results-count">0 results found</div>
         </div>
 
         <!-- Statistics -->
@@ -293,32 +336,40 @@
             <!-- Research Papers -->
             <div class="doc-card" data-category="research">
                 <span class="doc-type">RESEARCH PAPER</span>
-                <h3 class="doc-title">Electrochemical Detection of GFAP and UCH-L1 Biomarkers for Traumatic Brain Injury</h3>
-                <p class="doc-description">Published in Journal of Neurotrauma. Demonstrates the feasibility of rapid, point-of-care detection of TBI biomarkers using our proprietary electrochemical sensing platform.</p>
+                <h3 class="doc-title">Time-Dependent Changes in Serum Biomarker Levels After TBI</h3>
+                <p class="doc-description">Comprehensive study on the temporal profiles of GFAP and UCH-L1 in patients with traumatic brain injury, published in JAMA Neurology.</p>
+                <a href="https://jamanetwork.com/journals/jamaneurology/fullarticle/2764549" target="_blank" class="doc-link">
+                    View on JAMA Network
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </a>
                 <div class="doc-meta">
                     <div class="doc-info">
-                        <span>PDF • 2.4 MB</span>
-                        <span>2024</span>
+                        <span>Published: February 2020</span>
+                        <span>DOI: 10.1001/jamaneurol.2019.4412</span>
                     </div>
-                    <a href="#" class="download-btn" onclick="downloadDoc('research-1')">
-                        Download
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="7 10 12 15 17 10"></polyline>
-                            <line x1="12" y1="15" x2="12" y2="3"></line>
-                        </svg>
-                    </a>
                 </div>
             </div>
-
+            
             <div class="doc-card" data-category="research">
                 <span class="doc-type">RESEARCH PAPER</span>
-                <h3 class="doc-title">Nanomaterial-Enhanced Biosensors for Rapid TBI Diagnosis: A Systematic Review</h3>
-                <p class="doc-description">Comprehensive review of current biosensor technologies for TBI detection, highlighting the advantages of our electrochemical approach.</p>
+                <h3 class="doc-title">GFAP and UCH-L1 as Diagnostic Biomarkers for TBI</h3>
+                <p class="doc-description">Multicenter validation study demonstrating the clinical utility of GFAP and UCH-L1 for detecting traumatic brain injuries.</p>
+                <a href="https://www.thelancet.com/journals/neurol/article/PIIS1474-4422(18)30231-X/fulltext" target="_blank" class="doc-link">
+                    View in The Lancet Neurology
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </a>
                 <div class="doc-meta">
                     <div class="doc-info">
-                        <span>PDF • 1.8 MB</span>
-                        <span>2024</span>
+                        <span>Published: May 2018</span>
+                        <span>DOI: 10.1016/S1474-4422(18)30231-X</span>
                     </div>
                     <a href="#" class="download-btn" onclick="downloadDoc('research-2')">Download</a>
                 </div>
@@ -327,27 +378,41 @@
             <!-- Clinical Studies -->
             <div class="doc-card" data-category="clinical">
                 <span class="doc-type">CLINICAL STUDY</span>
-                <h3 class="doc-title">Phase I Clinical Validation: Bio-Stride TBI Detection System</h3>
-                <p class="doc-description">Initial clinical validation study conducted at AIIMS Delhi with 150 TBI patients and 100 controls, demonstrating 97.6% sensitivity and 95.2% specificity.</p>
+                <h3 class="doc-title">Banyan Brain Trauma Indicator Clinical Validation</h3>
+                <p class="doc-description">Clinical validation of the Banyan Brain Trauma Indicator, the first FDA-cleared blood test for evaluating mild traumatic brain injury.</p>
+                <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5829835/" target="_blank" class="doc-link">
+                    View Full Study
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </a>
                 <div class="doc-meta">
                     <div class="doc-info">
-                        <span>PDF • 3.2 MB</span>
-                        <span>2024</span>
+                        <span>Published: December 2017</span>
+                        <span>PMID: 29298304</span>
                     </div>
-                    <a href="#" class="download-btn" onclick="downloadDoc('clinical-1')">Download</a>
                 </div>
             </div>
 
             <div class="doc-card" data-category="clinical">
-                <span class="doc-type">CLINICAL PROTOCOL</span>
-                <h3 class="doc-title">Multi-Center Clinical Trial Protocol for Emergency TBI Detection</h3>
-                <p class="doc-description">Detailed protocol for upcoming multi-center clinical trials across 5 major trauma centers in India, targeting 1,000 patients.</p>
+                <span class="doc-type">CLINICAL STUDY</span>
+                <h3 class="doc-title">GFAP Out-Performs S100β in Detecting Traumatic Intracranial Lesions on CT</h3>
+                <p class="doc-description">Prospective study comparing the diagnostic accuracy of GFAP and S100β in detecting traumatic intracranial lesions on CT scans.</p>
+                <a href="https://academic.oup.com/clinchem/article/60/1/381/5611656" target="_blank" class="doc-link">
+                    View in Clinical Chemistry
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </a>
                 <div class="doc-meta">
                     <div class="doc-info">
-                        <span>PDF • 1.5 MB</span>
-                        <span>2025</span>
+                        <span>Published: January 2014</span>
+                        <span>DOI: 10.1373/clinchem.2013.211045</span>
                     </div>
-                    <a href="#" class="download-btn" onclick="downloadDoc('clinical-2')">Download</a>
                 </div>
             </div>
 
@@ -454,31 +519,65 @@
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all documents as visible
+            filterDocs('all');
+            
+            // Add click event listeners to filter buttons
+            document.querySelectorAll('.filter-btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const category = this.getAttribute('onclick').match(/'([^']+)'/)[1];
+                    filterDocs(category);
+                });
+            });
+        });
+
         function filterDocs(category) {
             // Update active button
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active');
+                if (btn.getAttribute('onclick').includes(category)) {
+                    btn.classList.add('active');
+                }
             });
-            event.target.classList.add('active');
 
-            // Filter documents
+            // Filter documents with smooth transition
             const allDocs = document.querySelectorAll('.doc-card');
+            let visibleCount = 0;
+            
             allDocs.forEach(doc => {
                 if (category === 'all' || doc.dataset.category === category) {
                     doc.style.display = 'block';
+                    doc.style.animation = 'fadeIn 0.5s ease-in-out';
+                    visibleCount++;
                 } else {
                     doc.style.display = 'none';
                 }
             });
+
+            // Update results count
+            const resultsCount = document.getElementById('results-count');
+            if (resultsCount) {
+                resultsCount.textContent = `${visibleCount} ${visibleCount === 1 ? 'result' : 'results'} found`;
+            }
         }
 
-        function downloadDoc(docId) {
-            // In production, this would link to actual files stored in the repository
-            alert(`Document download initiated. For immediate access, please contact research@biostridedx.com`);
-            
-            // Track download for analytics
-            console.log(`Document downloaded: ${docId}`);
-        }
+        // Add smooth fade-in animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .doc-card {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .doc-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
