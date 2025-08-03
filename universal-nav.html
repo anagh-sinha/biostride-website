@@ -1,0 +1,768 @@
+<!-- Universal Navigation Component for Bio-Stride -->
+<!-- This file contains the reusable navigation HTML, CSS, and JS that will be included in all pages -->
+
+<!-- Navigation HTML -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="../index.html" class="logo">
+            <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="10" width="60" height="80" rx="10" fill="#00B4D8" opacity="0.8"/>
+                <circle cx="50" cy="70" r="8" fill="#FFFFFF"/>
+                <path d="M35 30 Q50 20 65 30" stroke="#FFFFFF" stroke-width="3" fill="none"/>
+            </svg>
+            BioStride
+        </a>
+        
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu" aria-expanded="false">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+        
+        <div class="nav-links" id="navLinks">
+            <a href="../index.html" class="nav-link">Home</a>
+            
+            <!-- Company Dropdown -->
+            <div class="nav-dropdown">
+                <span class="nav-link dropdown-toggle">
+                    Company 
+                    <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </span>
+                <div class="dropdown-menu">
+                    <a href="../founders/index.html" class="dropdown-item">
+                        <span class="item-icon">🚀</span>
+                        <div>
+                            <div class="item-title">Founder's Story</div>
+                            <div class="item-desc">Our vision and journey</div>
+                        </div>
+                    </a>
+                    <a href="../team-bio/index.html" class="dropdown-item">
+                        <span class="item-icon">👥</span>
+                        <div>
+                            <div class="item-title">Team Bios</div>
+                            <div class="item-desc">Meet our experts</div>
+                        </div>
+                    </a>
+                    <a href="../team-structure/index.html" class="dropdown-item">
+                        <span class="item-icon">🏢</span>
+                        <div>
+                            <div class="item-title">Organization</div>
+                            <div class="item-desc">Team structure & roles</div>
+                        </div>
+                    </a>
+                    <a href="../credentials/index.html" class="dropdown-item">
+                        <span class="item-icon">🏆</span>
+                        <div>
+                            <div class="item-title">Credentials</div>
+                            <div class="item-desc">Awards & achievements</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Technology Dropdown -->
+            <div class="nav-dropdown">
+                <span class="nav-link dropdown-toggle">
+                    Technology 
+                    <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </span>
+                <div class="dropdown-menu">
+                    <a href="../index.html#technology" class="dropdown-item">
+                        <span class="item-icon">🔬</span>
+                        <div>
+                            <div class="item-title">Overview</div>
+                            <div class="item-desc">Patent-pending technology</div>
+                        </div>
+                    </a>
+                    <a href="../demo/index.html" class="dropdown-item">
+                        <span class="item-icon">🎥</span>
+                        <div>
+                            <div class="item-title">Product Demo</div>
+                            <div class="item-desc">See Bio-Stride in action</div>
+                        </div>
+                    </a>
+                    <a href="../relevant-docs/index.html" class="dropdown-item">
+                        <span class="item-icon">📁</span>
+                        <div>
+                            <div class="item-title">Research & Patents</div>
+                            <div class="item-desc">Technical documentation</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Business Dropdown -->
+            <div class="nav-dropdown">
+                <span class="nav-link dropdown-toggle">
+                    Business 
+                    <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </span>
+                <div class="dropdown-menu">
+                    <a href="../fn-model/index.html" class="dropdown-item">
+                        <span class="item-icon">📊</span>
+                        <div>
+                            <div class="item-title">Financial Model</div>
+                            <div class="item-desc">Projections & metrics</div>
+                        </div>
+                    </a>
+                    <a href="../cash-flow/index.html" class="dropdown-item">
+                        <span class="item-icon">💵</span>
+                        <div>
+                            <div class="item-title">Cash Flow</div>
+                            <div class="item-desc">Financial statements</div>
+                        </div>
+                    </a>
+                    <a href="../ownership/index.html" class="dropdown-item">
+                        <span class="item-icon">📈</span>
+                        <div>
+                            <div class="item-title">Ownership</div>
+                            <div class="item-desc">Cap table & equity</div>
+                        </div>
+                    </a>
+                    <a href="../testimonials/index.html" class="dropdown-item">
+                        <span class="item-icon">💬</span>
+                        <div>
+                            <div class="item-title">Testimonials</div>
+                            <div class="item-desc">Customer feedback</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <a href="../index.html#contact" class="nav-link">Contact</a>
+            <a href="mailto:contact@biostridedx.com" class="cta-button">Get Demo</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Universal Navigation Styles -->
+<style>
+/* ========== UNIVERSAL NAVIGATION STYLES ========== */
+
+/* Navigation Container */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-bottom: 1px solid rgba(0, 180, 216, 0.1);
+}
+
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 5px 30px rgba(0, 180, 216, 0.15);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Logo Styles */
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-blue, #00B4D8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.logo:hover {
+    color: var(--dark-blue, #003045);
+    transform: scale(1.05);
+}
+
+.logo svg {
+    height: 40px;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover svg {
+    transform: rotate(5deg);
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    position: relative;
+    text-decoration: none;
+    color: var(--text-dark, #1A1A1A);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0.5rem 0;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    color: var(--primary-blue, #00B4D8);
+    transform: translateY(-1px);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-blue, #00B4D8), var(--light-blue, #90E0EF));
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Dropdown Styles */
+.nav-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.dropdown-arrow {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--primary-blue, #00B4D8);
+}
+
+.nav-dropdown:hover .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 15px);
+    left: 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    min-width: 280px;
+    box-shadow: 0 20px 40px rgba(0, 180, 216, 0.15);
+    border-radius: 16px;
+    padding: 1rem 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px) scale(0.95);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1000;
+    border: 1px solid rgba(0, 180, 216, 0.2);
+}
+
+.nav-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    color: var(--text-dark, #1A1A1A);
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.dropdown-item::before {
+    content: '';
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 180, 216, 0.05), transparent);
+    transition: left 0.5s ease;
+}
+
+.dropdown-item:hover {
+    background: rgba(0, 180, 216, 0.05);
+    color: var(--primary-blue, #00B4D8);
+    transform: translateX(5px);
+}
+
+.dropdown-item:hover::before {
+    left: 100%;
+}
+
+.item-icon {
+    font-size: 1.2rem;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 180, 216, 0.1);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.dropdown-item:hover .item-icon {
+    background: var(--primary-blue, #00B4D8);
+    transform: scale(1.1);
+}
+
+.item-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+}
+
+.item-desc {
+    font-size: 0.8rem;
+    color: var(--text-light, #666);
+    opacity: 0.8;
+}
+
+/* CTA Button */
+.cta-button {
+    background: var(--primary-blue, #00B4D8);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.cta-button:hover {
+    background: var(--dark-blue, #003045);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 180, 216, 0.3);
+}
+
+.cta-button:hover::before {
+    left: 100%;
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+    transition: transform 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+    transform: scale(1.1);
+}
+
+.hamburger-line {
+    width: 100%;
+    height: 3px;
+    background: var(--primary-blue, #00B4D8);
+    border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+}
+
+.mobile-menu-btn.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.mobile-menu-btn.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.mobile-menu-btn.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* ========== MOBILE RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 1rem;
+        position: relative;
+    }
+    
+    .mobile-menu-btn {
+        display: flex;
+        order: 2;
+    }
+    
+    .logo {
+        order: 1;
+        font-size: 1.3rem;
+    }
+    
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column;
+        gap: 1rem;
+        padding: 2rem 1rem;
+        display: none;
+        box-shadow: 0 10px 30px rgba(0, 180, 216, 0.15);
+        border-radius: 0 0 20px 20px;
+        animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        order: 3;
+        border-top: 1px solid rgba(0, 180, 216, 0.1);
+    }
+    
+    .nav-links.active {
+        display: flex;
+    }
+    
+    .nav-link {
+        padding: 0.75rem 1rem;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        text-align: center;
+        font-weight: 500;
+        width: 100%;
+    }
+
+    .nav-link:hover {
+        background: rgba(0, 180, 216, 0.1);
+        transform: translateX(5px);
+    }
+
+    .nav-dropdown {
+        width: 100%;
+    }
+
+    .dropdown-toggle {
+        width: 100%;
+        justify-content: center;
+        padding: 0.75rem 1rem;
+        border-radius: 12px;
+    }
+
+    .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background: rgba(0, 180, 216, 0.05);
+        margin-top: 0.5rem;
+        border-radius: 12px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-dropdown.active .dropdown-menu {
+        max-height: 400px;
+    }
+
+    .dropdown-item {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .item-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 1rem;
+    }
+
+    .cta-button {
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+        padding: 1rem;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-container {
+        padding: 0.75rem;
+    }
+    
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .logo svg {
+        height: 32px;
+        margin-right: 8px;
+    }
+    
+    .nav-links {
+        padding: 1.5rem 0.75rem;
+    }
+}
+
+/* ========== ACCESSIBILITY ========== */
+@media (prefers-reduced-motion: reduce) {
+    .nav-link,
+    .dropdown-menu,
+    .mobile-menu-btn,
+    .hamburger-line,
+    .cta-button {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Focus styles for better accessibility */
+.nav-link:focus,
+.dropdown-item:focus,
+.cta-button:focus,
+.mobile-menu-btn:focus {
+    outline: 2px solid var(--primary-blue, #00B4D8);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .navbar {
+        border-bottom: 2px solid var(--primary-blue, #00B4D8);
+    }
+    
+    .dropdown-menu {
+        border: 2px solid var(--primary-blue, #00B4D8);
+    }
+}
+</style>
+
+<!-- Universal Navigation JavaScript -->
+<script>
+// ========== UNIVERSAL NAVIGATION JAVASCRIPT ==========
+
+document.addEventListener('DOMContentLoaded', function() {
+    initializeUniversalNavigation();
+});
+
+function initializeUniversalNavigation() {
+    const navbar = document.querySelector('.navbar');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    const dropdowns = document.querySelectorAll('.nav-dropdown');
+    
+    // Navbar scroll effect
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+        
+        // Auto-hide navbar on mobile when scrolling down
+        if (window.innerWidth <= 768) {
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                navbar.style.transform = 'translateY(0)';
+            }
+        }
+        lastScrollTop = scrollTop;
+    });
+
+    // Mobile menu functionality
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isActive = navLinks.classList.contains('active');
+            
+            if (isActive) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+
+        // Close mobile menu when clicking on a regular nav link
+        navLinks.querySelectorAll('.nav-link:not(.dropdown-toggle)').forEach(link => {
+            link.addEventListener('click', function() {
+                closeMobileMenu();
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!mobileMenuBtn.contains(e.target) && !navLinks.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+            }
+        });
+    }
+
+    // Mobile dropdown functionality
+    dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.dropdown-toggle');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        
+        if (toggle && window.innerWidth <= 768) {
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Close other dropdowns
+                dropdowns.forEach(other => {
+                    if (other !== dropdown) {
+                        other.classList.remove('active');
+                    }
+                });
+                
+                dropdown.classList.toggle('active');
+            });
+        }
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const navbarHeight = navbar.offsetHeight;
+                const targetPosition = target.offsetTop - navbarHeight - 20;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Highlight active navigation item based on current page
+    highlightActiveNavItem();
+}
+
+function openMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    
+    navLinks.classList.add('active');
+    mobileMenuBtn.classList.add('active');
+    mobileMenuBtn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    
+    navLinks.classList.remove('active');
+    mobileMenuBtn.classList.remove('active');
+    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    
+    // Close all mobile dropdowns
+    document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+        dropdown.classList.remove('active');
+    });
+}
+
+function highlightActiveNavItem() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link, .dropdown-item');
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href');
+        
+        if (href && (currentPath.includes(href.replace('../', '')) || 
+            (currentPath === '/' && href.includes('index.html')))) {
+            link.classList.add('active');
+        }
+    });
+}
+
+// Handle window resize
+window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+        closeMobileMenu();
+        document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+            dropdown.classList.remove('active');
+        });
+    }
+});
+
+// Export functions for external use
+window.UniversalNav = {
+    openMobileMenu: openMobileMenu,
+    closeMobileMenu: closeMobileMenu,
+    highlightActiveNavItem: highlightActiveNavItem
+};
+</script>
