@@ -168,6 +168,60 @@
                 padding: 1rem;
             }
 
+            /* Mobile testimonial slider fixes */
+            .testimonial-card {
+                flex-direction: column !important;
+                text-align: center;
+                padding: 2rem 1.5rem !important;
+            }
+
+            .testimonial-image {
+                margin-bottom: 1.5rem;
+            }
+
+            .testimonial-content {
+                text-align: center;
+            }
+
+            /* Simple mobile navigation buttons */
+            .mobile-nav-simple {
+                display: none;
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                border-radius: 25px;
+                padding: 10px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                z-index: 1000;
+                gap: 5px;
+                flex-wrap: wrap;
+                justify-content: center;
+                max-width: 90vw;
+            }
+            
+            .mobile-nav-simple a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                background: var(--primary-blue);
+                color: white;
+                text-decoration: none;
+                font-size: 18px;
+                transition: all 0.3s ease;
+                margin: 2px;
+            }
+            
+            .mobile-nav-simple a:hover {
+                transform: scale(1.1);
+                background: var(--dark-blue);
+            }
+
             @keyframes slideDown {
                 from {
                     opacity: 0;
@@ -213,23 +267,45 @@
                 gap: 2rem;
                 width: 100%;
                 overflow: hidden;
+                text-align: center;
             }
 
             .problem-stats {
                 grid-template-columns: 1fr 1fr !important;
                 gap: 1rem;
+                justify-items: center;
             }
 
             .stat-card {
                 padding: 1rem;
                 word-wrap: break-word;
+                text-align: center;
+                max-width: 100%;
+            }
+
+            /* Fix problem section alignment */
+            .problem .container {
+                text-align: center;
+            }
+
+            .problem h2 {
+                text-align: center;
+                margin-bottom: 1.5rem;
+            }
+
+            .problem p {
+                text-align: center;
+                margin: 0 auto 1.5rem;
+                max-width: 100%;
             }
 
             /* Fix brain SVG responsiveness */
             .problem svg {
                 width: 100%;
-                max-width: 300px;
+                max-width: 280px;
                 height: auto;
+                margin: 0 auto;
+                display: block;
             }
             
             .spec-table-wrapper {
@@ -1127,9 +1203,9 @@
                         <rect x="70" y="100" width="260" height="200" rx="10" fill="#003045"/>
                         
                         <!-- Display Elements -->
-                        <text x="200" y="150" text-anchor="middle" fill="#00B4D8" font-size="24" font-weight="bold">Biomarker #1: 65</text>
-                        <text x="200" y="180" text-anchor="middle" fill="#00B4D8" font-size="24" font-weight="bold">Biomarker #2: 360</text>
-                        <text x="200" y="220" text-anchor="middle" fill="#90E0EF" font-size="18">Result: Not Elevated</text>
+                        <text x="200" y="150" text-anchor="middle" fill="#00B4D8" font-size="24" font-weight="bold">Neural Protein: Normal</text>
+                        <text x="200" y="180" text-anchor="middle" fill="#00B4D8" font-size="24" font-weight="bold">Brain Marker: Elevated</text>
+                        <text x="200" y="220" text-anchor="middle" fill="#90E0EF" font-size="18">Result: TBI Detected</text>
                         
                         <!-- Status Light -->
                         <circle cx="200" y="260" r="15" fill="#4CAF50"/>
@@ -1323,24 +1399,118 @@
                     </div>
                 </div>
                 <div style="text-align: center;">
-                    <svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Brain outline -->
-                        <path d="M200 80 C150 80 100 120 100 180 C100 240 150 280 200 280 C250 280 300 240 300 180 C300 120 250 80 200 80" 
-                              fill="none" stroke="#00B4D8" stroke-width="3"/>
+                    <svg width="400" height="350" viewBox="0 0 400 350" xmlns="http://www.w3.org/2000/svg" style="margin: 2rem 0;">
+                        <defs>
+                            <!-- Gradients for better visual appeal -->
+                            <linearGradient id="emergencyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FF006E;stop-opacity:0.8" />
+                                <stop offset="100%" style="stop-color:#FF006E;stop-opacity:0.4" />
+                            </linearGradient>
+                            <linearGradient id="hospitalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#00B4D8;stop-opacity:0.8" />
+                                <stop offset="100%" style="stop-color:#90E0EF;stop-opacity:0.6" />
+                            </linearGradient>
+                        </defs>
                         
-                        <!-- Brain folds -->
-                        <path d="M150 120 Q180 110 200 130 T250 120" fill="none" stroke="#00B4D8" stroke-width="2" opacity="0.5"/>
-                        <path d="M140 160 Q170 150 190 170 T240 160" fill="none" stroke="#00B4D8" stroke-width="2" opacity="0.5"/>
-                        <path d="M150 200 Q180 190 200 210 T250 200" fill="none" stroke="#00B4D8" stroke-width="2" opacity="0.5"/>
+                        <!-- Hospital Building -->
+                        <rect x="50" y="120" width="120" height="100" fill="url(#hospitalGrad)" rx="8"/>
+                        <rect x="70" y="100" width="80" height="20" fill="#003045" rx="4"/>
+                        <text x="110" y="115" text-anchor="middle" fill="white" font-size="10" font-weight="bold">HOSPITAL</text>
                         
-                        <!-- Impact point -->
-                        <circle cx="250" cy="140" r="30" fill="#FF006E" opacity="0.3"/>
-                        <circle cx="250" cy="140" r="20" fill="#FF006E" opacity="0.5"/>
-                        <circle cx="250" cy="140" r="10" fill="#FF006E"/>
+                        <!-- Hospital Windows -->
+                        <rect x="65" y="135" width="15" height="15" fill="#fff" opacity="0.8"/>
+                        <rect x="90" y="135" width="15" height="15" fill="#fff" opacity="0.8"/>
+                        <rect x="115" y="135" width="15" height="15" fill="#fff" opacity="0.8"/>
+                        <rect x="140" y="135" width="15" height="15" fill="#fff" opacity="0.8"/>
                         
-                        <!-- Alert icon -->
-                        <path d="M200 320 L190 340 L210 340 Z" fill="#FF006E"/>
-                        <circle cx="200" cy="355" r="5" fill="#FF006E"/>
+                        <!-- Hospital Cross -->
+                        <rect x="108" y="180" width="4" height="20" fill="#FF006E"/>
+                        <rect x="100" y="188" width="20" height="4" fill="#FF006E"/>
+                        
+                        <!-- CT Scanner Machine -->
+                        <rect x="240" y="140" width="100" height="60" fill="#E0E0E0" rx="10"/>
+                        <rect x="250" y="150" width="80" height="40" fill="#B0B0B0" rx="5"/>
+                        <circle cx="290" cy="170" r="20" fill="#333" opacity="0.3"/>
+                        <text x="290" y="220" text-anchor="middle" fill="#666" font-size="12" font-weight="bold">CT SCANNER</text>
+                        
+                        <!-- Patient on stretcher -->
+                        <rect x="180" y="165" width="40" height="8" fill="#D4A574" rx="4"/>
+                        <circle cx="185" cy="160" r="5" fill="#D4A574"/>
+                        <rect x="175" y="173" width="50" height="4" fill="#666"/>
+                        
+                        <!-- Waiting/Delay indicator -->
+                        <g id="clock" transform="translate(200,100)">
+                            <circle cx="0" cy="0" r="25" fill="url(#emergencyGrad)" stroke="#FF006E" stroke-width="2"/>
+                            <line x1="0" y1="0" x2="0" y2="-15" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="0" y1="0" x2="10" y2="-8" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="0" cy="0" r="2" fill="white"/>
+                            <!-- Animated pulsing effect -->
+                            <animateTransform attributeName="transform" type="scale" 
+                                            values="1;1.1;1" dur="2s" repeatCount="indefinite"/>
+                        </g>
+                        
+                        <!-- Time indicators -->
+                        <text x="140" y="80" text-anchor="middle" fill="#FF006E" font-size="14" font-weight="bold">
+                            30min - 6hrs
+                        </text>
+                        <text x="140" y="95" text-anchor="middle" fill="#666" font-size="10">
+                            CT SCAN WAIT TIME
+                        </text>
+                        
+                        <!-- Arrow showing delay -->
+                        <path d="M170 140 Q200 120 230 140" fill="none" stroke="#FF006E" stroke-width="3" stroke-dasharray="5,5">
+                            <animate attributeName="stroke-dashoffset" values="0;-10" dur="1s" repeatCount="indefinite"/>
+                        </path>
+                        
+                        <!-- Ambulance -->
+                        <g transform="translate(60,250)">
+                            <rect x="0" y="0" width="80" height="35" fill="white" stroke="#FF006E" stroke-width="2" rx="5"/>
+                            <rect x="5" y="5" width="25" height="15" fill="#E0F7FF"/>
+                            <rect x="35" y="8" width="40" height="12" fill="#FF006E"/>
+                            <text x="55" y="17" text-anchor="middle" fill="white" font-size="8" font-weight="bold">AMBULANCE</text>
+                            <circle cx="15" cy="40" r="8" fill="#333"/>
+                            <circle cx="65" cy="40" r="8" fill="#333"/>
+                            <!-- Medical Cross -->
+                            <rect x="12" y="22" width="2" height="8" fill="#FF006E"/>
+                            <rect x="8" y="24" width="8" height="2" fill="#FF006E"/>
+                        </g>
+                        
+                        <!-- Patient in ambulance (tiny figure) -->
+                        <rect x="75" y="260" width="15" height="4" fill="#D4A574" rx="2"/>
+                        <circle cx="77" cy="258" r="2" fill="#D4A574"/>
+                        
+                        <!-- Bio-Stride device solution -->
+                        <g transform="translate(280,250)">
+                            <rect x="0" y="0" width="60" height="40" fill="url(#hospitalGrad)" rx="8"/>
+                            <circle cx="30" cy="20" r="8" fill="#fff" opacity="0.9"/>
+                            <text x="30" y="55" text-anchor="middle" fill="#00B4D8" font-size="10" font-weight="bold">BIO-STRIDE</text>
+                            <text x="30" y="67" text-anchor="middle" fill="#666" font-size="8">15 MINUTES</text>
+                            <!-- Pulse animation -->
+                            <circle cx="30" cy="20" r="12" fill="none" stroke="#00B4D8" stroke-width="1" opacity="0.6">
+                                <animate attributeName="r" values="8;16;8" dur="2s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="0.6;0;0.6" dur="2s" repeatCount="indefinite"/>
+                            </circle>
+                        </g>
+                        
+                        <!-- Solution arrow -->
+                        <path d="M250 270 Q270 260 280 270" fill="none" stroke="#00B4D8" stroke-width="3" marker-end="url(#arrowhead)">
+                            <animate attributeName="stroke-dashoffset" values="0;-5" dur="1.5s" repeatCount="indefinite"/>
+                        </path>
+                        
+                        <!-- Arrow marker -->
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#00B4D8"/>
+                            </marker>
+                        </defs>
+                        
+                        <!-- Problem indicators -->
+                        <g id="problems">
+                            <text x="200" y="320" text-anchor="middle" fill="#FF006E" font-size="12" font-weight="bold">Current Challenges</text>
+                            <text x="80" y="340" text-anchor="middle" fill="#666" font-size="10">• Long wait times</text>
+                            <text x="200" y="340" text-anchor="middle" fill="#666" font-size="10">• Limited access</text>
+                            <text x="320" y="340" text-anchor="middle" fill="#666" font-size="10">• Delayed diagnosis</text>
+                        </g>
                     </svg>
                 </div>
             </div>
@@ -1545,85 +1715,137 @@
 
 
     <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials" style="background: var(--white); padding: 80px 0;">
+    <section class="testimonials" id="testimonials" style="background: var(--white); padding: 80px 0; overflow: hidden;">
         <div class="container">
             <div class="section-header">
                 <h2>What Healthcare Professionals Say</h2>
                 <p>Real feedback from leading medical professionals in Jaipur's premier hospitals</p>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-top: 3rem;">
+            
+            <!-- Testimonials Slider -->
+            <div class="testimonials-slider" style="position: relative; margin-top: 3rem; max-width: 900px; margin-left: auto; margin-right: auto;">
+                <div class="slider-container" style="overflow: hidden; border-radius: 20px; position: relative;">
+                    <div class="slider-track" id="testimonialTrack" style="display: flex; transition: transform 0.5s ease-in-out;">
+                        
+                        <!-- Testimonial 1 -->
+                        <div class="testimonial-card" style="min-width: 100%; background: var(--bg-light); padding: 3rem; display: flex; gap: 2rem; align-items: center; border-radius: 20px; margin-right: 1rem;">
+                            <div class="testimonial-image" style="flex-shrink: 0;">
+                                <div style="width: 120px; height: 120px; background: linear-gradient(135deg, var(--primary-blue), var(--light-blue)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: bold; position: relative; overflow: hidden;">
+                                    <div style="position: absolute; inset: 3px; background: var(--bg-light); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                        <svg width="60" height="60" viewBox="0 0 24 24" fill="var(--primary-blue)">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                    </div>
+                                    <div style="position: absolute; bottom: 8px; right: 8px; width: 20px; height: 20px; background: var(--success-green); border-radius: 50%; border: 3px solid white;"></div>
+                                </div>
+                            </div>
+                            <div class="testimonial-content" style="flex: 1;">
+                                <div style="font-size: 4rem; color: var(--primary-blue); margin-bottom: 1rem; line-height: 1;">"</div>
+                                <p style="color: var(--text-dark); font-style: italic; margin-bottom: 2rem; line-height: 1.6; font-size: 1.1rem;">There is an urgent need for an objective TBI detection method beyond the subjective Glasgow Coma Scale. The device would be especially useful with venous blood samples in emergency settings during the golden hour.</p>
+                                <div>
+                                    <h4 style="color: var(--dark-blue); margin-bottom: 0.5rem; font-size: 1.2rem;">Dr. Bhawani Shankar Mishra</h4>
+                                    <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.4;">Deputy General Manager & DNB Program Coordinator<br><strong>Eternal Hospital (EHCC), Jaipur</strong><br>23 years clinical practice • 125+ clinical trials</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 2 -->
+                        <div class="testimonial-card" style="min-width: 100%; background: var(--bg-light); padding: 3rem; display: flex; gap: 2rem; align-items: center; border-radius: 20px; margin-right: 1rem;">
+                            <div class="testimonial-image" style="flex-shrink: 0;">
+                                <div style="width: 120px; height: 120px; background: linear-gradient(135deg, var(--primary-blue), var(--light-blue)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: bold; position: relative; overflow: hidden;">
+                                    <div style="position: absolute; inset: 3px; background: var(--bg-light); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                        <svg width="60" height="60" viewBox="0 0 24 24" fill="var(--primary-blue)">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                    </div>
+                                    <div style="position: absolute; bottom: 8px; right: 8px; width: 20px; height: 20px; background: var(--success-green); border-radius: 50%; border: 3px solid white;"></div>
+                                </div>
+                            </div>
+                            <div class="testimonial-content" style="flex: 1;">
+                                <div style="font-size: 4rem; color: var(--primary-blue); margin-bottom: 1rem; line-height: 1;">"</div>
+                                <p style="color: var(--text-dark); font-style: italic; margin-bottom: 2rem; line-height: 1.6; font-size: 1.1rem;">The device would be especially useful in primary and secondary hospitals lacking on-site neurosurgeons, to guide timely transfers. I'm willing to trial the device for 15–30 days in my department.</p>
+                                <div>
+                                    <h4 style="color: var(--dark-blue); margin-bottom: 0.5rem; font-size: 1.2rem;">Dr. Vishuddha Kaushal</h4>
+                                    <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.4;">Head of Department & Senior Consultant<br><strong>Emergency Medicine, Eternal Hospital (EHCC), Jaipur</strong></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 3 -->
+                        <div class="testimonial-card" style="min-width: 100%; background: var(--bg-light); padding: 3rem; display: flex; gap: 2rem; align-items: center; border-radius: 20px; margin-right: 1rem;">
+                            <div class="testimonial-image" style="flex-shrink: 0;">
+                                <div style="width: 120px; height: 120px; background: linear-gradient(135deg, var(--primary-blue), var(--light-blue)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: bold; position: relative; overflow: hidden;">
+                                    <div style="position: absolute; inset: 3px; background: var(--bg-light); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                        <svg width="60" height="60" viewBox="0 0 24 24" fill="var(--primary-blue)">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                    </div>
+                                    <div style="position: absolute; bottom: 8px; right: 8px; width: 20px; height: 20px; background: var(--success-green); border-radius: 50%; border: 3px solid white;"></div>
+                                </div>
+                            </div>
+                            <div class="testimonial-content" style="flex: 1;">
+                                <div style="font-size: 4rem; color: var(--primary-blue); margin-bottom: 1rem; line-height: 1;">"</div>
+                                <p style="color: var(--text-dark); font-style: italic; margin-bottom: 2rem; line-height: 1.6; font-size: 1.1rem;">Only 20–30% of head-injury CT scans actually confirm TBI. An objective test would be highly valued to reduce unnecessary scans and help persuade patients to seek surgery sooner when indicated.</p>
+                                <div>
+                                    <h4 style="color: var(--dark-blue); margin-bottom: 0.5rem; font-size: 1.2rem;">Dr. Akshay Kumar Mangal</h4>
+                                    <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.4;">Associate Consultant<br><strong>Neuro & Spine Surgery, Fortis Hospital, Jaipur</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
-                <!-- Dr. Bhawani Shankar Mishra -->
-                <div style="background: var(--bg-light); padding: 2rem; border-radius: 20px; border-left: 4px solid var(--primary-blue); position: relative;">
-                    <div style="font-size: 3rem; color: var(--primary-blue); margin-bottom: 1rem;">"</div>
-                    <p style="color: var(--text-dark); font-style: italic; margin-bottom: 1.5rem; line-height: 1.6;">"There is an urgent need for an objective TBI detection method beyond the subjective Glasgow Coma Scale. The device would be especially useful with venous blood samples in emergency settings during the golden hour."</p>
-                    <div style="display: flex; align-items: center; gap: 1rem;">
-                        <div style="width: 60px; height: 60px; background: var(--primary-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem;">BM</div>
-                        <div>
-                            <h4 style="color: var(--dark-blue); margin-bottom: 0.25rem;">Dr. Bhawani Shankar Mishra</h4>
-                            <p style="color: var(--text-light); font-size: 0.9rem;">Deputy General Manager & DNB Program Coordinator<br>Eternal Hospital (EHCC), Jaipur<br>23 years clinical practice, 125+ clinical trials</p>
-                        </div>
+                <!-- Slider Controls -->
+                <div class="slider-controls" style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin-top: 2rem;">
+                    <button class="slider-btn" id="prevBtn" style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--primary-blue); background: white; color: var(--primary-blue); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;" onmouseover="this.style.background='var(--primary-blue)'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='var(--primary-blue)'">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                        </svg>
+                    </button>
+                    
+                    <div class="slider-dots" style="display: flex; gap: 0.5rem;">
+                        <div class="dot active" data-slide="0" style="width: 12px; height: 12px; border-radius: 50%; background: var(--primary-blue); cursor: pointer; transition: all 0.3s ease;"></div>
+                        <div class="dot" data-slide="1" style="width: 12px; height: 12px; border-radius: 50%; background: var(--text-light); cursor: pointer; transition: all 0.3s ease;"></div>
+                        <div class="dot" data-slide="2" style="width: 12px; height: 12px; border-radius: 50%; background: var(--text-light); cursor: pointer; transition: all 0.3s ease;"></div>
                     </div>
-                </div>
-
-                <!-- Dr. Vishuddha Kaushal -->
-                <div style="background: var(--bg-light); padding: 2rem; border-radius: 20px; border-left: 4px solid var(--primary-blue); position: relative;">
-                    <div style="font-size: 3rem; color: var(--primary-blue); margin-bottom: 1rem;">"</div>
-                    <p style="color: var(--text-dark); font-style: italic; margin-bottom: 1.5rem; line-height: 1.6;">"The device would be especially useful in primary and secondary hospitals lacking on-site neurosurgeons, to guide timely transfers. I'm willing to trial the device for 15–30 days in my department."</p>
-                    <div style="display: flex; align-items: center; gap: 1rem;">
-                        <div style="width: 60px; height: 60px; background: var(--primary-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem;">VK</div>
-                        <div>
-                            <h4 style="color: var(--dark-blue); margin-bottom: 0.25rem;">Dr. Vishuddha Kaushal</h4>
-                            <p style="color: var(--text-light); font-size: 0.9rem;">Head of Department & Senior Consultant<br>Emergency Medicine, Eternal Hospital (EHCC), Jaipur</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Dr. Akshay Kumar Mangal -->
-                <div style="background: var(--bg-light); padding: 2rem; border-radius: 20px; border-left: 4px solid var(--primary-blue); position: relative;">
-                    <div style="font-size: 3rem; color: var(--primary-blue); margin-bottom: 1rem;">"</div>
-                    <p style="color: var(--text-dark); font-style: italic; margin-bottom: 1.5rem; line-height: 1.6;">"Only 20–30% of head-injury CT scans actually confirm TBI. An objective test would be highly valued to reduce unnecessary scans and help persuade patients to seek surgery sooner when indicated."</p>
-                    <div style="display: flex; align-items: center; gap: 1rem;">
-                        <div style="width: 60px; height: 60px; background: var(--primary-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem;">AM</div>
-                        <div>
-                            <h4 style="color: var(--dark-blue); margin-bottom: 0.25rem;">Dr. Akshay Kumar Mangal</h4>
-                            <p style="color: var(--text-light); font-size: 0.9rem;">Associate Consultant<br>Neuro & Spine Surgery, Fortis Hospital, Jaipur</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Dr. Swati Joshi -->
-                <div style="background: var(--bg-light); padding: 2rem; border-radius: 20px; border-left: 4px solid var(--primary-blue); position: relative;">
-                    <div style="font-size: 3rem; color: var(--primary-blue); margin-bottom: 1rem;">"</div>
-                    <p style="color: var(--text-dark); font-style: italic; margin-bottom: 1.5rem; line-height: 1.6;">"Even with 24/7 emergency CT availability, there are still delays in detecting TBI that require strong intervention. A point-of-care test would be invaluable for better patient care."</p>
-                    <div style="display: flex; align-items: center; gap: 1rem;">
-                        <div style="width: 60px; height: 60px; background: var(--primary-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem;">SJ</div>
-                        <div>
-                            <h4 style="color: var(--dark-blue); margin-bottom: 0.25rem;">Dr. Swati Joshi</h4>
-                            <p style="color: var(--text-light); font-size: 0.9rem;">Professor of Radiology<br>Mahatma Gandhi Medical College & Hospital</p>
-                        </div>
-                    </div>
+                    
+                    <button class="slider-btn" id="nextBtn" style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--primary-blue); background: white; color: var(--primary-blue); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;" onmouseover="this.style.background='var(--primary-blue)'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='var(--primary-blue)'">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
             
+            <!-- View More Testimonials Link -->
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="testimonials/index.html" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary-blue); text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease; padding: 1rem 2rem; border: 2px solid var(--primary-blue); border-radius: 50px;" onmouseover="this.style.background='var(--primary-blue)'; this.style.color='white'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='transparent'; this.style.color='var(--primary-blue)'; this.style.transform='translateY(0)'">
+                    View All Testimonials
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/>
+                    </svg>
+                </a>
+            </div>
+            
             <!-- Survey Summary -->
-            <div style="background: linear-gradient(135deg, var(--primary-blue), var(--light-blue)); padding: 2rem; border-radius: 20px; margin-top: 3rem; text-align: center; color: white;">
-                <h3 style="margin-bottom: 1rem; color: white;">Survey Results Summary</h3>
+            <div style="background: linear-gradient(135deg, var(--primary-blue), var(--light-blue)); padding: 3rem; border-radius: 20px; margin-top: 4rem; text-align: center; color: white;">
+                <h3 style="margin-bottom: 1rem; color: white; font-size: 1.8rem;">Clinical Validation Results</h3>
+                <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem; font-size: 1.1rem;">Survey of 10 senior medical professionals across Jaipur's leading hospitals</p>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 2rem;">
                     <div>
-                        <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 0.5rem;">100%</div>
+                        <div style="font-size: 3rem; font-weight: bold; margin-bottom: 0.5rem;">100%</div>
                         <p>Confirmed urgent need for rapid TBI assessment</p>
                     </div>
                     <div>
-                        <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 0.5rem;">₹300-1000</div>
+                        <div style="font-size: 3rem; font-weight: bold; margin-bottom: 0.5rem;">₹300-1000</div>
                         <p>Willing to pay per test cartridge</p>
                     </div>
                     <div>
-                        <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 0.5rem;">30min-6hrs</div>
+                        <div style="font-size: 3rem; font-weight: bold; margin-bottom: 0.5rem;">30min-6hrs</div>
                         <p>Current CT scan wait times</p>
                     </div>
                     <div>
-                        <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 0.5rem;">100%</div>
+                        <div style="font-size: 3rem; font-weight: bold; margin-bottom: 0.5rem;">100%</div>
                         <p>Expressed interest to pilot the technology</p>
                     </div>
                 </div>
@@ -1656,12 +1878,12 @@
                 <!-- FAQ Item 2 -->
                 <div class="faq-item" style="background: var(--white); border-radius: 15px; margin-bottom: 1rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); overflow: hidden;">
                     <div class="faq-question" style="padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border: none; background: transparent; width: 100%; text-align: left; font-size: 1.1rem; font-weight: 600; color: var(--dark-blue);" onclick="toggleFAQ(this)">
-                        What biomarkers does the device detect?
+                        How does the device detect brain injuries?
                         <span class="faq-arrow" style="transition: transform 0.3s ease; font-size: 1.2rem; color: var(--primary-blue);">+</span>
                     </div>
                     <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: all 0.3s ease; color: var(--text-light);">
                         <div style="padding-bottom: 1.5rem;">
-                            Bio-Stride detects FDA-validated brain injury biomarkers using our proprietary electrochemical sensor technology. These biomarkers are released into the bloodstream when brain cells are damaged, providing an objective indication of traumatic brain injury within 15 minutes of blood collection.
+                            Bio-Stride uses proprietary electrochemical sensor technology to detect specific proteins released into the bloodstream when brain cells are damaged. Our device analyzes these neurological injury markers in a tiny blood sample, providing an objective indication of traumatic brain injury within 15 minutes of collection. The technology is based on clinically validated biomarkers approved by regulatory authorities.
                         </div>
                     </div>
                 </div>
@@ -1727,6 +1949,84 @@
                     <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: all 0.3s ease; color: var(--text-light);">
                         <div style="padding-bottom: 1.5rem;">
                             We are currently in the clinical validation phase and expect to begin pilot programs with select healthcare facilities in 2025. Following successful clinical trials and regulatory approval, commercial availability is projected for 2026. Interested healthcare providers can register for early access programs and pilot testing opportunities.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 8 -->
+                <div class="faq-item" style="background: var(--white); border-radius: 15px; margin-bottom: 1rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); overflow: hidden;">
+                    <div class="faq-question" style="padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border: none; background: transparent; width: 100%; text-align: left; font-size: 1.1rem; font-weight: 600; color: var(--dark-blue);" onclick="toggleFAQ(this)">
+                        How does Bio-Stride help during the "golden hour"?
+                        <span class="faq-arrow" style="transition: transform 0.3s ease; font-size: 1.2rem; color: var(--primary-blue);">+</span>
+                    </div>
+                    <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: all 0.3s ease; color: var(--text-light);">
+                        <div style="padding-bottom: 1.5rem;">
+                            The "golden hour" refers to the critical first hour after brain injury when prompt intervention can save lives and prevent permanent disability. Bio-Stride provides results in 15 minutes, allowing healthcare providers to make crucial treatment decisions quickly. This is especially valuable in ambulances and emergency departments where every minute counts for patient outcomes.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 9 -->
+                <div class="faq-item" style="background: var(--white); border-radius: 15px; margin-bottom: 1rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); overflow: hidden;">
+                    <div class="faq-question" style="padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border: none; background: transparent; width: 100%; text-align: left; font-size: 1.1rem; font-weight: 600; color: var(--dark-blue);" onclick="toggleFAQ(this)">
+                        What makes Bio-Stride different from existing diagnostic methods?
+                        <span class="faq-arrow" style="transition: transform 0.3s ease; font-size: 1.2rem; color: var(--primary-blue);">+</span>
+                    </div>
+                    <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: all 0.3s ease; color: var(--text-light);">
+                        <div style="padding-bottom: 1.5rem;">
+                            Unlike subjective assessments like the Glasgow Coma Scale, Bio-Stride provides objective, quantitative results. It can detect brain injuries that may not show up on initial CT scans, such as diffuse axonal injuries. The device requires only a tiny blood sample (20μL), works in 15 minutes, and costs 100X less than CT machines while being completely portable.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 10 -->
+                <div class="faq-item" style="background: var(--white); border-radius: 15px; margin-bottom: 1rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); overflow: hidden;">
+                    <div class="faq-question" style="padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border: none; background: transparent; width: 100%; text-align: left; font-size: 1.1rem; font-weight: 600; color: var(--dark-blue);" onclick="toggleFAQ(this)">
+                        How can Bio-Stride reduce unnecessary CT scans?
+                        <span class="faq-arrow" style="transition: transform 0.3s ease; font-size: 1.2rem; color: var(--primary-blue);">+</span>
+                    </div>
+                    <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: all 0.3s ease; color: var(--text-light);">
+                        <div style="padding-bottom: 1.5rem;">
+                            Studies show that 50-70% of head injury CT scans show no significant findings. Bio-Stride can serve as an initial screening tool to identify which patients truly need CT imaging. This reduces radiation exposure (especially important for children), saves healthcare costs, and frees up CT resources for patients who actually need them, while still ensuring no critical cases are missed.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 11 -->
+                <div class="faq-item" style="background: var(--white); border-radius: 15px; margin-bottom: 1rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); overflow: hidden;">
+                    <div class="faq-question" style="padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border: none; background: transparent; width: 100%; text-align: left; font-size: 1.1rem; font-weight: 600; color: var(--dark-blue);" onclick="toggleFAQ(this)">
+                        Is Bio-Stride suitable for pediatric cases?
+                        <span class="faq-arrow" style="transition: transform 0.3s ease; font-size: 1.2rem; color: var(--primary-blue);">+</span>
+                    </div>
+                    <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: all 0.3s ease; color: var(--text-light);">
+                        <div style="padding-bottom: 1.5rem;">
+                            Yes, Bio-Stride is particularly valuable for pediatric head injuries. Many physicians are cautious about ordering CT scans for children due to radiation risks. Bio-Stride offers a radiation-free screening method that can help determine whether a CT scan is truly necessary for a child, potentially reducing unnecessary radiation exposure while ensuring appropriate care.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 12 -->
+                <div class="faq-item" style="background: var(--white); border-radius: 15px; margin-bottom: 1rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); overflow: hidden;">
+                    <div class="faq-question" style="padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border: none; background: transparent; width: 100%; text-align: left; font-size: 1.1rem; font-weight: 600; color: var(--dark-blue);" onclick="toggleFAQ(this)">
+                        How does the device work in resource-limited settings?
+                        <span class="faq-arrow" style="transition: transform 0.3s ease; font-size: 1.2rem; color: var(--primary-blue);">+</span>
+                    </div>
+                    <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: all 0.3s ease; color: var(--text-light);">
+                        <div style="padding-bottom: 1.5rem;">
+                            Bio-Stride is specifically designed for resource-limited settings. It's portable, battery-powered, requires minimal training, and costs significantly less than CT scanners. This makes it ideal for rural clinics, primary health centers, and smaller hospitals that lack neuroimaging facilities. The device can help these facilities make informed decisions about patient transfers to higher-level care centers.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 13 -->
+                <div class="faq-item" style="background: var(--white); border-radius: 15px; margin-bottom: 1rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); overflow: hidden;">
+                    <div class="faq-question" style="padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border: none; background: transparent; width: 100%; text-align: left; font-size: 1.1rem; font-weight: 600; color: var(--dark-blue);" onclick="toggleFAQ(this)">
+                        Can Bio-Stride help with patient family communication?
+                        <span class="faq-arrow" style="transition: transform 0.3s ease; font-size: 1.2rem; color: var(--primary-blue);">+</span>
+                    </div>
+                    <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: all 0.3s ease; color: var(--text-light);">
+                        <div style="padding-bottom: 1.5rem;">
+                            Yes, having an objective test result can significantly help doctors communicate the severity of a brain injury to patients and families. This is especially valuable when convincing patients to accept transfer to specialized care or undergo necessary surgery. The concrete, quantitative result provides clear evidence that supports medical recommendations and treatment decisions.
                         </div>
                     </div>
                 </div>
@@ -1889,68 +2189,60 @@
         </div>
     </footer>
 
+    <!-- Simple Mobile Navigation -->
+    <div class="mobile-nav-simple" id="mobileNavSimple" style="display: flex;">
+        <a href="#home" title="Home">🏠</a>
+        <a href="#how-it-works" title="How It Works">⚡</a>
+        <a href="#testimonials" title="Testimonials">💬</a>
+        <a href="#faq" title="FAQ">❓</a>
+        <a href="demo/index.html" title="Demo">🎥</a>
+        <a href="founders/index.html" title="Team">👥</a>
+        <a href="#" onclick="openModal()" title="Book Demo">📞</a>
+    </div>
+
     <!-- Demo Booking Modal -->
     <div id="signupModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h2>Book a Live Demo</h2>
-            <p>See Bio-Stride's TBI detection technology in action. Schedule a personalized demo for your organization.</p>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary-blue), var(--light-blue)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="white">
+                        <path d="M15 12c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3zm9-.449s-4.252 8.449-11.985 8.449c-7.18 0-12.015-8.449-12.015-8.449s4.446-7.551 12.015-7.551c7.694 0 11.985 7.551 11.985 7.551zm-7 .449c0-2.757-2.243-5-5-5s-5 2.243-5 5 2.243 5 5 5 5-2.243 5-5z"/>
+                    </svg>
+                </div>
+                <h2 style="color: var(--dark-blue); margin-bottom: 0.5rem;">Book Your Demo</h2>
+                <p style="color: var(--text-light);">See Bio-Stride's 15-minute TBI detection in action</p>
+            </div>
             <form id="signupForm" onsubmit="handleSignup(event)">
                 <div class="form-group">
-                    <label for="orgName">Organization Name *</label>
-                    <input type="text" id="orgName" name="orgName" placeholder="Enter your hospital/clinic name" required>
+                    <label for="contactName" style="color: var(--dark-blue); font-weight: 600; margin-bottom: 0.5rem; display: block;">Your Name *</label>
+                    <input type="text" id="contactName" name="contactName" placeholder="Dr. John Smith" required style="width: 100%; padding: 1rem; border: 2px solid #E0E0E0; border-radius: 12px; background: var(--white); font-size: 1rem; transition: border-color 0.3s ease;" onfocus="this.style.borderColor='var(--primary-blue)'" onblur="this.style.borderColor='#E0E0E0'">
                 </div>
                 <div class="form-group">
-                    <label for="orgType">Organization Type *</label>
-                    <select id="orgType" name="orgType" style="width: 100%; padding: 1rem; border: 2px solid transparent; border-radius: 10px; background: var(--bg-light); border: 1px solid #ddd;" required>
-                        <option value="">Select Type</option>
-                        <option value="hospital">Hospital/Medical Center</option>
-                        <option value="emergency">Emergency Department</option>
-                        <option value="ambulance">Ambulance Service</option>
-                        <option value="clinic">Clinic/Primary Care</option>
-                        <option value="rural">Rural Healthcare Center</option>
-                        <option value="government">Government Healthcare</option>
-                        <option value="other">Other</option>
-                    </select>
+                    <label for="contactPhone" style="color: var(--dark-blue); font-weight: 600; margin-bottom: 0.5rem; display: block;">Phone Number *</label>
+                    <input type="tel" id="contactPhone" name="contactPhone" placeholder="+91 98765 43210" required style="width: 100%; padding: 1rem; border: 2px solid #E0E0E0; border-radius: 12px; background: var(--white); font-size: 1rem; transition: border-color 0.3s ease;" onfocus="this.style.borderColor='var(--primary-blue)'" onblur="this.style.borderColor='#E0E0E0'">
                 </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                    <div class="form-group">
-                        <label for="contactName">Your Name *</label>
-                        <input type="text" id="contactName" name="contactName" placeholder="Dr. John Smith" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="contactTitle">Title/Position</label>
-                        <input type="text" id="contactTitle" name="contactTitle" placeholder="Emergency Medicine Director">
-                    </div>
+                
+                <div style="background: linear-gradient(135deg, var(--bg-light), #f0f8ff); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; border: 1px solid rgba(0, 180, 216, 0.2);">
+                    <h4 style="color: var(--primary-blue); margin-bottom: 0.8rem; font-size: 1rem;">What you'll experience:</h4>
+                    <ul style="color: var(--text-light); font-size: 0.9rem; line-height: 1.6; margin: 0; padding-left: 1.2rem;">
+                        <li>Live 15-minute TBI detection demonstration</li>
+                        <li>Comparison with current CT scan workflows</li>
+                        <li>Cost-benefit analysis for your facility</li>
+                        <li>Implementation roadmap discussion</li>
+                    </ul>
                 </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                    <div class="form-group">
-                        <label for="contactEmail">Email Address *</label>
-                        <input type="email" id="contactEmail" name="contactEmail" placeholder="john.smith@hospital.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="contactPhone">Phone Number *</label>
-                        <input type="tel" id="contactPhone" name="contactPhone" placeholder="+91 98765 43210" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="demoType">Demo Type</label>
-                    <select id="demoType" name="demoType" style="width: 100%; padding: 1rem; border: 2px solid transparent; border-radius: 10px; background: var(--bg-light); border: 1px solid #ddd;">
-                        <option value="virtual">Virtual Demo (30 minutes)</option>
-                        <option value="on-site">On-site Demo at Your Facility</option>
-                        <option value="pilot">Pilot Program Discussion</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="demoMessage">Additional Information</label>
-                    <textarea id="demoMessage" name="demoMessage" rows="3" style="width: 100%; padding: 1rem; border: 2px solid transparent; border-radius: 10px; background: var(--bg-light); border: 1px solid #ddd; resize: vertical;" placeholder="Tell us about your current TBI diagnosis process, volume of cases, or specific questions you have..."></textarea>
-                </div>
-                <div style="background: var(--bg-light); padding: 1rem; border-radius: 10px; margin-bottom: 1rem; border-left: 4px solid var(--primary-blue);">
-                    <p style="color: var(--text-light); font-size: 0.9rem; margin: 0;">
-                        <strong>What you'll see:</strong> Live demonstration of 15-minute TBI detection, comparison with current methods, ROI analysis, and implementation planning for your facility.
-                    </p>
-                </div>
-                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Book Demo Now</button>
+                
+                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 1.2rem; font-size: 1.1rem; font-weight: 600; border-radius: 12px; transition: all 0.3s ease;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 0.5rem;">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                    </svg>
+                    Schedule Demo Call
+                </button>
+                
+                <p style="text-align: center; color: var(--text-light); font-size: 0.85rem; margin-top: 1rem; opacity: 0.8;">
+                    We'll contact you within 24 hours to schedule your personalized demonstration
+                </p>
             </form>
         </div>
     </div>
@@ -1960,6 +2252,19 @@
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const navLinks = document.getElementById('navLinks');
+            const mobileNavSimple = document.getElementById('mobileNavSimple');
+            
+            // Show/hide mobile navigation based on screen size
+            function toggleMobileNav() {
+                if (window.innerWidth <= 768) {
+                    if (mobileNavSimple) mobileNavSimple.style.display = 'flex';
+                } else {
+                    if (mobileNavSimple) mobileNavSimple.style.display = 'none';
+                }
+            }
+            
+            toggleMobileNav();
+            window.addEventListener('resize', toggleMobileNav);
             
             if (mobileMenuBtn && navLinks) {
                 mobileMenuBtn.addEventListener('click', function(e) {
@@ -2079,6 +2384,57 @@
                     this.style.animation = '';
                 });
             });
+
+            // Testimonials Slider
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.testimonial-card');
+            const totalSlides = slides.length;
+            const track = document.getElementById('testimonialTrack');
+            const dots = document.querySelectorAll('.dot');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            function updateSlider() {
+                if (track) {
+                    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+                    
+                    // Update dots
+                    dots.forEach((dot, index) => {
+                        if (index === currentSlide) {
+                            dot.style.background = 'var(--primary-blue)';
+                            dot.classList.add('active');
+                        } else {
+                            dot.style.background = 'var(--text-light)';
+                            dot.classList.remove('active');
+                        }
+                    });
+                }
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateSlider();
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateSlider();
+            }
+
+            // Event listeners
+            if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+            if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+
+            // Dot navigation
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentSlide = index;
+                    updateSlider();
+                });
+            });
+
+            // Auto slide every 5 seconds
+            setInterval(nextSlide, 5000);
 
             // Enhanced parallax and scroll effects
             window.addEventListener('scroll', () => {

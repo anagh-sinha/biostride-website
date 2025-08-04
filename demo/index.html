@@ -378,20 +378,8 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="/" class="logo">Bio-Stride</a>
-            <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="/cash-flow">Financials</a></li>
-                <li><a href="/relevant-docs">Research</a></li>
-                <li><a href="/testimonials">Testimonials</a></li>
-                <li><a href="/demo">Demo</a></li>
-                <li><a href="/team-structure">Team</a></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- Include Universal Navigation -->
+    <div id="universal-nav-placeholder"></div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -433,7 +421,7 @@
                 <div class="feature-icon">⚡</div>
                 <h3 class="feature-title">15-Minute Results</h3>
                 <p class="feature-description">
-                    Rapid electrochemical detection of GFAP and UCH-L1 biomarkers provides accurate TBI assessment in the critical golden hour.
+                    Rapid electrochemical detection of neural proteins provides accurate TBI assessment in the critical golden hour.
                 </p>
             </div>
             
@@ -500,6 +488,14 @@
     </footer>
 
     <script>
+        // Load universal navigation
+        fetch('../universal-nav.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('universal-nav-placeholder').innerHTML = html;
+            })
+            .catch(error => console.error('Error loading navigation:', error));
+
         function playVideo() {
             const placeholder = document.querySelector('.video-placeholder');
             const iframe = document.getElementById('demo-video');
