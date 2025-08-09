@@ -2389,7 +2389,7 @@
                 const slides = document.querySelectorAll('.testimonial-card');
                 const prevBtn = document.getElementById('prevBtn');
                 const nextBtn = document.getElementById('nextBtn');
-                const dots = document.querySelectorAll('.slider-dot');
+                const dots = document.querySelectorAll('.dot');
                 
                 if (!track || !slides.length) return;
                 
@@ -2510,7 +2510,7 @@
                 initTestimonialSlider();
             }
 
-            // FAQ Toggle Functionality - Completely Fixed
+            // Clean FAQ Toggle Functionality
             function toggleFAQ(element) {
                 if (!element) return;
                 
@@ -2522,62 +2522,32 @@
                 
                 if (!answer || !arrow) return;
                 
-                // Check if current FAQ is being closed
-                const isClosing = answer.style.maxHeight;
+                // Get computed styles to check current state
+                const currentMaxHeight = window.getComputedStyle(answer).maxHeight;
+                const isCurrentlyOpen = currentMaxHeight !== '0px' && currentMaxHeight !== 'none';
                 
-                // Close all FAQ items
+                // Close all other FAQs
                 document.querySelectorAll('.faq-item').forEach(item => {
                     if (item !== faqItem) {
                         const otherAnswer = item.querySelector('.faq-answer');
                         const otherArrow = item.querySelector('.faq-arrow');
                         if (otherAnswer && otherArrow) {
-                            otherAnswer.style.maxHeight = null;
+                            otherAnswer.style.maxHeight = '0px';
                             otherArrow.textContent = '+';
-                            otherArrow.style.transform = 'rotate(0deg)';
                         }
                     }
                 });
                 
-                // Toggle current FAQ item if not closing
-                if (!isClosing) {
+                // Toggle current FAQ
+                if (isCurrentlyOpen) {
+                    // Close current FAQ
+                    answer.style.maxHeight = '0px';
+                    arrow.textContent = '+';
+                } else {
+                    // Open current FAQ
                     answer.style.maxHeight = answer.scrollHeight + 'px';
                     arrow.textContent = '−';
-                    arrow.style.transform = 'rotate(180deg)';
-                    
-                    // Smooth scrolling to ensure the answer is visible
-                    setTimeout(() => {
-                        faqItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    }, 50);
                 }
-            }
-            
-            // Initialize FAQ items
-            function initFAQ() {
-                document.querySelectorAll('.faq-item').forEach(item => {
-                    const answer = item.querySelector('.faq-answer');
-                    const arrow = item.querySelector('.faq-arrow');
-                    
-                    if (answer && arrow) {
-                        // Set initial state
-                        answer.style.transition = 'max-height 0.3s ease-out';
-                        answer.style.overflow = 'hidden';
-                        answer.style.maxHeight = '0';
-                        
-                        // Add click handler to question
-                        const question = item.querySelector('.faq-question');
-                        if (question) {
-                            question.style.cursor = 'pointer';
-                            question.addEventListener('click', () => toggleFAQ(question));
-                        }
-                    }
-                });
-            }
-            
-            // Initialize FAQ when DOM is ready
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', initFAQ);
-            } else {
-                initFAQ();
             }
 
             // Enhanced parallax and scroll effects
@@ -2646,16 +2616,6 @@
             `;
             document.head.appendChild(style);
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -2707,147 +2667,7 @@
             event.target.reset();
         }
 
-        // FAQ Toggle Functionality - Completely Fixed
-        function toggleFAQ(element) {
-            const faqItem = element.closest('.faq-item');
-            if (!faqItem) return;
-            
-            const answer = faqItem.querySelector('.faq-answer');
-            const arrow = faqItem.querySelector('.faq-arrow');
-            
-            if (!answer || !arrow) return;
-            
-            const isOpen = faqItem.classList.contains('faq-open');
-            
-            // Close all other FAQs first
-            document.querySelectorAll('.faq-item').forEach(item => {
-                if (item !== faqItem) {
-                    const otherAnswer = item.querySelector('.faq-answer');
-                    const otherArrow = item.querySelector('.faq-arrow');
-                    if (otherAnswer && otherArrow) {
-                        otherAnswer.style.maxHeight = '0px';
-                        otherAnswer.style.paddingTop = '0';
-                        otherAnswer.style.paddingBottom = '0';
-                        otherArrow.textContent = '+';
-                        otherArrow.style.transform = 'rotate(0deg)';
-                        item.classList.remove('faq-open');
-                    }
-                }
-            });
-            
-            // Toggle current FAQ
-            if (!isOpen) {
-                // Open the FAQ
-                answer.style.maxHeight = 'none';
-                const contentHeight = answer.scrollHeight;
-                answer.style.maxHeight = '0px';
-                
-                // Force reflow and animate
-                requestAnimationFrame(() => {
-                    answer.style.maxHeight = contentHeight + 'px';
-                    answer.style.paddingTop = '0';
-                    answer.style.paddingBottom = '1.5rem';
-                    arrow.textContent = '−';
-                    arrow.style.transform = 'rotate(180deg)';
-                    faqItem.classList.add('faq-open');
-                });
-            } else {
-                // Close the FAQ
-                answer.style.maxHeight = '0px';
-                answer.style.paddingTop = '0';
-                answer.style.paddingBottom = '0';
-                arrow.textContent = '+';
-                arrow.style.transform = 'rotate(0deg)';
-                faqItem.classList.remove('faq-open');
-            }
-        }
-
-        // Initialize FAQ functionality on page load - Enhanced version
-        function initializeFAQ() {
-            // Set initial state for all FAQ answers
-            document.querySelectorAll('.faq-item').forEach(item => {
-                const answer = item.querySelector('.faq-answer');
-                const arrow = item.querySelector('.faq-arrow');
-                const question = item.querySelector('.faq-question');
-                
-                if (answer && arrow && question) {
-                    // Set initial styles
-                    answer.style.maxHeight = '0';
-                    answer.style.overflow = 'hidden';
-                    answer.style.transition = 'max-height 0.3s ease-out';
-                    
-                    // Set initial arrow
-                    arrow.textContent = '+';
-                    
-                    // Add click handler to question
-                    question.style.cursor = 'pointer';
-                    question.addEventListener('click', () => toggleFAQ(question));
-                    
-                    // Hover effects
-                    question.addEventListener('mouseenter', function() {
-                        this.style.backgroundColor = 'rgba(0, 180, 216, 0.05)';
-                    });
-                    
-                    question.addEventListener('mouseleave', function() {
-                        this.style.backgroundColor = 'transparent';
-                    });
-                }
-            });
-        }
         
-        // Enhanced FAQ toggle function
-        function toggleFAQ(element) {
-            if (!element) return;
-            
-            const faqItem = element.closest('.faq-item');
-            if (!faqItem) return;
-            
-            const answer = faqItem.querySelector('.faq-answer');
-            const arrow = faqItem.querySelector('.faq-arrow');
-            
-            if (!answer || !arrow) return;
-            
-            // Check if current FAQ is being closed
-            const isClosing = answer.style.maxHeight && answer.style.maxHeight !== '0px';
-            
-            // Close all FAQ items
-            document.querySelectorAll('.faq-item').forEach(item => {
-                if (item !== faqItem) {
-                    const otherAnswer = item.querySelector('.faq-answer');
-                    const otherArrow = item.querySelector('.faq-arrow');
-                    if (otherAnswer && otherArrow) {
-                        otherAnswer.style.maxHeight = '0';
-                        otherArrow.textContent = '+';
-                        otherArrow.style.transform = 'rotate(0deg)';
-                    }
-                }
-            });
-            
-            // Toggle current FAQ item if not closing
-            if (!isClosing) {
-                // Open the FAQ
-                answer.style.maxHeight = answer.scrollHeight + 'px';
-                arrow.textContent = '−';
-                arrow.style.transform = 'rotate(180deg)';
-                
-                // Smooth scrolling to ensure the answer is visible
-                setTimeout(() => {
-                    faqItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }, 50);
-            } else {
-                // Close the FAQ
-                answer.style.maxHeight = '0';
-                arrow.textContent = '+';
-                arrow.style.transform = 'rotate(0deg)';
-            }
-        }
-        
-        // Initialize FAQ when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initializeFAQ);
-        } else {
-            initializeFAQ();
-        }
 
         // Close modal when clicking outside
         window.onclick = function(event) {
@@ -2857,15 +2677,6 @@
             }
         }
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                nav.style.boxShadow = 'none';
-            }
-        });
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
