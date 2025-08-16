@@ -297,7 +297,6 @@
                 <button class="filter-btn active" onclick="filterDocs('all')">All Documents</button>
                 <button class="filter-btn" onclick="filterDocs('research')">Research Papers</button>
                 <button class="filter-btn" onclick="filterDocs('clinical')">Clinical Studies</button>
-                <button class="filter-btn" onclick="filterDocs('regulatory')">Regulatory</button>
                 <button class="filter-btn" onclick="filterDocs('technical')">Technical Specs</button>
             </div>
             <div id="results-count" class="results-count">0 results found</div>
@@ -328,6 +327,75 @@
 
         <!-- Documents Grid -->
         <div class="documents-grid">
+            <!-- Financial Calculation Technical Doc -->
+            <div class="doc-card" data-category="technical">
+                <span class="doc-type">TECHNICAL DOC</span>
+                <h3 class="doc-title">Market Size & Financial Calculations: TAM, SAM, SOM</h3>
+                <p class="doc-description">
+                    Spreadsheet showing market analysis and detailed calculations for Total Addressable Market (TAM), Serviceable Available Market (SAM), and Serviceable Obtainable Market (SOM). Includes financial logic and assumptions for the business case.
+                </p>
+                <a href="https://docs.google.com/spreadsheets/d/1PW4fasqYxYJfTTGQiQInywJ89E0lLrPkULJ88tWJ9AM/edit?usp=sharing" target="_blank" class="doc-link">
+                    View Financial Calculation Sheet
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </a>
+                <div class="doc-meta">
+                    <div class="doc-info">
+                        <span>Google Sheet</span>
+                        <span>2025</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clinical Study: Jaipur Doctors Survey -->
+            <div class="doc-card" data-category="clinical">
+                <span class="doc-type">CLINICAL SUMMARY</span>
+                <h3 class="doc-title">Clinical Survey: Jaipur Doctors on TBI Device Needs</h3>
+                <p class="doc-description">
+                    Summary of clinical survey conducted with 10 prestigious doctors in Jaipur, Rajasthan, on traumatic brain injury (TBI). This report captures their insights on diagnostic needs and device feature requirements, which directly influenced product design.
+                </p>
+                <a href="https://drive.google.com/file/d/1C7HVLveZm3PVseebv1ZKAfW_OUM4RPFS/view?usp=sharing" target="_blank" class="doc-link">
+                    View Clinical Survey Document
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </a>
+                <div class="doc-meta">
+                    <div class="doc-info">
+                        <span>Google Drive</span>
+                        <span>2025</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Biosensing Platform Presentation -->
+            <div class="doc-card" data-category="technical">
+                <span class="doc-type">TECHNICAL PRESENTATION</span>
+                <h3 class="doc-title">Bio-Stride Biosensing Platform & Microfluidic Design</h3>
+                <p class="doc-description">
+                    Google Slides presentation detailing the Bio-Stride biosensing platform, technical aspects of the microfluidic cartridge design, working methodology, and the full device testing flow.
+                </p>
+                <a href="https://docs.google.com/presentation/d/1YG-VnUSZM5oMQK7rJ-W30loMQge8y9Wn7Sxc_ftM0j8/edit?usp=sharing" target="_blank" class="doc-link">
+                    View Technical Presentation
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </a>
+                <div class="doc-meta">
+                    <div class="doc-info">
+                        <span>Google Slides</span>
+                        <span>2025</span>
+                    </div>
+                </div>
+            </div>
+
             <!-- Research Papers -->
             <div class="doc-card" data-category="research">
                 <span class="doc-type">RESEARCH PAPER</span>
@@ -411,51 +479,20 @@
                 </div>
             </div>
 
-            <!-- Regulatory Documents -->
-            <div class="doc-card" data-category="regulatory">
-                <span class="doc-type">REGULATORY</span>
-                <h3 class="doc-title">CDSCO Class C Device Registration Dossier</h3>
-                <p class="doc-description">Complete regulatory submission package for CDSCO approval, including device classification, safety data, and manufacturing standards.</p>
-                <div class="doc-meta">
-                    <div class="doc-info">
-                        <span>PDF • 5.1 MB</span>
-                        <span>2025</span>
-                    </div>
-                    <a href="#" class="download-btn" onclick="downloadDoc('regulatory-1')">Download</a>
-                </div>
-            </div>
-
-            <div class="doc-card" data-category="regulatory">
-                <span class="doc-type">ISO CERTIFICATION</span>
-                <h3 class="doc-title">ISO 13485:2016 Quality Management System</h3>
-                <p class="doc-description">Certification demonstrating compliance with international quality standards for medical device design and manufacturing.</p>
-                <div class="doc-meta">
-                    <div class="doc-info">
-                        <span>PDF • 0.8 MB</span>
-                        <span>2025</span>
-                    </div>
-                    <a href="#" class="download-btn" onclick="downloadDoc('regulatory-2')">Download</a>
-                </div>
-            </div>
 
             <!-- Technical Specifications -->
             <div class="doc-card" data-category="technical">
-                <span class="doc-type">TECHNICAL SPEC</span>
-                <h3 class="doc-title">Bio-Stride TBI Analyzer: Technical Specifications</h3>
-                <p class="doc-description">Comprehensive technical documentation including device specifications, performance characteristics, and integration guidelines.</p>
-                <div class="doc-meta">
-                    <div class="doc-info">
-                        <span>PDF • 2.8 MB</span>
-                        <span>2025</span>
-                    </div>
-                    <a href="#" class="download-btn" onclick="downloadDoc('technical-1')">Download</a>
-                </div>
-            </div>
-
-            <div class="doc-card" data-category="technical">
                 <span class="doc-type">WHITE PAPER</span>
-                <h3 class="doc-title">Electrochemical Biosensor Technology: Principles and Applications in Emergency Diagnostics</h3>
-                <p class="doc-description">Technical white paper explaining the underlying technology, sensor design, and biomarker detection methodology.</p>
+                <h3 class="doc-title">Electrochemical Biosensor Technology: Principles and Applications using AI</h3>
+                <p class="doc-description">Updated white paper on electrochemical biosensor technology, with a special focus on AI-driven advances, sensor design, and biomarker detection in emergency diagnostics.</p>
+                <a href="https://doi.org/10.1016/j.heliyon.2024.e37964" target="_blank" class="doc-link">
+                    View Published Paper
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </a>
                 <div class="doc-meta">
                     <div class="doc-info">
                         <span>PDF • 1.9 MB</span>
@@ -466,31 +503,6 @@
             </div>
 
             <!-- Business Documents -->
-            <div class="doc-card" data-category="business">
-                <span class="doc-type">MARKET ANALYSIS</span>
-                <h3 class="doc-title">Indian Emergency Diagnostics Market: Opportunities in TBI Detection</h3>
-                <p class="doc-description">Comprehensive market analysis covering TAM, competitive landscape, and growth projections for point-of-care TBI diagnostics in India.</p>
-                <div class="doc-meta">
-                    <div class="doc-info">
-                        <span>PDF • 3.5 MB</span>
-                        <span>2025</span>
-                    </div>
-                    <a href="#" class="download-btn" onclick="downloadDoc('business-1')">Download</a>
-                </div>
-            </div>
-
-            <div class="doc-card" data-category="business">
-                <span class="doc-type">IMPACT REPORT</span>
-                <h3 class="doc-title">Social Impact Assessment: Reducing TBI-Related Disabilities in Rural India</h3>
-                <p class="doc-description">Analysis of potential social and economic impact of widespread TBI detection deployment in underserved communities.</p>
-                <div class="doc-meta">
-                    <div class="doc-info">
-                        <span>PDF • 2.1 MB</span>
-                        <span>2024</span>
-                    </div>
-                    <a href="#" class="download-btn" onclick="downloadDoc('business-2')">Download</a>
-                </div>
-            </div>
         </div>
 
         <!-- Citation Guidelines -->
